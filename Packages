@@ -1,0 +1,15 @@
+Package: com.spyruf.SpyrufLionZeppelinLogo
+Version: 1.0
+Architecture: iphoneos-arm
+Maintainer: Spyruf <spyruf@gmail.com>
+Depends: zeppelin
+Filename: ./debs//com.spyruf.spyruflionzeppelinlogo_1.0_iphoneos-arm.deb
+Size: 9956
+MD5sum: cb9c4a4c15c5eddbc09c566121df5e29
+SHA1: e86c7984e9cd0897820856ac264251cddf1f7645
+SHA256: 67c72a67254a4b8ea83b3ebcb86de2bcc273e3fd2d10b0d401b02140d9854aef
+Section: Themes (Zeppelin)
+Description: Spyruf Lion Zeppelin Logo
+Author: Spyruf <spyruf@gmail.com>
+Name: Spyruf Lion Zeppelin Logo
+
