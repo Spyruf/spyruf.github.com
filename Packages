@@ -4,10 +4,10 @@ Architecture: iphoneos-arm
 Maintainer: Spyruf <spyruf@gmail.com>
 Depends: com.alexzielenski.zeppelin
 Filename: ./debs//com.spyruf.ovozeppelinlogos_1.0_iphoneos-arm.deb
-Size: 7512
-MD5sum: 0bc1df0d0a9df766e6cb1a3d8c3ae488
-SHA1: 2725561aece0d7ee207e93c66de609c247f57d8e
-SHA256: 23ccb0bf95b645c2be27496129e6ef34537c2e4b7504753ba06ab70431ab645a
+Size: 6882
+MD5sum: 1a344a643b6726fb7689b3edb119c5da
+SHA1: 965939bb7809adbfec435acc62b11c34045d0ea0
+SHA256: 76a9a7a824a6d4fec0fa8b1e27516b69681bb1eaffb9fc96a0b1928bad103c84
 Section: Themes (Zeppelin)
 Description: OVO Owl Zeppelin Logos. Tested on iPhone 6.
 Author: Spyruf <spyruf@gmail.com>
@@ -20,10 +20,10 @@ Maintainer: Spyruf <spyruf@gmail.com>
 Depends: com.alexzielenski.zeppelin
 Conflicts: com.spyruf.spyrufzeppelinlogos
 Filename: ./debs//com.spyruf.spyruflionzeppelinlogo_1.1_iphoneos-arm.deb
-Size: 7254
-MD5sum: bd2f3fbf3e5b0253da26c3dcbc6afa47
-SHA1: 7bcade10e4ac3690b2d31823817b70cb9a4da88f
-SHA256: abaae516d9ff14c47e357c7b35aa01b13ec788559a40ad06f583726e490b971d
+Size: 6568
+MD5sum: f9332b47bf0dc21f3e275f7ec9ba3136
+SHA1: d23e0af32a4bb1893b706aa5a6d3d40d9668bd0d
+SHA256: 39e27c465bc087ab8dd707827d2332f55c9a41ba9dfd9b6cd13e58daf646ba46
 Section: Themes (Zeppelin)
 Description: Spyruf Lion Zeppelin Logo. Tested on iPhone 6.
 Author: Spyruf <spyruf@gmail.com>
