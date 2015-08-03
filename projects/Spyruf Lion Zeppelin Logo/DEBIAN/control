@@ -2,7 +2,7 @@ Package: com.spyruf.SpyrufLionZeppelinLogo
 Name: Spyruf Lion Zeppelin Logo
 Depends: com.alexzielenski.zeppelin
 Conflicts: com.spyruf.spyrufzeppelinlogos
-Version: 1.0
+Version: 1.1
 Architecture: iphoneos-arm
 Description: Spyruf Lion Zeppelin Logo. Tested on iPhone 6.
 Maintainer: Spyruf <spyruf@gmail.com>
