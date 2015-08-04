@@ -1,31 +1,33 @@
 Package: com.spyruf.OVOZeppelinLogos
-Version: 1.0
-Architecture: iphoneos-arm
-Maintainer: Spyruf <spyruf@gmail.com>
-Depends: com.alexzielenski.zeppelin
-Filename: ./debs//com.spyruf.ovozeppelinlogos_1.0_iphoneos-arm.deb
-Size: 6882
-MD5sum: 1a344a643b6726fb7689b3edb119c5da
-SHA1: 965939bb7809adbfec435acc62b11c34045d0ea0
-SHA256: 76a9a7a824a6d4fec0fa8b1e27516b69681bb1eaffb9fc96a0b1928bad103c84
-Section: Themes (Zeppelin)
-Description: OVO Owl Zeppelin Logos. Tested on iPhone 6.
-Author: Spyruf <spyruf@gmail.com>
-Name: OVO Zeppelin Logos
-
-Package: com.spyruf.SpyrufLionZeppelinLogo
 Version: 1.1
 Architecture: iphoneos-arm
 Maintainer: Spyruf <spyruf@gmail.com>
 Depends: com.alexzielenski.zeppelin
+Filename: ./debs//com.spyruf.ovozeppelinlogos_1.1_iphoneos-arm.deb
+Size: 6916
+MD5sum: f300d042bcbe7ec52a14a7afecac66d4
+SHA1: 50c8e91f04f76751bd88a6b5a16471dd03c9187f
+SHA256: 8ddfb0a785691ddcacf81a7402291039e6a341b67a06d316a7d64bc730ae09bf
+Section: Themes (Zeppelin)
+Description: OVO Owl Zeppelin Logos. Tested on iPhone 6.
+Author: Spyruf <spyruf@gmail.com>
+Depiction: http://spyruf.github.io/theme.html
+Name: OVO Zeppelin Logos
+
+Package: com.spyruf.SpyrufLionZeppelinLogo
+Version: 1.2
+Architecture: iphoneos-arm
+Maintainer: Spyruf <spyruf@gmail.com>
+Depends: com.alexzielenski.zeppelin
 Conflicts: com.spyruf.spyrufzeppelinlogos
-Filename: ./debs//com.spyruf.spyruflionzeppelinlogo_1.1_iphoneos-arm.deb
-Size: 6568
-MD5sum: f9332b47bf0dc21f3e275f7ec9ba3136
-SHA1: d23e0af32a4bb1893b706aa5a6d3d40d9668bd0d
-SHA256: 39e27c465bc087ab8dd707827d2332f55c9a41ba9dfd9b6cd13e58daf646ba46
+Filename: ./debs//com.spyruf.spyruflionzeppelinlogo_1.2_iphoneos-arm.deb
+Size: 6598
+MD5sum: f0f4206c87825170d840551624e2a2a8
+SHA1: c188e20eda034f5e3a5cc6dfc120374f6f504d1c
+SHA256: 8729a220977f4643d0ae4e0de041486d74585db20384fc8faa5598d6a468ed84
 Section: Themes (Zeppelin)
 Description: Spyruf Lion Zeppelin Logo. Tested on iPhone 6.
 Author: Spyruf <spyruf@gmail.com>
+Depiction: http://spyruf.github.io/theme.html
 Name: Spyruf Lion Zeppelin Logo
 
