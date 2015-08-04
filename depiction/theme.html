@@ -1,10 +1,73 @@
 <!DOCTYPE html>
-<html>
-<body>
-
-<h1>My First Heading</h1>
-
-<p>My first paragraph.</p>
-
-</body>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>AppSync Unified :: Karen's Pineapple Repo</title>
+		<base target="_top">
+		<link href="theme/jonyive/resources/jonyive.css" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="shortcut icon" href="favicon.ico">
+	</head>
+	<body class="iOS">
+		<panel>
+			<fieldset style="background-color: #FFD8F0">
+				<a href="?">
+					<img class="icon" src="CydiaIcon.png">
+					<div>
+						<label>Karen's Pineapple Repo</label>
+					</div>
+				</a>
+			</fieldset>
+			<fieldset>
+				<a href="cydia://package/net.angelxwind.appsyncunified">
+					<img class="icon" src="theme/jonyive/resources/cydia.png" width="58" height="58">
+					<div>
+						<label>View in Cydia</label>
+					</div>
+				</a>
+				<a href="?page/net.angelxwind.appsyncunified-changelog">
+					<img class="icon" src="theme/jonyive/resources/changelog.png" width="58" height="58">
+					<div>
+						<label>Changelog</label>
+					</div>
+				</a>
+				<a href="http://angelxwind.net/?page/how2asu">
+					<img class="icon" src="CydiaIcon.png" width="58" height="58">
+					<div>
+						<label>Development Tutorial</label>
+					</div>
+				</a>
+				<a href="http://angelxwind.net/?page/why-ppsync-is-awful">
+					<img class="icon" src="CydiaIcon.png" width="58" height="58">
+					<div>
+						<label>Why PPSync is Awful</label>
+					</div>
+				</a>
+				<a href="https://github.com/angelXwind/AppSync">
+					<img class="icon" src="https://raw.github.com/github/media/master/octocats/blacktocat-32.png" width="58" height="58">
+					<div>
+						<label>GitHub (GPLv3)</label>
+					</div>
+				</a>
+</fieldset>
+			<block>
+<p><strong>Unified AppSync dynamic library for iOS 5, 6, 7, and 8. Supports arm64.</strong></p>
+				<p><strong><b style="color:red;">AppSync Unified</b> is <b style="color:red;">NOT</b> for piracy.</strong></p>
+				<p><strong><b style="color:green;">AppSync Unified</b> is <b style="color:green;">for</b> <b style="color:green;">freedom of iOS development with the official Xcode iOS SDK.</b></strong></p>
+				<p><strong><b style="color:red;">Jailbreaking</b> is <b style="color:red;">NOT</b> for piracy.</strong></p>
+				<p><strong><b style="color:green;">Jailbreaking</b> is <b style="color:green;">for</b> <b style="color:green;">freedom of your iOS device.</b></strong></p>
+				<p>AppSync Unified is a tweak that patches installd to allow for the installation of unsigned IPA packages on an iOS device. This is particularly useful for iOS developers who are not enrolled in Apple's official iOS Developer Program, as it allows these developers to debug and test their apps on their own devices using modifications such as iOSOpenDev.</p>
+<p>Many so-called "AppSync" packages found on various piracy-centered repos are actually mirrors of "PPSync," an incredibly strange installd patch made by the notorious Chinese iOS piracy website, 25pp.com.</p>
+<p>This 25pp version of AppSync, PPSync, modifies installd's launch daemon plist file for interposing signature checking routines, which is an <strong>ugly workaround</strong> and <strong>extremely unstable</strong>, causing system apps to randomly crash, among other undesirable behaviour.</p>
+<p>Even more baffling is how PPSync's postinst script symlinks all system applications to /User/Applications/, which ... actually causes more problems than what they were trying to solve. No idea what they were trying to do there.</p>
+<p>AppSync Unified utilizes the dynamic hooking function MSHookFunction of saurik's Cydia Substrate to bypass the signature check, which does not modify any system files and is much more stable and safe.</p>
+<p>Again, AppSync is <strong>NOT</strong> meant to support piracy. Obviously it can still be used in that way, and I, nor anyone else can really stop you if you want to pirate, but <strong>please don't pirate and support the developers!</strong></p>
+<p>Please don't steal AppSync Unified and take credit for it. You just end up looking like an idiot when you do that.</p>
+			</block>
+			<fieldset class="footer">
+				<label>
+					Copyright &copy; 2015 Karen Tsai (angelXwind), All Rights Reserved.				</label>
+			</fieldset>
+		</panel>
+	</body>
 </html>
