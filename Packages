@@ -6,9 +6,9 @@ Depends: com.alexzielenski.zeppelin
 Conflicts: com.spyruf.spyrufzeppelinlogos
 Filename: ./debs//com.spyruf.spyruflionzeppelinlogo_1.0_iphoneos-arm.deb
 Size: 6600
-MD5sum: e6b1b4f7678d8226f8a5ed5f06254245
-SHA1: a04fbf32f34b5111215eb08e20339e6d5d736fc6
-SHA256: 997c614f1322860d572666f2bf9fb49052df51d7d4b2f3aa2fe90a5503cfda02
+MD5sum: cc1713923f4f552fae8abf9ce08543ef
+SHA1: 31096a1031a3e243907ca337692ccbee2d3a06ae
+SHA256: 5cb52b205b11ceac7fd9be993dafa231ec7f36180416ebfaa130b6a643d66e31
 Section: Themes (Zeppelin)
 Description: Spyruf Lion Zeppelin Logo. Tested on iPhone 6.
 Author: Spyruf <spyruf@gmail.com>
