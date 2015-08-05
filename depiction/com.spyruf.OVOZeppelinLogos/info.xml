@@ -14,20 +14,20 @@
 		<description>This is an package will full depictions.</description>
 		<description>It has more description lines.</description>
 		<description><![CDATA[
-		You can also have<br/> 
+		You can also have<br/>
 		a multi-line item.
 		]]>
 		</description>
 	</descriptionlist>
 	<screenshots>
 		<screenshot>
-			<description>This is a description for screenshot 1. It's Cydia!</description>
-			<image>cydia.jpg</image>
-		</screenshot>		
+			<description> <!-- description --> </description>
+			<image>1.png</image>
+		</screenshot>
 		<screenshot>
-			<description>This is a description for screenshot 2. It's another Cydia!</description>
-			<image>cydia.jpg</image>
-		</screenshot>		
+			<description> <!-- description --></description>
+			<image>2.png</image>
+		</screenshot>
 	</screenshots>
 	<changelog>
 		<change>Second release</change>
