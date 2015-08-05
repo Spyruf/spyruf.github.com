@@ -2,7 +2,7 @@ Package: com.spyruf.OVOZeppelinLogos
 Name: OVO Zeppelin Logos
 Depends: com.alexzielenski.zeppelin
 Conflicts:
-Version: 2.0
+Version: 1.0
 Architecture: iphoneos-arm
 Description: OVO Owl Zeppelin Logos. Tested on iPhone 6.
 Depiction: https://spyruf.github.io/depiction/com.spyruf.OVOZeppelinLogos/depic.html
