@@ -5,7 +5,7 @@ Conflicts: com.spyruf.spyrufzeppelinlogos
 Version: 2.0
 Architecture: iphoneos-arm
 Description: Spyruf Lion Zeppelin Logo. Tested on iPhone 6.
-Depiction: https://spyruf.github.io/depictions/com.SpyrufLionZeppelinLogo/depic.html
+Depiction: https://spyruf.github.io/depiction/com.SpyrufLionZeppelinLogo/depic.html
 Maintainer: Spyruf <spyruf@gmail.com>
 Author: Spyruf <spyruf@gmail.com>
 Section: Themes (Zeppelin)
