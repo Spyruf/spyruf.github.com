@@ -1,33 +1,33 @@
 Package: com.spyruf.OVOZeppelinLogos
-Version: 1.0
+Version: 2.0
 Architecture: iphoneos-arm
 Maintainer: Spyruf <spyruf@gmail.com>
 Depends: com.alexzielenski.zeppelin
-Filename: ./debs//com.spyruf.ovozeppelinlogos_1.0_iphoneos-arm.deb
-Size: 6928
-MD5sum: dd801c65df0e76a7737a2e99e8e6bb13
-SHA1: 1a97875fd428bbc2b990e938601c601e95d13b11
-SHA256: dd8868dc5064327b05955203838beb2b2964a274a148c585e7cbc1bd455e6cb0
+Filename: ./debs//com.spyruf.ovozeppelinlogos_2.0_iphoneos-arm.deb
+Size: 6936
+MD5sum: c524f47c0810b6be07dd668f1c19d175
+SHA1: a65f274255b66d970a8f52441a332e333c3fdd7f
+SHA256: bde7df6184d1ab060c2f693efe3539f6220f273a5e97e4f52cc051b0d95d32e2
 Section: Themes (Zeppelin)
 Description: OVO Owl Zeppelin Logos. Tested on iPhone 6.
 Author: Spyruf <spyruf@gmail.com>
-Depiction: https://spyruf.github.io/depiction/com.spyruf.OVOZeppelinLogos/depic.html
+Depiction: https://spyruf.github.io/repo/depiction/com.spyruf.OVOZeppelinLogos/depic.html
 Name: OVO Zeppelin Logos
 
 Package: com.spyruf.SpyrufLionZeppelinLogo
-Version: 1.0
+Version: 2.0
 Architecture: iphoneos-arm
 Maintainer: Spyruf <spyruf@gmail.com>
 Depends: com.alexzielenski.zeppelin
 Conflicts: com.spyruf.spyrufzeppelinlogos
-Filename: ./debs//com.spyruf.spyruflionzeppelinlogo_1.0_iphoneos-arm.deb
-Size: 6600
-MD5sum: d150356154a040c23d6ebac08adb48a4
-SHA1: 7f186b449ba174281a844d7156d975e995c4e899
-SHA256: d5f849cc8ac71811e40987757890bc74a23e12bfa3fc570e681c1207e0f5bc55
+Filename: ./debs//com.spyruf.spyruflionzeppelinlogo_2.0_iphoneos-arm.deb
+Size: 6604
+MD5sum: 24b15d74c6e60191704994f9b7f6137c
+SHA1: e345536a701f40c3c2f5a051ccc9daf8c6d95ebe
+SHA256: ed334a61d6454562d057eac56315d63e6a999eb5875460f0c7311245e5f61ca4
 Section: Themes (Zeppelin)
 Description: Spyruf Lion Zeppelin Logo. Tested on iPhone 6.
 Author: Spyruf <spyruf@gmail.com>
-Depiction: https://spyruf.github.io/depiction/com.spyruf.SpyrufLionZeppelinLogo/depic.html
+Depiction: https://spyruf.github.io/repo/depiction/com.spyruf.SpyrufLionZeppelinLogo/depic.html
 Name: Spyruf Lion Zeppelin Logo
 
