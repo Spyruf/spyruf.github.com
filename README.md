@@ -1,2 +1,2 @@
 # spyruf.github.io
-Welcome to my repo
+This is where I host my stuff
