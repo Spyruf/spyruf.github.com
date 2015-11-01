@@ -4,14 +4,14 @@ Architecture: iphoneos-arm
 Maintainer: Spyruf <spyruf@gmail.com>
 Depends: com.anemonetheming.anemone
 Filename: ./debs//com.spyruf.noccsliders_1.0_iphoneos-arm.deb
-Size: 3306
-MD5sum: 9a74cd77acdc45b5d739f406a638795f
-SHA1: cd21a1fdbfce906b79327639ca910766b82471d7
-SHA256: 5e9a8b15ca9beaa31e23239b077eb1b1a111a219971ffc60f9109536dff9d97b
+Size: 3294
+MD5sum: 9867fd506326212780b1244eb63db1c3
+SHA1: 52f2e021a9d256f638036275c653694fdbe6a823
+SHA256: 6e2550c05dba08b59235bb06d4ca5cbb17ca5cadb3689a994ff2f52a09e4e762
 Section: Themes
 Description: Transparent CC Sliders/Knobs for use with Anemone
 Author: Spyruf <spyruf@gmail.com>
-Depiction: https://spyruf.github.io/repo/depiction/com.spyruf.OVOZeppelinLogos/depic.html
+Depiction: https://spyruf.github.io/repo/depiction/com.spyruf.NoCCSliders/depic.html
 Name: NoCCSliders
 
 Package: com.spyruf.OVOZeppelinLogos
@@ -21,9 +21,9 @@ Maintainer: Spyruf <spyruf@gmail.com>
 Depends: com.alexzielenski.zeppelin
 Filename: ./debs//com.spyruf.ovozeppelinlogos_2.0_iphoneos-arm.deb
 Size: 8558
-MD5sum: 9a18d29eb8e49ebd9821f84dfa7260ef
-SHA1: e9cac28b93b9afe9daf3f4ec4d416b060d1a18f8
-SHA256: 1569e3eed12d6785c7e6386684be175e72568d963adf39dea6f8daccce79df68
+MD5sum: b66271c3319463a32c089eb2b3324c88
+SHA1: 473929c1d20336bc341e5e9916416ef18fdea63f
+SHA256: 679ca147cac03f88a264c05732eb9b9bb11c23a2c4fd38e9b1f6ba44b4654fb1
 Section: Themes (Zeppelin)
 Description: OVO Owl Zeppelin Logos. Tested on iPhone 6.
 Author: Spyruf <spyruf@gmail.com>
@@ -38,9 +38,9 @@ Depends: com.alexzielenski.zeppelin
 Conflicts: com.spyruf.spyrufzeppelinlogos
 Filename: ./debs//com.spyruf.spyruflionzeppelinlogo_2.0_iphoneos-arm.deb
 Size: 6902
-MD5sum: 93b67aaf145ede1a909a27ffdd49bc80
-SHA1: 1656c23c8b7a6c6c718ef6402813c5683eedd7d5
-SHA256: 791b6d2bdb3da2e6491e214e23b873e0b44a4da08b94cbb84cb12d5d2493d41d
+MD5sum: bdc94efb03b871fd26c6bfdd18a66f0b
+SHA1: e1480d30d57b38cabc6bb7aa2969512f77d45a4e
+SHA256: d01a2fb5497b195ba17c0109261ea8b20da51ddcb505e680aec1ca0f6acd5193
 Section: Themes (Zeppelin)
 Description: Spyruf Lion Zeppelin Logo. Tested on iPhone 6.
 Author: Spyruf <spyruf@gmail.com>
