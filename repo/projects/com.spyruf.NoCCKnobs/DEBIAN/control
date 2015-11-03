@@ -1,0 +1,11 @@
+Package: com.spyruf.NoCCSliders
+Name: NoCCKnobs
+Depends: com.anemonetheming.anemone
+Conflicts:
+Version: 1.0
+Architecture: iphoneos-arm
+Description: No CC Knobs for use with Anemone	
+Depiction: https://spyruf.github.io/repo/depiction/com.spyruf.NoCCKnobs/depic.html
+Maintainer: Spyruf <spyruf@gmail.com>
+Author: Spyruf <spyruf@gmail.com>
+Section: Themes
