@@ -5,9 +5,9 @@ Maintainer: Spyruf <spyruf@gmail.com>
 Depends: com.anemonetheming.anemone
 Filename: ./debs//com.spyruf.noccknobs_1.3_iphoneos-arm.deb
 Size: 2832
-MD5sum: cefd26bb745efdb67e5cd2eefb6d4389
-SHA1: b525d91296ffea31273071947c9e07479174ea42
-SHA256: 91131ae1138b5c1dc6f27ec3e8a9a23e9d3c20733a66e98c185a23cc41853b3b
+MD5sum: e1b324d1d6ae2382a656e132c69dd851
+SHA1: cb566ec55611ff97eee0ab54bc1b2b8703356e30
+SHA256: 763c4ed2fc28b05fa3e4b7c8e9eaf69dbea530692f05a858125d7033b6a1b284
 Section: Themes
 Description: No CC Knobs for use with Anemone
 Author: Spyruf <spyruf@gmail.com>
@@ -21,9 +21,9 @@ Maintainer: Spyruf <spyruf@gmail.com>
 Depends: com.alexzielenski.zeppelin
 Filename: ./debs//com.spyruf.ovozeppelinlogos_2.0_iphoneos-arm.deb
 Size: 7240
-MD5sum: a36934417a1e9e3d5f56b576d44c7eae
-SHA1: ed93466bb2189a0ae31ed05c35ea31164096c492
-SHA256: 993e7a3c45c96e0724dd0fd84c309665c398d6c88ee7afc6ee71b920988851a9
+MD5sum: fe01a0e0152ce1cc3fa540c471cd7d42
+SHA1: 88c1e648ba9f32573d2d757eda39086112e944b6
+SHA256: 8bff7c45f992f6953f4db09a1d010145305f9916bc93fba53c8d33f0256e7014
 Section: Themes (Zeppelin)
 Description: OVO Owl Zeppelin Logos. Tested on iPhone 6.
 Author: Spyruf <spyruf@gmail.com>
@@ -38,9 +38,9 @@ Depends: com.alexzielenski.zeppelin
 Conflicts: com.spyruf.spyrufzeppelinlogos
 Filename: ./debs//com.spyruf.spyruflionzeppelinlogo_2.0_iphoneos-arm.deb
 Size: 6940
-MD5sum: 117adf97f4187d17bed3434247864f86
-SHA1: bdf278fa14c5666a469ad01823510926edc14046
-SHA256: 6ec3f3ed2c26b96f8978fe269d7d38e2971dc6e61813e32129b020bf8dc98ebf
+MD5sum: e8f64ed145487004235bee4de35808a5
+SHA1: a3cb24c78d5f238ccec70e4dbbcdf211dea3ff84
+SHA256: 0174f5edb2aeec3b5016e37b7ecf3e4db49c6e4a137abfab6470e429eaf048cd
 Section: Themes (Zeppelin)
 Description: Spyruf Lion Zeppelin Logo. Tested on iPhone 6.
 Author: Spyruf <spyruf@gmail.com>
