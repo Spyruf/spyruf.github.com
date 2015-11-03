@@ -1,4 +1,4 @@
-Package: com.spyruf.NoCCSliders
+Package: com.spyruf.NoCCKnobs
 Name: NoCCKnobs
 Depends: com.anemonetheming.anemone
 Conflicts:
