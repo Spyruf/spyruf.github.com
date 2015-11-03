@@ -1,13 +1,13 @@
 Package: com.spyruf.NoCCKnobs
-Version: 1.1
+Version: 1.3
 Architecture: iphoneos-arm
 Maintainer: Spyruf <spyruf@gmail.com>
 Depends: com.anemonetheming.anemone
-Filename: ./debs//com.spyruf.noccknobs_1.1_iphoneos-arm.deb
-Size: 3722
-MD5sum: d6797dee88743825d514159d00821161
-SHA1: d423df94205b9e4ae16c4c1eeaec5341c4d0198f
-SHA256: b61e8b0ab1cc4fdada2e9f57279bb8386572ea71f1dff9e16e6156e04025b779
+Filename: ./debs//com.spyruf.noccknobs_1.3_iphoneos-arm.deb
+Size: 2832
+MD5sum: cefd26bb745efdb67e5cd2eefb6d4389
+SHA1: b525d91296ffea31273071947c9e07479174ea42
+SHA256: 91131ae1138b5c1dc6f27ec3e8a9a23e9d3c20733a66e98c185a23cc41853b3b
 Section: Themes
 Description: No CC Knobs for use with Anemone
 Author: Spyruf <spyruf@gmail.com>
@@ -20,10 +20,10 @@ Architecture: iphoneos-arm
 Maintainer: Spyruf <spyruf@gmail.com>
 Depends: com.alexzielenski.zeppelin
 Filename: ./debs//com.spyruf.ovozeppelinlogos_2.0_iphoneos-arm.deb
-Size: 7332
-MD5sum: a8b37ae08d7652824576a1d630f4e100
-SHA1: 5b50adac8c76cf2e9015000ae26c5c7967b9a8b9
-SHA256: 21ad789c8b4488d2473a68e9310d478ca9ceb33983ed677530937b623cbaa48d
+Size: 7240
+MD5sum: a36934417a1e9e3d5f56b576d44c7eae
+SHA1: ed93466bb2189a0ae31ed05c35ea31164096c492
+SHA256: 993e7a3c45c96e0724dd0fd84c309665c398d6c88ee7afc6ee71b920988851a9
 Section: Themes (Zeppelin)
 Description: OVO Owl Zeppelin Logos. Tested on iPhone 6.
 Author: Spyruf <spyruf@gmail.com>
@@ -37,10 +37,10 @@ Maintainer: Spyruf <spyruf@gmail.com>
 Depends: com.alexzielenski.zeppelin
 Conflicts: com.spyruf.spyrufzeppelinlogos
 Filename: ./debs//com.spyruf.spyruflionzeppelinlogo_2.0_iphoneos-arm.deb
-Size: 7076
-MD5sum: e10e54d78f101d73cf83e5e580104784
-SHA1: 2d3996230ffa28c008c69458fb70c8b83ad315f8
-SHA256: d874d64c70f27593b32deaa40358cd7b0d2421aa45c66679867ad21ec80d57f5
+Size: 6940
+MD5sum: 117adf97f4187d17bed3434247864f86
+SHA1: bdf278fa14c5666a469ad01823510926edc14046
+SHA256: 6ec3f3ed2c26b96f8978fe269d7d38e2971dc6e61813e32129b020bf8dc98ebf
 Section: Themes (Zeppelin)
 Description: Spyruf Lion Zeppelin Logo. Tested on iPhone 6.
 Author: Spyruf <spyruf@gmail.com>
