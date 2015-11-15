@@ -106,7 +106,7 @@ if($nthn != null && $nthl !=null){
 // checks if word can be formed
 for($x=0; $x< strlen($string) ; $x++){
     
-    $char = substr($string,x); // gets current character
+    $char = substr($string,$x,1); // gets current character at $x
     $exists = FALSE;
     
     for($i = 0; $i< count($letter); $i++){ // loops through letter array
@@ -123,8 +123,6 @@ for($x=0; $x< strlen($string) ; $x++){
         
     }
 }
-
-print_r($letter);
                    
 echo "<pre>";
 print_r($main); 
