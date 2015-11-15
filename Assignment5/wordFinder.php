@@ -104,6 +104,7 @@ if($nthn != null && $nthl !=null){
 */
 
 // checks if word can be formed
+/*
 for($x=0; $x< strlen($string) ; $x++){
     
     $char = substr($string,$x,1); // gets current character at $x
@@ -114,97 +115,16 @@ for($x=0; $x< strlen($string) ; $x++){
             $count[$i] = $count[$i] + 1; // if it exists, update count array
             $exists = TRUE;
             echo "---updated the count";
-        }
+        }    
+    }
+    
     if($exists == FALSE){
         $letter[] = $char;
         $count[] = 1;
         echo"---added a letter";
     }
-        
-    }
 }
-                   
+*/
 echo "<pre>";
 print_r($main); 
-
-
-/*
-
-// 1. first letter
-if($first != ""){
-    while(!feof($myfile)) { 
-        
-            $current = fgets($myfile); // gets the current word in txt file
-            $number = substr_compare($first,$current,0,strlen($first),TRUE); // compares first letters of input and current word
-            if($number == 0){
-                $main[] = $current; 
-            }        
-    }
-}
-fclose($myfile);
-
-/*
-
-if($last != ""){
-
-}
-
-
-/*
-
-$myfile = fopen("CompleteScrabbleWordlist.txt", "r") or die("Unable to open file!");
-
-
-//starting with letter 
-$startingwith = array();
-
-// loops through the txt file until it reaches the end
-while(!feof($myfile)) { 
-   
-    $current = fgets($myfile); // gets the current word in txt file
-    $number = substr_compare($string,$current,0,$length,TRUE); // compares first letters of input and current word
-    
-    if($number == 0)
-    {
-        $startingwith[] = $current;
-        
-    }
-    
-}
-
-fclose($myfile);
-    
-//checks if any there are any words
-if( count($startingwith) == 0){
-    echo "Oh No! No Possible Words!";
-}
-
-//echoes startingwith array
-for($x = 0; $x < count($startingwith); $x++) {
-    
-    if($x != count($startingwith) - 1 ){
-        echo $startingwith[$x] . ",";
-    }
-    else{
-        echo $startingwith[$x];
-    }
-}
-
-echo "ended";
-
-
-
-/*
-$patterm = "^.*abb.*$"
-$contents = file_get_contents($file);
-//serach and store all matching occurrences in $matches
-
-if(preg_match_all($pattern, $contents, $matches)){
-	//echo "Found matches: /n";
-	echo implode(" ", $matches[0]);
-}
-
-
-*/
-
 ?>
