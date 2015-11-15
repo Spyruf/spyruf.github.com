@@ -1,5 +1,7 @@
 <?php 
 
+echo "start";
+
 $string = $_REQUEST["string"];
 $first = $_REQUEST['first']; 
 $last = $_REQUEST['last']; 
@@ -12,6 +14,7 @@ $temp = array();
 $letters = array(); // array of letters
 $count = array(); // count of how many letters
 
+$echo "initialized";
 
 /* method of attack
 1. find words that start wtih letter
@@ -40,6 +43,7 @@ while(!feof($myfile)) {
 }
 fclose($myfile);
 
+echo "--contents";
 
 //1. first letter(s)
 if($first != null){
@@ -57,6 +61,7 @@ b
 
 }
 
+echo "first letters";
 
 //2. last letter(s)
 if($last != null){
@@ -80,51 +85,11 @@ if($last != null){
 
 }
 
-//3. n charcter as letter
-/*
-if($nthn != null && $nthl !=null){
-    
-    for($x = 0; $x < count($main); $x++) {
+echo "last letters";
 
-        $current = $main[$x];
-        
-        if(strlen($current) <= $nthn){
-            echo $nthn;
-            $number = substr_compare($current, $nthl, $nthn - 1 ,1,TRUE); // compares first letters of input and first letters of current word
 
-            if($number == 0){
-                $temp[] = $current; 
-            }       
 
-        }
-    }
-    update();
-
-}
-*/
-
-// checks if word can be formed
-/*
-for($x=0; $x< strlen($string) ; $x++){
-    
-    $char = substr($string,$x,1); // gets current character at $x
-    $exists = FALSE;
-    
-    for($i = 0; $i< count($letter); $i++){ // loops through letter array
-        if($letter[$i] == $char){  // checks if letter already exists
-            $count[$i] = $count[$i] + 1; // if it exists, update count array
-            $exists = TRUE;
-            echo "---updated the count";
-        }    
-    }
-    
-    if($exists == FALSE){
-        $letter[] = $char;
-        $count[] = 1;
-        echo"---added a letter";
-    }
-}
-*/
 echo "<pre>";
 print_r($main); 
+
 ?>
