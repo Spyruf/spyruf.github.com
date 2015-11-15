@@ -1,7 +1,5 @@
 <?php 
 
-echo "start";
-
 $string = $_REQUEST["string"];
 $first = $_REQUEST['first']; 
 $last = $_REQUEST['last']; 
@@ -11,10 +9,12 @@ $nthl = $_REQUEST['nthl'];
 $main = array();
 $temp = array();
 
-$letters = array(); // array of letters
-$count = array(); // count of how many letters
-
-$echo "initialized";
+echo $string;
+echo $first;
+echo $last;
+echo $nthn;
+echo $nthl;
+echo "ended";
 
 /* method of attack
 1. find words that start wtih letter
@@ -43,7 +43,6 @@ while(!feof($myfile)) {
 }
 fclose($myfile);
 
-echo "--contents";
 
 //1. first letter(s)
 if($first != null){
@@ -61,7 +60,6 @@ b
 
 }
 
-echo "first letters";
 
 //2. last letter(s)
 if($last != null){
@@ -85,11 +83,101 @@ if($last != null){
 
 }
 
-echo "last letters";
 
+
+
+
+//3. n charcter as letter
+/*
+if($nthn != null && $nthl !=null){
+    
+    for($x = 0; $x < count($main); $x++) {
+
+        $current = $main[$x];
+        
+        if(strlen($current) <= $nthn){
+            echo $nthn;
+            $number = substr_compare($current, $nthl, $nthn - 1 ,1,TRUE); // compares first letters of input and first letters of current word
+
+            if($number == 0){
+                $temp[] = $current; 
+            }       
+
+        }
+    }
+    update();
+
+}
+*/
 
 
 echo "<pre>";
 print_r($main); 
+
+
+/*
+
+// 1. first letter
+if($first != ""){
+    while(!feof($myfile)) { 
+        
+            $current = fgets($myfile); // gets the current word in txt file
+            $number = substr_compare($first,$current,0,strlen($first),TRUE); // compares first letters of input and current word
+            if($number == 0){
+                $main[] = $current; 
+            }        
+    }
+}
+fclose($myfile);
+
+/*
+
+if($last != ""){
+
+}
+
+
+/*
+
+$myfile = fopen("CompleteScrabbleWordlist.txt", "r") or die("Unable to open file!");
+
+
+//starting with letter 
+$startingwith = array();
+
+// loops through the txt file until it reaches the end
+while(!feof($myfile)) { 
+   
+    $current = fgets($myfile); // gets the current word in txt file
+    $number = substr_compare($string,$current,0,$length,TRUE); // compares first letters of input and current word
+    
+    if($number == 0)
+    {
+        $startingwith[] = $current;
+        
+    }
+    
+}
+
+fclose($myfile);
+    
+//checks if any there are any words
+if( count($startingwith) == 0){
+    echo "Oh No! No Possible Words!";
+}
+
+//echoes startingwith array
+for($x = 0; $x < count($startingwith); $x++) {
+    
+    if($x != count($startingwith) - 1 ){
+        echo $startingwith[$x] . ",";
+    }
+    else{
+        echo $startingwith[$x];
+    }
+}
+
+echo "ended";
+*/
 
 ?>
