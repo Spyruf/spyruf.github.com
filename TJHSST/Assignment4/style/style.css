@@ -1,0 +1,13 @@
+#main {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+}
+
+h1 {
+    text-shadow: 3px 3px grey
+}
+
+body {
+    background-color: antiquewhite
+}

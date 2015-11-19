@@ -1,0 +1,22 @@
+<style>
+.score-display {
+	text-align: right;
+	font-size: 36px;
+	margin: 4px 8px 8px;
+	color: rgba(0,0,0,.87);}
+
+div{
+	padding: 40px;
+	background-color: #DC143C;
+}
+#SummerImage{
+	padding: 10px;
+	background-color: #0066CC;
+	font-family: "Arial Black", sans-serif;
+	border-radius: 12px;
+	width: 60%;
+	color: #C89EE8;
+}
+
+
+</style>

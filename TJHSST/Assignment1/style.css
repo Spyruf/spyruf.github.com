@@ -1,0 +1,29 @@
+.head{
+	font-size: 10em;
+	font-family:'Open Sans Condensed', sans-serif;
+}
+
+#main{
+	width:50%;
+	margin:auto;
+    text-align: center;
+}
+
+body{
+    
+	font-family: 'Open Sans Condensed', sans-serif;
+    background-image: url("https://wallpaperscraft.com/image/background_leaf_light_bright_colors_18449_1920x1200.jpg");
+}
+
+span{
+	font-size:1.5em;
+}
+
+a{
+	text-decoration: none;
+	color:coral;
+}
+
+a:hover{
+	color:#3366FF;
+}

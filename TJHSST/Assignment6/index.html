@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Assignment 6: Canvas Lab</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Rahul Batra TJHSST">
+    <meta name="author" content="Rahul Batra">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap-theme.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+
+    <script type="text/javascript">
+        var cx = [];
+        var cy = [];
+        var cr = 10; //constant radius size *I defined this, not being pulled from anywhere*
+
+        var ox;
+        var oy;
+        var fx;
+        var fy;
+
+        function drawRect() {
+            console.log("function drawRect() started");
+            //draw a rectangle 
+            var c = document.getElementById("myCanvas"); // gets canvas element
+            var ctx = c.getContext("2d"); // get canvas context to draw everything -- gets actual canvas from canvas element
+            ctx.rect(event.x - c.offsetLeft, event.y - c.offsetTop, 40, 40); // set up to draw rectangle parameters:(x,y,width,height)
+            ctx.stroke(); //executed drawing
+        }
+
+        function drawDot() {
+
+            var c = document.getElementById("myCanvas"); // gets canvas element
+            var ctx = c.getContext("2d"); // get canvas context to draw everything -- gets actual canvas from canvas element
+            ctx.beginPath(); // begins a path
+            ctx.arc(event.x - c.offsetLeft, event.y - c.offsetTop, 10, 0, 2 * Math.PI); // draws circle, parameters:(x center, y center, radius, sAngle, eAngle)
+
+            // doesn't work
+            var grd = ctx.createRadialGradient(75, 50, 5, 90, 60, 100); // creates gradient, Paremters(x0,y0,r0,x1,y1,r1)
+            grd.addColorStop(0, "red");
+            grd.addColorStop(1, "white");
+
+            // Fill with gradient
+            ctx.fillStyle = "red";
+            ctx.fill();
+
+            ctx.stroke(); //executed drawing
+
+            //add position to array
+            cx.push(event.x - c.offsetLeft);
+            cy.push(event.y - c.offsetTop);
+            //alert(event.x - c.offsetLeft);
+
+        }
+
+        function clearCanvas() {
+            var c = document.getElementById("myCanvas"); // gets canvas element
+            var ctx = c.getContext("2d"); // get canvas context to draw everything -- gets actual canvas from canvas element
+            ctx.clearRect(0, 0, c.width, c.height);
+
+        }
+
+        function onMouseDown() {
+            var c = document.getElementById("myCanvas"); // gets canvas element
+            var ctx = c.getContext("2d"); // get canvas context to draw everything -- gets actual canvas from canvas element
+            ox = event.x - c.offsetLeft;
+            oy = event.y - c.offsetTop;
+        }
+
+        function onMouseUp() {
+            fx = event.x
+            fy = event.y
+            if (ox == fx || oy == fy)
+                drawDot();
+
+        }
+    </script>
+</head>
+
+<body>
+    <div class="">
+
+        <div class=".row .container-fluid">
+
+            <canvas id="myCanvas" width="600" height="600" style="border:solid 1px red" onmousedown="onMouseDown()" onmouseup="onMouseUp()">
+
+            </canvas>
+            <div>
+                <button name="clear" id="clear" onclick="clearCanvas();" type="button" data-role="button" class="btn btn-danger">Clear Canvas</button>
+            </div>
+        </div>
+
+    </div>
+    </div>
+
+
+</body>
+
+</html>
