@@ -106,13 +106,16 @@
             $scope.$watch('ab.isPlaying', function () {
 
                 if ($scope.hasInit == false) {
+                    $scope.myPlayer.seek($scope.ab.time); //4-13
                     $scope.toggle();
                 } else {
 
                     if ($scope.ab.isPlaying == false) {
                         $scope.pause();
+                        $scope.ab.time = $scope.myPlayer.currentTime(); //4-13
                     }
                     if ($scope.ab.isPlaying == true) {
+                        $scope.myPlayer.seek($scope.ab.time); //4-13
                         $scope.play();
                     }
 
