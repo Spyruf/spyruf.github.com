@@ -1,0 +1,41 @@
+ /*
+        .row-fluid {
+            margin-top: 30px;
+            margin-bottom: 30px
+        }
+        */
+ 
+ .v-scroll {
+     max-height: 50vh;
+     overflow-x: hidden;
+ }
+ 
+ .close:hover {
+     color: red;
+ }
+ 
+ .border {
+     border: 1px solid red;
+ }
+ 
+ a.HeaderLink:link {
+     color: inherit;
+ }
+ 
+ a.HeaderLink:visited {
+     color: inherit;
+     background-color: transparent;
+     text-decoration: none
+ }
+ 
+ a.HeaderLink:hover {
+     color: inherit;
+     background-color: transparent;
+     text-decoration: none
+ }
+ 
+ a.HeaderLink:active {
+     color: inherit;
+     background-color: transparent;
+     text-decoration: none
+ }
