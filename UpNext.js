@@ -341,6 +341,10 @@
                         $scope.$apply();
                     });
 
+                    $scope.myPlayer.on('time', function () {
+                        $scope.ab.time = $scope.myPlayer.currentTime(); //4-13
+                    });
+
                 }
 
             });
@@ -410,13 +414,17 @@
 
                     $scope.myPlayer.seek($scope.ab.time); //4-13
 
-
                     $scope.myPlayer.play();
 
                     $scope.myPlayer.on('finish', function () {
                         $scope.next();
                         console.log("Going to next song");
                         $scope.$apply();
+
+                        $scope.myPlayer.on('time', function () {
+                            $scope.ab.time = $scope.myPlayer.currentTime(); //4-13
+                        });
+
                     });
 
                 });
@@ -444,6 +452,13 @@
                 console.log("Going to next song");
                 $scope.$apply();
             });
+
+            $scope.myPlayer.on('time', function () {
+                $scope.ab.time = $scope.myPlayer.currentTime(); //4-13
+            });
+
+
+
 
             $scope.ab.isPlaying = true;
         }
