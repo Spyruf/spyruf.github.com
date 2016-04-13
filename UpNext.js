@@ -106,7 +106,6 @@
             $scope.$watch('ab.isPlaying', function () {
 
                 if ($scope.hasInit == false) {
-                    $scope.myPlayer.seek($scope.ab.time); //4-13
                     $scope.toggle();
                 } else {
 
@@ -408,6 +407,10 @@
                 SC.stream('tracks/' + $scope.queue[$scope.ab.index].id).then(function (player) {
                     $scope.myPlayer = player;
                     $scope.$apply();
+
+                    $scope.myPlayer.seek($scope.ab.time); //4-13
+
+
                     $scope.myPlayer.play();
 
                     $scope.myPlayer.on('finish', function () {
