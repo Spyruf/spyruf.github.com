@@ -1,6 +1,6 @@
 (function () {
 
-
+    var x = 5;
     var app = angular.module('UpNext', ['ng-sortable', 'firebase', 'ngRoute']);
 
     app.controller('UpNextController', ['$scope', '$filter', '$firebaseArray', '$firebaseObject', function ($scope, $filter, $firebaseArray, $firebaseObject) {
