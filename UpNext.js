@@ -341,6 +341,7 @@
 
                 //only play the song if music was already playing
                 if ($scope.ab.isPlaying == true) {
+
                     $scope.myPlayer.play();
                     $scope.myPlayer.on('finish', function () {
                         $scope.next();
@@ -428,11 +429,11 @@
                         $scope.next();
                         console.log("Going to next song");
                         $scope.$apply();
+                    });
 
-                        $scope.myPlayer.on('time', function () {
-                            $scope.ab.time = $scope.myPlayer.currentTime(); //4-13
-                        });
-
+                    $scope.myPlayer.on('time', function () {
+                        $scope.ab.time = $scope.myPlayer.currentTime(); //4-13
+                        console.log($scope.myPlayer.currentTime()); //4-14
                     });
 
                 });
