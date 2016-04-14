@@ -125,7 +125,8 @@
             //4-13
             $scope.$watch('ab.time', function () {
                 if ($scope.ab.time != $scope.myPlayer.currentTime()) {
-                    $scope.myPlayer.seek($scope.ab.time); //4-13
+                    $scope.myPlayer.seek($scope.ab.time + 100); //4-13
+                    console.log("syncing");
                 }
             }, true);
 
@@ -437,7 +438,6 @@
                         $scope.ab.time = $scope.myPlayer.currentTime(); //4-13
                         console.log($scope.myPlayer.currentTime() + " toggle"); //4-14
                         $scope.$apply();
-
                     });
 
                 });
