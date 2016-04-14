@@ -122,18 +122,18 @@
 
             }, true);
 
-            //4-13
-            $scope.$watch('ab.time', function () {
-
-                $scope.fsync = false;
-
-                if ($scope.ab.time != $scope.myPlayer.currentTime() && $scope.fsync == false) {
-                    $scope.myPlayer.seek($scope.ab.time + 100); //4-13
-                    console.log("syncing");
-                    $scope.fsync == true;
-                }
-
-            }, true);
+//            //4-13
+//            $scope.$watch('ab.time', function () {
+//
+//                $scope.fsync = false;
+//
+//                if ($scope.ab.time != $scope.myPlayer.currentTime() && $scope.fsync == false) {
+//                    $scope.myPlayer.seek($scope.ab.time + 100); //4-13
+//                    console.log("syncing");
+//                    $scope.fsync == true;
+//                }
+//
+//            }, true);
 
         }
 
