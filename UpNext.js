@@ -124,6 +124,7 @@
 
             //4-13
             $scope.$watch('ab.time', function () {
+
                 if ($scope.ab.time != $scope.myPlayer.currentTime()) {
                     $scope.myPlayer.seek($scope.ab.time + 100); //4-13
                     console.log("syncing");
@@ -352,8 +353,9 @@
 
                     $scope.myPlayer.on('time', function () {
                         $scope.ab.time = $scope.myPlayer.currentTime(); //4-13
-                        console.log($scope.myPlayer.currentTime() + " update"); //4-14
                         $scope.$apply();
+                        //console.log($scope.myPlayer.currentTime() + " update"); //4-14
+
 
                     });
 
@@ -436,8 +438,9 @@
 
                     $scope.myPlayer.on('time', function () {
                         $scope.ab.time = $scope.myPlayer.currentTime(); //4-13
-                        console.log($scope.myPlayer.currentTime() + " toggle"); //4-14
                         $scope.$apply();
+                        //console.log($scope.myPlayer.currentTime() + " toggle"); //4-14
+
                     });
 
                 });
@@ -468,8 +471,8 @@
 
             $scope.myPlayer.on('time', function () {
                 $scope.ab.time = $scope.myPlayer.currentTime(); //4-13
-                console.log($scope.myPlayer.currentTime() + " play"); //4-14
                 $scope.$apply();
+                //console.log($scope.myPlayer.currentTime() + " play"); //4-14
 
             });
 
