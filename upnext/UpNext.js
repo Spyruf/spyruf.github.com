@@ -122,6 +122,13 @@
 
             }, true);
 
+            //4-13
+            $scope.$watch('ab.time', function () {
+                if ($scope.ab.time != $scope.myPlayer.currentTime()) {
+                    $scope.myPlayer.seek($scope.ab.time); //4-13
+                }
+            }, true);
+
         }
 
 
