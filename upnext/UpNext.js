@@ -351,7 +351,7 @@
 
                     $scope.myPlayer.on('time', function () {
                         $scope.ab.time = $scope.myPlayer.currentTime(); //4-13
-                        console.log($scope.myPlayer.currentTime()); //4-14
+                        console.log($scope.myPlayer.currentTime() + " update"); //4-14
                     });
 
                 }
@@ -433,7 +433,7 @@
 
                     $scope.myPlayer.on('time', function () {
                         $scope.ab.time = $scope.myPlayer.currentTime(); //4-13
-                        console.log($scope.myPlayer.currentTime()); //4-14
+                        console.log($scope.myPlayer.currentTime() + " toggle"); //4-14
                     });
 
                 });
@@ -464,6 +464,8 @@
 
             $scope.myPlayer.on('time', function () {
                 $scope.ab.time = $scope.myPlayer.currentTime(); //4-13
+                console.log($scope.myPlayer.currentTime() + " play"); //4-14
+
             });
 
 
