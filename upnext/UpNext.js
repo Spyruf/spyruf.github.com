@@ -350,6 +350,7 @@
 
                     $scope.myPlayer.on('time', function () {
                         $scope.ab.time = $scope.myPlayer.currentTime(); //4-13
+                        console.log($scope.myPlayer.currentTime()); //4-14
                     });
 
                 }
