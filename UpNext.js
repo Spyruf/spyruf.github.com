@@ -127,7 +127,7 @@
 
                 $scope.fsync = false;
 
-                if ($scope.ab.time != $scope.myPlayer.currentTime() && $scope.fsync == false) {
+                if ($scope.hasInit == true && $scope.ab.time != $scope.myPlayer.currentTime() && $scope.fsync == false) {
                     $scope.myPlayer.seek($scope.ab.time + 100); //4-13
                     $scope.$apply();
                     console.log("syncing");
@@ -444,7 +444,7 @@
                 $scope.ab.isPlaying = true;
                 $scope.hasInit = true;
 
-            } else {
+            } else if ($scope.ab.index != $scope.queue.length != 0) {
                 if ($scope.ab.isPlaying == false) {
                     $scope.play();
                 } else if ($scope.ab.isPlaying == true) {
