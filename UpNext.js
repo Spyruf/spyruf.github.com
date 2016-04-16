@@ -185,15 +185,8 @@
                         alert("invalid playlist ID");
                     }
 
-
                 });
-
-
-
-
-
             }
-
 
         }
 
