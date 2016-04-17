@@ -121,6 +121,7 @@
                             <div id="Now" class="list-group">
                                 <h2>Now Playing</h2>
                                 <h5 ng-bind="queue[ab.index].title" class=""></h5>
+                                <h7 ng-bind="queue[ab.index].artist" class=""></h7>
                             </div>
 
                             <div id="TrackControls" class="row">
@@ -193,7 +194,7 @@
                         <h1></h1>
 
 
-                        <input ng-model="search" ng-model-options='{ debounce: 225 }' ng-change="searchFunc()" type="text" class="form-control" placeholder="Search">
+                        <input ng-model="search" ng-model-options='{ debounce: 250 }' ng-change="searchFunc()" type="text" class="form-control" placeholder="Search">
 
 
                         <div id="SearchResults" class="list-group v-scroll">
