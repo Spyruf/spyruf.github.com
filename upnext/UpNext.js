@@ -432,12 +432,12 @@
                         $scope.$apply();
                     });
 
-                    $scope.myPlayer.on('time', function () {
-                        $scope.ab.time = $scope.myPlayer.currentTime(); //4-13
-                        $scope.$apply();
-                        console.log($scope.myPlayer.currentTime() + " toggle"); //4-14
-
-                    });
+                    //                    $scope.myPlayer.on('time', function () {
+                    //                        $scope.ab.time = $scope.myPlayer.currentTime(); //4-13
+                    //                        $scope.$apply();
+                    //                        console.log($scope.myPlayer.currentTime() + " toggle"); //4-14
+                    //
+                    //                    });
 
                 });
 
@@ -466,12 +466,12 @@
                 $scope.$apply();
             });
 
-            $scope.myPlayer.on('time', function () {
-                $scope.ab.time = $scope.myPlayer.currentTime(); //4-13
-                $scope.$apply();
-                console.log($scope.myPlayer.currentTime() + " play"); //4-14
-
-            });
+            //            $scope.myPlayer.on('time', function () {
+            //                $scope.ab.time = $scope.myPlayer.currentTime(); //4-13
+            //                $scope.$apply();
+            //                console.log($scope.myPlayer.currentTime() + " play"); //4-14
+            //
+            //            });
 
             $scope.ab.isPlaying = true;
         }
