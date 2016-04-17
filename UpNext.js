@@ -100,6 +100,15 @@
             $scope.$watch('ab.index', function () {
                 $scope.display = $filter('limitTo')($scope.queue, $scope.queue.length, $scope.ab.index + 1);
                 $scope.artwork();
+
+                //this makes sure the song changes across devices
+                if ($scope.ab.isPlaying == true) {
+
+                    $scope.update();
+                    $scope.myPlayer.seek($scope.ab.time); //4-13
+                    $scope.play();
+                }
+
             }, true);
 
             //updates the  toggle state if isPlaying is changed
