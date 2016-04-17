@@ -351,7 +351,7 @@
 
                     if ($scope.ab.time != 0) {
                         $scope.myPlayer.seek($scope.ab.time); //4-16
-
+                        $scope.$apply;
                     }
 
                     console.log("in the update funct" + $scope.ab.time)
@@ -438,6 +438,7 @@
                     $scope.$apply();
 
                     $scope.myPlayer.seek($scope.ab.time); //4-13
+                    $scope.$apply;
 
                     $scope.myPlayer.play();
                     console.log("in the toggle" + $scope.ab.time);
