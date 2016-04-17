@@ -113,17 +113,17 @@
 
                 if ($scope.hasInit == false) {
                     $scope.toggle();
-                } else {
+                } else if ($scope.myPlayer != null) {
 
                     if ($scope.ab.isPlaying == false) {
                         $scope.pause();
                         $scope.ab.time = $scope.myPlayer.currentTime(); //4-13
-                        console.log($scope.ab.time + " watcher")
+                        console.log($scope.ab.time + "  watcher")
                     }
                     if ($scope.ab.isPlaying == true) {
-                        //$scope.update();
-                        $scope.myPlayer.seek($scope.ab.time); //4-16
-                        $scope.myPlayer.play();
+                        $scope.update();
+                        //$scope.myPlayer.seek($scope.ab.time); //4-16
+                        //$scope.myPlayer.play();
                     }
 
                 }
@@ -450,7 +450,6 @@
 
                 });
 
-                $scope.ab.isPlaying = true;
                 $scope.hasInit = true;
                 $scope.ab.isPlaying = true;
 
@@ -468,7 +467,10 @@
 
         $scope.play = function () {
 
-            $scope.myPlayer.seek($scope.ab.time); //4-16
+            if ($scope.ab.time != 0) {
+                $scope.myPlayer.seek($scope.ab.time); //4-16
+
+            }
 
             $scope.myPlayer.play();
             console.log($scope.ab.time);
