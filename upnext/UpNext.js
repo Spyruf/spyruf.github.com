@@ -103,14 +103,7 @@
 
                 //this makes sure the song changes across devices
                 if ($scope.ab.isPlaying == true) {
-
-                    $scope.update().then(function () {
-
-                        $scope.myPlayer.seek($scope.ab.time); //4-13
-                        $scope.play();
-
-                    });
-
+                    $scope.update();
                 }
 
             }, true);
@@ -127,14 +120,7 @@
                         $scope.ab.time = $scope.myPlayer.currentTime(); //4-13
                     }
                     if ($scope.ab.isPlaying == true) {
-
-                        $scope.update().then(function () {
-
-                            $scope.myPlayer.seek($scope.ab.time); //4-13
-                            $scope.play();
-
-                        });
-
+                        $scope.update();
                     }
 
                 }
@@ -479,7 +465,9 @@
 
         $scope.play = function () {
 
+
             $scope.myPlayer.play();
+            $scope.myPlayer.seek($scope.ab.time); //4-16
 
             $scope.myPlayer.on('finish', function () {
                 $scope.next();
