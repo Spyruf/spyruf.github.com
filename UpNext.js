@@ -107,41 +107,34 @@
 
                 if ($scope.hasInit == false) {
                     $scope.toggle();
-                } else if ($scope.myPlayer != null) {
+                } else {
 
                     if ($scope.ab.isPlaying == false) {
                         $scope.pause();
                         $scope.ab.time = $scope.myPlayer.currentTime(); //4-13
                     }
                     if ($scope.ab.isPlaying == true) {
-                        //$scope.update();
-
                         $scope.myPlayer.seek($scope.ab.time); //4-13
                         $scope.play();
-
-                        console.log("playstate sync");
                     }
 
                 }
 
             }, true);
 
-            //            //4-13
-            //            $scope.$watch('ab.time', function () {
-            //
-            //                $scope.fsync = false;
-            //
-            //                if ($scope.hasInit == true && $scope.myPlayer != null && $scope.fsync == false) {
-            //
-            //                    if ($scope.ab.time != $scope.myPlayer.currentTime()) {
-            //                        $scope.myPlayer.seek($scope.ab.time + 100); //4-13
-            //                    }
-            //
-            //                    console.log("syncing");
-            //                    $scope.fsync == true;
-            //                }
-            //
-            //            }, true);
+            //4-13
+            $scope.$watch('ab.time', function () {
+
+                $scope.fsync = false;
+
+                if ($scope.hasInit == true && $scope.myPlayer != null && $scope.ab.time != $scope.myPlayer.currentTime() && $scope.fsync == false) {
+                    $scope.myPlayer.seek($scope.ab.time + 100); //4-13
+                    $scope.$apply();
+                    console.log("syncing");
+                    $scope.fsync == true;
+                }
+
+            }, true);
 
         }
 
@@ -218,7 +211,6 @@
 
                         var track = {}
                         track.title = tracks[x].title;
-                        track.artist = tracks[x].user.username;
                         track.id = tracks[x].id;
                         track.artwork = tracks[x].artwork_url;
 
@@ -436,16 +428,20 @@
 
                     $scope.myPlayer.on('finish', function () {
                         $scope.next();
+                        console.log("Going to next song");
+                        $scope.$apply();
                     });
 
                     $scope.myPlayer.on('time', function () {
                         $scope.ab.time = $scope.myPlayer.currentTime(); //4-13
-                        //console.log($scope.myPlayer.currentTime() + " toggle"); //4-14
+                        $scope.$apply();
+                        console.log($scope.myPlayer.currentTime() + " toggle"); //4-14
 
                     });
 
                 });
 
+                $scope.ab.isPlaying = true;
                 $scope.hasInit = true;
                 $scope.ab.isPlaying = true;
 
@@ -466,11 +462,14 @@
 
             $scope.myPlayer.on('finish', function () {
                 $scope.next();
+                console.log("Going to next song");
+                $scope.$apply();
             });
 
             $scope.myPlayer.on('time', function () {
                 $scope.ab.time = $scope.myPlayer.currentTime(); //4-13
-                //console.log($scope.myPlayer.currentTime() + " play"); //4-14
+                $scope.$apply();
+                console.log($scope.myPlayer.currentTime() + " play"); //4-14
 
             });
 
