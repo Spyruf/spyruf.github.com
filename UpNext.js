@@ -468,6 +468,7 @@
 
             $scope.myPlayer.play();
             $scope.myPlayer.seek($scope.ab.time); //4-16
+            console.log($scope.ab.time);
 
             $scope.myPlayer.on('finish', function () {
                 $scope.next();
