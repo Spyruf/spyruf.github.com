@@ -120,7 +120,9 @@
                         $scope.ab.time = $scope.myPlayer.currentTime(); //4-13
                     }
                     if ($scope.ab.isPlaying == true) {
-                        $scope.update();
+                        //$scope.update();
+                        $scope.myPlayer.seek($scope.ab.time); //4-16
+                        $scope.myPlayer.play();
                     }
 
                 }
