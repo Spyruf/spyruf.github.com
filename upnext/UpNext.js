@@ -117,8 +117,6 @@
 
                     if ($scope.ab.isPlaying == false) {
                         $scope.pause();
-                        $scope.ab.time = $scope.myPlayer.currentTime(); //4-13
-                        console.log($scope.ab.time + "  watcher")
                     }
                     if ($scope.ab.isPlaying == true) {
                         $scope.update();
@@ -351,14 +349,22 @@
                 //only play the song if music was already playing
                 if ($scope.ab.isPlaying == true) {
 
+                    if ($scope.ab.time != 0) {
+                        $scope.myPlayer.seek($scope.ab.time); //4-16
+
+                    }
+
+                    console.log("in the update funct" + $scope.ab.time)
+
                     $scope.myPlayer.play();
+
                     $scope.myPlayer.on('finish', function () {
                         $scope.next();
                         console.log("Going to next song");
                         $scope.$apply();
                     });
 
-                    //                    $scope.myPlayer.on('time', function () {
+                    //                     $scope.myPlayer.on('time', function () {
                     //                        $scope.ab.time = $scope.myPlayer.currentTime(); //4-13
                     //                        $scope.$apply();
                     //                        //console.log($scope.myPlayer.currentTime() + " update"); //4-14
@@ -434,6 +440,8 @@
                     $scope.myPlayer.seek($scope.ab.time); //4-13
 
                     $scope.myPlayer.play();
+                    console.log("in the toggle" + $scope.ab.time);
+
 
                     $scope.myPlayer.on('finish', function () {
                         $scope.next();
@@ -469,11 +477,10 @@
 
             if ($scope.ab.time != 0) {
                 $scope.myPlayer.seek($scope.ab.time); //4-16
-
             }
 
             $scope.myPlayer.play();
-            console.log($scope.ab.time);
+            console.log("in the play" + $scope.ab.time);
 
             $scope.myPlayer.on('finish', function () {
                 $scope.next();
@@ -493,6 +500,8 @@
 
         $scope.pause = function () {
             $scope.myPlayer.pause()
+            $scope.ab.time = $scope.myPlayer.currentTime(); //4-13
+            $scope.$apply;
             $scope.ab.isPlaying = false;
         }
 
