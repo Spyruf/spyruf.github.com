@@ -118,6 +118,7 @@
                     if ($scope.ab.isPlaying == false) {
                         $scope.pause();
                         $scope.ab.time = $scope.myPlayer.currentTime(); //4-13
+                        console.log($scope.ab.time + " watcher")
                     }
                     if ($scope.ab.isPlaying == true) {
                         //$scope.update();
