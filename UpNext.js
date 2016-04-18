@@ -109,24 +109,24 @@
             }, true);
 
             //updates the  toggle state if isPlaying is changed
-            $scope.$watch('ab.isPlaying', function () {
-
-                if ($scope.hasInit == false) {
-                    $scope.toggle();
-                } else if ($scope.myPlayer != null) {
-
-                    if ($scope.ab.isPlaying == false) {
-                        $scope.pause();
-                    }
-                    if ($scope.ab.isPlaying == true) {
-                        $scope.update();
-                        //$scope.myPlayer.seek($scope.ab.time); //4-16
-                        //$scope.myPlayer.play();
-                    }
-
-                }
-
-            }, true);
+            //            $scope.$watch('ab.isPlaying', function () {
+            //
+            //                if ($scope.hasInit == false) {
+            //                    $scope.toggle();
+            //                } else if ($scope.myPlayer != null) {
+            //
+            //                    if ($scope.ab.isPlaying == false) {
+            //                        $scope.pause();
+            //                    }
+            //                    if ($scope.ab.isPlaying == true) {
+            //                        $scope.update();
+            //                        //$scope.myPlayer.seek($scope.ab.time); //4-16
+            //                        //$scope.myPlayer.play();
+            //                    }
+            //
+            //                }
+            //
+            //            }, true);
 
             //            //4-13
             //            $scope.$watch('ab.time', function () {
