@@ -43,3 +43,7 @@ a.HeaderLink:active {
 .page-header {
     margin-top: 0;
 }
+
+.footer {
+    vertical-align: bottom;
+}
