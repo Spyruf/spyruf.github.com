@@ -7,9 +7,11 @@
 
         $scope.ab = {
             index: 0,
-            isPlaying: false,
+            //isPlaying: false,
             time: 0
         }
+
+        $scope.isPlaying = false;
 
         $scope.myText = "";
 
@@ -39,18 +41,12 @@
             var refI = new Firebase("https://amber-heat-3079.firebaseio.com/" + $scope.uID.toString() + "/ab"); //uID/ab
             $scope.a = $firebaseObject(refI); //$scope.a is NOT used, instead $scope.ab is used
 
-            //this variable is what is always being changed, since it is binded below it automatically updates with firebase
-            $scope.ab = {
-                index: 0,
-                isPlaying: false,
-                time: 0
-            }
 
             $scope.a.$bindTo($scope, 'ab').then(function () {
                 if ($scope.ab.index == null) {
                     $scope.ab = {
                         index: 0,
-                        isPlaying: false,
+                        //isPlaying: false,
                         time: 0
                     }
                 }
@@ -86,7 +82,7 @@
 
 
             $scope.hasInit = false;
-            $scope.ab.isPlaying = false;
+            $scope.isPlaying = false;
             $scope.myPlayer;
             $scope.art = "Template.png"
 
@@ -102,7 +98,7 @@
                 $scope.artwork();
 
                 //this makes sure the song changes across devices
-                if ($scope.ab.isPlaying == true) {
+                if ($scope.isPlaying == true) {
                     $scope.update();
                 }
 
@@ -115,10 +111,10 @@
             //                    $scope.toggle();
             //                } else if ($scope.myPlayer != null) {
             //
-            //                    if ($scope.ab.isPlaying == false) {
+            //                    if ($scope.isPlaying == false) {
             //                        $scope.pause();
             //                    }
-            //                    if ($scope.ab.isPlaying == true) {
+            //                    if ($scope.isPlaying == true) {
             //                        $scope.update();
             //                        //$scope.myPlayer.seek($scope.ab.time); //4-16
             //                        //$scope.myPlayer.play();
@@ -218,6 +214,7 @@
 
                         var track = {}
                         track.title = tracks[x].title;
+                        track.artist = tracks[x].user.username;
                         track.id = tracks[x].id;
                         track.artwork = tracks[x].artwork_url;
 
@@ -240,7 +237,7 @@
             // add something here cuz is playing doesnt exist 
 
 
-            if ($scope.ab.isPlaying == false)
+            if ($scope.isPlaying == false)
                 return "glyphicon glyphicon-play";
             else return "glyphicon glyphicon-pause";
         }
@@ -338,7 +335,7 @@
 
 
                 //check if music is already playing so if needed u can stop the current stream
-                if ($scope.ab.isPlaying == true) {
+                if ($scope.isPlaying == true) {
                     $scope.myPlayer.pause(); // pauses the previous stream
                 }
 
@@ -347,7 +344,7 @@
 
 
                 //only play the song if music was already playing
-                if ($scope.ab.isPlaying == true) {
+                if ($scope.isPlaying == true) {
 
                     if ($scope.ab.time != 0) {
                         $scope.myPlayer.seek($scope.ab.time); //4-16
@@ -408,7 +405,7 @@
                 $scope.ab.index = $scope.queue.length; // can't go farther than the last song
 
                 $scope.myPlayer.pause(); // pauses the previous stream
-                $scope.ab.isPlaying = false;
+                $scope.isPlaying = false;
                 $scope.myPlayer.seek(0);
 
                 $scope.disabled = true;
@@ -460,12 +457,12 @@
                 });
 
                 $scope.hasInit = true;
-                $scope.ab.isPlaying = true;
+                $scope.isPlaying = true;
 
             } else if ($scope.ab.index != $scope.queue.length != 0) {
-                if ($scope.ab.isPlaying == false) {
+                if ($scope.isPlaying == false) {
                     $scope.play();
-                } else if ($scope.ab.isPlaying == true) {
+                } else if ($scope.isPlaying == true) {
                     $scope.pause();
                 }
             }
@@ -496,14 +493,14 @@
             //
             //            });
 
-            $scope.ab.isPlaying = true;
+            $scope.isPlaying = true;
         }
 
         $scope.pause = function () {
             $scope.myPlayer.pause()
             $scope.ab.time = $scope.myPlayer.currentTime(); //4-13
             $scope.$apply;
-            $scope.ab.isPlaying = false;
+            $scope.isPlaying = false;
         }
 
         $scope.artwork = function () {
