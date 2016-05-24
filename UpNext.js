@@ -170,6 +170,9 @@
                         track.id = tracks[x].id;
                         track.artwork = tracks[x].artwork_url;
 
+                        track.display = track.title + " - " + track.artist;
+
+
                         track.streamable = tracks[x].streamable;
                         track.stream_url = tracks[x].stream_url
                         track.embeddable_by = tracks[x].embeddable_by;
@@ -361,7 +364,7 @@
 
                         $scope.myPlayer.play();
 
-                    }, 450);
+                    }, 550);
 
 
 

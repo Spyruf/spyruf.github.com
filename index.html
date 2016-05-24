@@ -48,10 +48,10 @@
     <!-- Soundcloud and Custom Chrome Soundcloud -->
     <script src="https://w.soundcloud.com/player/api.js" type="text/javascript"></script>
 
-<!--<script src="https://connect.soundcloud.com/sdk/sdk-3.1.1.js"></script>-->
+    <!--<script src="https://connect.soundcloud.com/sdk/sdk-3.1.1.js"></script>-->
 
     <!--    https://github.com/soundcloud/soundcloud-javascript/issues/39#issuecomment-207823313-->
-        <script src="sc3.js" type="text/javascript"></script>
+    <script src="sc3.js" type="text/javascript"></script>
 
 
     <!-- UpNext.js-->
@@ -212,7 +212,7 @@
 
                         <div id="SearchResults" class="list-group v-scroll">
 
-                            <a ng-bind="track.title" ng-click="add(track)" class="list-group-item" ng-repeat="track in results track by $index">
+                            <a ng-bind="track.display" ng-click="add(track)" class="list-group-item" ng-repeat="track in results track by $index">
                             </a>
 
                         </div>
