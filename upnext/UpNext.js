@@ -27,11 +27,12 @@
 
 
             SC.initialize({
-                client_id: '038edf3f06592aa73098f5fb96b6961c'
+                client_id: 'f3dac0fe0e7d9f71fe2f79ca32f2782e'
             });
 
             $scope.search = "";
             $scope.results = [];
+
 
 
             var refQ = new Firebase("https://amber-heat-3079.firebaseio.com/" + $scope.uID.toString() + "/array"); //uID/array
@@ -70,6 +71,7 @@
             }
 
             $scope.hasInit = false;
+            $scope.myPlayer;
 
             $scope.art = "Template.png"
 
@@ -309,7 +311,6 @@
 
         $scope.next = function () {
 
-
             //$scope.ab.index = $scope.ab.index + 1; // next will always go to the next song
             var exists = true;
 
@@ -349,33 +350,28 @@
                     $scope.myPlayer = player;
                     $scope.$apply();
 
-
                     $scope.myPlayer.play();
+                    $scope.$apply();
+                    $scope.myPlayer.pause();
 
 
 
-                    setTimeout(function () {
 
-                        if ($scope.ab.time != 0) {
-                            console.log($scope.ab.time);
-
-                            $scope.myPlayer.seek($scope.ab.time);
-                        } // CHK4
-
-                        $scope.myPlayer.play();
-
-                    }, 550);
+                    //conditionals 
+                    $scope.myPlayer.on('finish', function () {
+                        $scope.next();
+                        $scope.$apply();
+                    });
 
 
+                    $scope.myPlayer.on('time', function () {
+                        $scope.ab.time = $scope.myPlayer.currentTime();
+                        $scope.$apply();
+                    });
 
 
                     $scope.myPlayer.on('seeked', function () {
-
-                        $scope.myPlayer.on('finish', function () {
-                            $scope.next();
-                            $scope.$apply();
-                        });
-
+                        console.log("seeked");
 
                         $scope.myPlayer.on('time', function () {
                             $scope.ab.time = $scope.myPlayer.currentTime();
@@ -383,7 +379,26 @@
                         });
                     });
 
+
+                    setTimeout(function () {
+
+                        //$scope.myPlayer.seek(80000);
+                        console.log("setTimeout");
+
+                        if ($scope.ab.time != 0) {
+                            console.log($scope.ab.time);
+                            $scope.myPlayer.seek($scope.ab.time);
+                        } // CHK4
+
+                        $scope.myPlayer.play();
+
+                    }, 600);
+
+
+
                 });
+
+
                 $scope.hasInit = true;
                 $scope.isPlaying = true;
             } else if ($scope.ab.index != $scope.queue.length != 0) {
@@ -402,6 +417,7 @@
         $scope.play = function () {
 
             if ($scope.ab.time != 0) {
+                console.log($scope.ab.time);
                 $scope.myPlayer.seek($scope.ab.time);
             } // CHK4
 
