@@ -89,16 +89,20 @@
             $scope.queue.$loaded().then(function () {
                     $scope.display = $filter('limitTo')($scope.queue, $scope.queue.length, $scope.ab.index + 1);
                     $scope.artwork();
+
+                    if ($scope.queue.length == 0) {
+                        $scope.disabled = true;
+                    } else {
+                        $scope.disabled = false;
+                    }
+
+
                 })
                 .catch(function (err) {
                     console.error(err);
                 });
 
-            if ($scope.queue.length == 0) {
-                $scope.disabled = true;
-            } else {
-                $scope.disabled = false;
-            }
+
 
             $scope.hasInit = false;
             $scope.myPlayer;
@@ -277,6 +281,8 @@
             $scope.queueUpdate();
         }
 
+        $scope.varInit = true;
+
         $scope.update = function () {
 
             //update the stream
@@ -296,6 +302,15 @@
                 $scope.myPlayer = player; // updates the player
                 //console.log("sets the new player");
 
+                if ($scope.varInit == true) {
+                    $scope.myPlayer.on('finish', function () {
+                        console.log("finished");
+                        $scope.next();
+                        //$scope.$apply();
+                    });
+                    $scope.varInit = false;
+                }
+
 
                 //only play the song if music was already playing
                 if ($scope.isPlaying == true) {
@@ -309,8 +324,6 @@
 
                     $scope.myPlayer.play();
                     //console.log("plays the new song");
-
-
 
                 }
 
@@ -389,6 +402,7 @@
 
                     //conditionals 
                     $scope.myPlayer.on('finish', function () {
+                        console.log("finished");
                         $scope.next();
                         $scope.$apply();
                     });
