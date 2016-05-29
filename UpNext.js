@@ -9,8 +9,10 @@
         $scope.ab = {
             index: 0,
             //isPlaying: false,
-            time: 0
+            time: 0,
         };
+
+        $scope.userCount = 0;
 
         $scope.isPlaying = false;
         $scope.myText = "";
@@ -35,11 +37,11 @@
 
 
 
-            var refQ = new Firebase("https://amber-heat-3079.firebaseio.com/" + $scope.uID.toString() + "/array"); //uID/array
+            var refQ = new Firebase('https://amber-heat-3079.firebaseio.com/' + $scope.uID.toString() + '/array'); //uID/array
             $scope.queue = $firebaseArray(refQ);
 
 
-            var refI = new Firebase("https://amber-heat-3079.firebaseio.com/" + $scope.uID.toString() + "/ab"); //uID/ab
+            var refI = new Firebase('https://amber-heat-3079.firebaseio.com/' + $scope.uID.toString() + '/ab'); //uID/ab
             $scope.a = $firebaseObject(refI); //$scope.a is NOT used, instead $scope.ab is used
 
             $scope.a.$bindTo($scope, 'ab').then(function () {
@@ -47,10 +49,38 @@
                     $scope.ab = {
                         index: 0,
                         //isPlaying: false,
-                        time: 0
+                        time: 0,
                     }
                 }
             });
+
+
+            //--------
+
+            var listRef = new Firebase("https://amber-heat-3079.firebaseio.com/" + $scope.uID.toString() + "/presence/");
+            var userRef = listRef.push();
+
+            // Add ourselves to presence list when online.
+            var presenceRef = new Firebase("https://amber-heat-3079.firebaseio.com/.info/connected");
+            presenceRef.on("value", function (snap) {
+                if (snap.val()) {
+                    // Remove ourselves when we disconnect.
+                    userRef.onDisconnect().remove();
+
+                    userRef.set(true);
+                }
+            });
+
+            // Number of online users is the number of objects in the presence list.
+            listRef.on("value", function (snap) {
+                console.log("# of online users = " + snap.numChildren());
+                $scope.userCount = snap.numChildren();
+                $scope.$apply();
+            });
+            //--------
+
+
+
 
             $scope.display = [];
             $scope.display = $filter('limitTo')($scope.queue, $scope.queue.length, $scope.ab.index + 1);
@@ -64,7 +94,7 @@
                     console.error(err);
                 });
 
-            if ($scope.queue == []) {
+            if ($scope.queue.length == 0) {
                 $scope.disabled = true;
             } else {
                 $scope.disabled = false;
@@ -373,10 +403,7 @@
                     $scope.myPlayer.on('seeked', function () {
                         console.log("seeked");
 
-                        $scope.myPlayer.on('time', function () {
-                            $scope.ab.time = $scope.myPlayer.currentTime();
-                            $scope.$apply();
-                        });
+
                     });
 
 

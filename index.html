@@ -37,6 +37,7 @@
 
     <!-- Firebase -->
     <script src="https://cdn.firebase.com/js/client/2.4.0/firebase.js"></script>
+    <script src='https://www.firebase.com/js/libs/idle.js'></script>
 
     <!-- AngularFire -->
     <!--    <script src="https://cdn.firebase.com/libs/angularfire/1.1.4/angularfire.min.js"></script>-->
@@ -83,10 +84,31 @@
         </div>
 
         <div class="page-header">
-            <a class="HeaderLink" href="index.html">
-                <h1>UpNext</h1>
-                <h5>Music with friends</h5>
-            </a>
+            <div class="containe-fluid">
+                <div class="row">
+
+                    <div class="col-xs-5">
+
+                        <a class="HeaderLink" href="index.html">
+                            <h1>UpNext</h1>
+                            <h5>Music with friends</h5>
+                        </a>
+
+                    </div>
+
+
+                    <div ng-hide="firstTime" class="col-xs-5 col-xs-offset-2">
+                        <span class="pull-right">
+                        <br> 
+<!--                        <span style="color: #33cc33;">•</span>--> Users Online: {{userCount}}
+                        </span>
+                    </div>
+
+
+                </div>
+
+            </div>
+
         </div>
 
         <div id="first" ng-show="firstTime" class="row-fluid text-center">
@@ -208,7 +230,7 @@
                         <h1></h1>
 
 
-                        <input ng-model="search" ng-model-options='{ debounce: 350 }' ng-change="searchFunc()" type="text" class="form-control" placeholder="Search">
+                        <input ng-model="search" ng-model-options='{ debounce: 400 }' ng-change="searchFunc()" type="text" class="form-control" placeholder="Search">
 
 
                         <div id="SearchResults" class="list-group v-scroll">
