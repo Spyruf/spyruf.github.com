@@ -303,9 +303,9 @@
                 //console.log("sets the new player");
 
                 //5-30
-                if ($scope.initIDS.indexOf($scope.ab.index) == -1) {
+                if ($scope.ab.index != null && $scope.onIDS != null && $scope.onIDS.indexOf($scope.queue[$scope.ab.index].id) == -1) {
 
-                    $scope.initIDS.push($scope.ab.index);
+                    $scope.onIDS.push($scope.queue[$scope.ab.index].id);
 
 
                     $scope.myPlayer.on('time', function () {
@@ -314,11 +314,11 @@
                     });
 
 
-                                        $scope.myPlayer.on('finish', function () {
-                         console.log("finished");
-                         $scope.next();
-                         $scope.$apply();
-                     });
+                    $scope.myPlayer.on('finish', function () {
+                        console.log("finished");
+                        $scope.next();
+                        $scope.$apply();
+                    });
 
                 }
                 //
@@ -399,14 +399,16 @@
             }
 
 
+
+            //updates the displayed queue
+            $scope.display = $filter('limitTo')($scope.queue, $scope.queue.length, $scope.ab.index + 1);
+
             if ($scope.exists == true) {
                 $scope.update();
             }
 
-
             $scope.artwork();
-            //updates the displayed queue
-            $scope.display = $filter('limitTo')($scope.queue, $scope.queue.length, $scope.ab.index + 1);
+
         }
 
         $scope.toggle = function () {
@@ -416,8 +418,8 @@
                 SC.stream('tracks/' + $scope.queue[$scope.ab.index].id).then(function (player) {
 
 
-                    $scope.initIDS = [];
-                    $scope.initIDS.push($scope.ab.index);
+                    $scope.onIDS = [];
+                    $scope.onIDS.push($scope.queue[$scope.ab.index].id);
 
 
                     $scope.myPlayer = player;
