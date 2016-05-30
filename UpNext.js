@@ -302,14 +302,14 @@
                 $scope.myPlayer = player; // updates the player
                 //console.log("sets the new player");
 
-                if ($scope.varInit == true) {
-                    $scope.myPlayer.on('finish', function () {
-                        console.log("finished");
-                        $scope.next();
-                        //$scope.$apply();
-                    });
-                    $scope.varInit = false;
-                }
+//                if ($scope.varInit == true) {
+//                    $scope.myPlayer.on('finish', function () {
+//                        console.log("finished");
+//                        $scope.next();
+//                        $scope.$apply();
+//                    });
+//                    //$scope.varInit = false;
+//                }
 
 
                 //only play the song if music was already playing
@@ -401,11 +401,7 @@
 
 
                     //conditionals 
-                    $scope.myPlayer.on('finish', function () {
-                        console.log("finished");
-                        $scope.next();
-                        $scope.$apply();
-                    });
+
 
 
                     $scope.myPlayer.on('time', function () {
@@ -432,6 +428,12 @@
                         } // CHK4
 
                         $scope.myPlayer.play();
+
+                        $scope.myPlayer.on('finish', function () {
+                            console.log("finished");
+                            $scope.next();
+                            $scope.$apply();
+                        });
 
                     }, 600);
 
