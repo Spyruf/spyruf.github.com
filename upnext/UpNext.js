@@ -302,14 +302,14 @@
                 $scope.myPlayer = player; // updates the player
                 //console.log("sets the new player");
 
-//                if ($scope.varInit == true) {
-//                    $scope.myPlayer.on('finish', function () {
-//                        console.log("finished");
-//                        $scope.next();
-//                        $scope.$apply();
-//                    });
-//                    //$scope.varInit = false;
-//                }
+                //                if ($scope.varInit == true) {
+                //                    $scope.myPlayer.on('finish', function () {
+                //                        console.log("finished");
+                //                        $scope.next();
+                //                        $scope.$apply();
+                //                    });
+                //                    //$scope.varInit = false;
+                //                }
 
 
                 //only play the song if music was already playing
@@ -459,6 +459,14 @@
 
         $scope.play = function () {
 
+            if ($scope.ab.index + 1 == $scope.queue.length) {
+
+                console.log("cmon");
+
+                $scope.update();
+            }
+
+
             if ($scope.ab.time != 0) {
                 console.log($scope.ab.time);
                 $scope.myPlayer.seek($scope.ab.time);
@@ -468,6 +476,9 @@
 
 
             $scope.isPlaying = true;
+
+
+
         }
 
         $scope.pause = function () {
