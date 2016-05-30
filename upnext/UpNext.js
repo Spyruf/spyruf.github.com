@@ -302,6 +302,28 @@
                 $scope.myPlayer = player; // updates the player
                 //console.log("sets the new player");
 
+                //5-30
+                if ($scope.initIDS.indexOf($scope.ab.index) == -1) {
+
+                    $scope.initIDS.push($scope.ab.index);
+
+
+                    $scope.myPlayer.on('time', function () {
+                        $scope.ab.time = $scope.myPlayer.currentTime();
+                        $scope.$apply();
+                    });
+
+
+                                        $scope.myPlayer.on('finish', function () {
+                         console.log("finished");
+                         $scope.next();
+                         $scope.$apply();
+                     });
+
+                }
+                //
+
+
                 //                if ($scope.varInit == true) {
                 //                    $scope.myPlayer.on('finish', function () {
                 //                        console.log("finished");
@@ -333,6 +355,8 @@
 
         $scope.prev = function () {
 
+
+
             if ($scope.myPlayer != null && $scope.myPlayer.currentTime() > 1000) {
                 $scope.ab.index = $scope.ab.index; // if a song has started, keep the index the same
             } else {
@@ -354,8 +378,10 @@
 
         $scope.next = function () {
 
+
+
             //$scope.ab.index = $scope.ab.index + 1; // next will always go to the next song
-            var exists = true;
+            $scope.exists = true;
 
             if (($scope.ab.index + 1) >= $scope.queue.length) {
 
@@ -367,13 +393,13 @@
 
                 $scope.disabled = true;
 
-                exists = false;
+                $scope.exists = false;
             } else {
                 $scope.ab.index = $scope.ab.index + 1;
             }
 
 
-            if (exists == true) {
+            if ($scope.exists == true) {
                 $scope.update();
             }
 
@@ -390,6 +416,10 @@
                 SC.stream('tracks/' + $scope.queue[$scope.ab.index].id).then(function (player) {
 
 
+                    $scope.initIDS = [];
+                    $scope.initIDS.push($scope.ab.index);
+
+
                     $scope.myPlayer = player;
                     $scope.$apply();
 
@@ -398,11 +428,7 @@
                     $scope.myPlayer.pause();
 
 
-
-
                     //conditionals 
-
-
 
                     $scope.myPlayer.on('time', function () {
                         $scope.ab.time = $scope.myPlayer.currentTime();
@@ -459,11 +485,13 @@
 
         $scope.play = function () {
 
-            if ($scope.ab.index + 1 == $scope.queue.length) {
+
+            if ($scope.ab.index + 1 == $scope.queue.length && $scope.exists == false) {
 
                 console.log("cmon");
 
                 $scope.update();
+                $scope.exists = true;
             }
 
 
