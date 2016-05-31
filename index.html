@@ -114,26 +114,33 @@
 
             <form>
 
-                <div class="form-group ">
-                    <button ng-click="newPlay()" class="btn btn-primary btn-md">Create a New Playlist</button>
-                </div>
 
                 <div class="form-group ">
-                    <label class="" for="or">Or join an existing playlist</label>
+                    <label class="">Join an existing playlist</label>
                 </div>
 
-                <div class="form-inline">
+                <div class="form-group form-inline">
 
                     <div class="form-group">
                         <label for="playUID">Playlist ID</label>
                         <input ng-model="playUID" id="playUID" type="text" class="form-control" placeholder="12345">
                     </div>
-                    <button ng-click="joinPlay()" class="btn btn-success btn-md">Join</button>
+                    <button id="joinPlay" ng-click="joinPlay()" class="btn btn-success btn-md">Join</button>
 
                 </div>
 
-            </form>
+                <div class="form-group ">
+                    <label class="" for="or">or</label>
+                </div>
 
+                <div class="form-group">
+                    <button id="newPlay" ng-click="newPlay()" class="btn btn-primary btn-md">Create a New Playlist</button>
+                </div>
+
+
+
+            </form>
+            <br>
             <div class="row-fluid footer">
                 <h4>Rahul Batra </h4>
                 <p>Copyright &copy; 2016 &middot; All Rights Reserved</p>
