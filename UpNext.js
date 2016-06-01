@@ -90,12 +90,12 @@
                     $scope.display = $filter('limitTo')($scope.queue, $scope.queue.length, $scope.ab.index + 1);
                     $scope.artwork();
 
-                    if ($scope.queue.length == 0) {
+                    if ($scope.queue.length == 0 || ($scope.ab.index) >= $scope.queue.length) {
+                        console.log('disablin');
                         $scope.disabled = true;
                     } else {
                         $scope.disabled = false;
                     }
-
 
                 })
                 .catch(function (err) {
@@ -120,10 +120,24 @@
                 $scope.display = $filter('limitTo')($scope.queue, $scope.queue.length, $scope.ab.index + 1);
                 $scope.artwork();
 
-                //this makes sure the song changes across devices
-                if ($scope.isPlaying == true) {
+
+
+                if (($scope.ab.index) >= $scope.queue.length) {
+                    console.log('true');
+                    $scope.disabled = true;
+                    if ($scope.myPlayer != null) {
+                        $scope.pause();
+                    }
+                } else {
+                    console.log('false');
+                    $scope.disabled = false;
+                    //this makes sure the song changes across devices
                     $scope.update();
-                } //CHK4
+
+                    if ($scope.isPlaying == true) {} //CHK4
+                }
+
+
 
             }, true);
 
@@ -285,6 +299,7 @@
 
         $scope.update = function () {
 
+
             //update the stream
             SC.stream('tracks/' + $scope.queue[$scope.ab.index].id).then(function (player) {
 
@@ -306,7 +321,6 @@
                 if ($scope.ab.index != null && $scope.onIDS != null && $scope.onIDS.indexOf($scope.queue[$scope.ab.index].id) == -1) {
 
                     $scope.onIDS.push($scope.queue[$scope.ab.index].id);
-
 
                     $scope.myPlayer.on('time', function () {
                         $scope.ab.time = $scope.myPlayer.currentTime();
@@ -358,9 +372,11 @@
 
 
             if ($scope.myPlayer != null && $scope.myPlayer.currentTime() > 1000) {
-                $scope.ab.index = $scope.ab.index; // if a song has started, keep the index the same
+                //                $scope.ab.index = $scope.ab.index; // if a song has started, keep the index the same - don't need to do anything
             } else {
-                $scope.ab.index = $scope.ab.index - 1; // if a song hasn't started then go to the previous song
+                var temp = $scope.ab.index;
+                temp = temp - 1;
+                $scope.ab.index = temp; // if a song hasn't started then go to the previous song
             }
 
             if ($scope.ab.index < 0) {
@@ -379,7 +395,6 @@
         $scope.next = function () {
 
 
-
             //$scope.ab.index = $scope.ab.index + 1; // next will always go to the next song
             $scope.exists = true;
 
@@ -395,7 +410,9 @@
 
                 $scope.exists = false;
             } else {
-                $scope.ab.index = $scope.ab.index + 1;
+                var temp = $scope.ab.index;
+                temp = temp + 1;
+                $scope.ab.index = temp;
             }
 
 
