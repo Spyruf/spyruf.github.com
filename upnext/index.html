@@ -77,6 +77,29 @@
                         <h4>1. Search for music using the search bar</h4>
                         <h4>2. Click a song to add it to your queue</h4>
                         <h4>3. To change the order simply drag and drop tracks in the queue</h4>
+                        <h3>Here are some shortcuts</h3>
+                        <p>
+                            <div>
+                                <button type="button" class="btn btn-default">spacebar</button>
+                                Play/Pause
+
+                            </div>
+                        </p>
+                        <p>
+                            <div>
+                                <button type="button" class="btn btn-default"> &larr;</button>
+                                Previous Track (Press twice if a track has already started)
+                            </div>
+                        </p>
+                        <p>
+                            <div>
+                                <button type="button" class="btn btn-default"> &rarr;</button>
+                                Next Track
+                            </div>
+                        </p>
+
+
+
                     </div>
                 </div>
             </div>
@@ -101,7 +124,12 @@
                         <br> 
                         <span style="color: #33cc33;">•</span> Users in this Playlist: {{userCount}}
                         <!--                        {{ab.index}} {{queue.length}}-->
-                        </span>
+                        <br>
+                        <br>
+                        <button type="button" class="btn btn-xs btn-default pull-right" data-toggle="modal" data-target="#myModal">
+                            <span class="glyphicon glyphicon-question-sign"></span> Help
+                        </button>
+
                     </div>
 
 
