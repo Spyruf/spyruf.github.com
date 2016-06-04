@@ -603,8 +603,8 @@
 
             e = e || window.event;
 
-            if (e.keyCode == '80') {
-                //p
+            if (e.keyCode == '32') {
+                //spacebar
                 $scope.toggle();
             } else if (e.keyCode == '37' || e.keyCode == '188') {
                 // left arrow // <
