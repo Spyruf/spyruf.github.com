@@ -537,10 +537,11 @@
 
             if ($scope.ab.index < $scope.queue.length && $scope.queue[$scope.ab.index].artwork != null) {
                 $scope.art = $scope.queue[$scope.ab.index].artwork.replace("large", "t500x500");
+                document.title = "UpNext - " + $scope.queue[$scope.ab.index].title;
 
             } else {
                 $scope.art = "Template.png"
-
+                document.title = "UpNext";
             }
         }
 
