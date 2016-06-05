@@ -20,6 +20,9 @@
 
         $scope.init = function () {
 
+            document.onkeydown = checkKey;
+
+
             $scope.link = location.href;
 
             //shows model or something like that 
@@ -151,6 +154,10 @@
             $scope.firstTime = false;
             $scope.uID = $scope.hash.toString().substr(-8);
             $scope.init();
+        } else {
+            $(document).ready(function () {
+                $("#myModal2").modal('show');
+            });
         }
 
         $scope.newPlay = function () {
@@ -374,9 +381,14 @@
             if ($scope.myPlayer != null && $scope.myPlayer.currentTime() > 1000) {
                 //                $scope.ab.index = $scope.ab.index; // if a song has started, keep the index the same - don't need to do anything
             } else {
-                var temp = $scope.ab.index;
-                temp = temp - 1;
-                $scope.ab.index = temp; // if a song hasn't started then go to the previous song
+                                var temp = $scope.ab.index;
+                                temp = temp - 1;
+                                $scope.ab.index = temp; // if a song hasn't started then go to the previous song
+
+//                $scope.ab.index = $scope.ab.index - 1;
+                console.log("prevving" + $scope.ab.index);
+
+
             }
 
             if ($scope.ab.index < 0) {
@@ -597,8 +609,6 @@
         }
 
 
-        document.onkeydown = checkKey;
-
         function checkKey(e) {
 
             e = e || window.event;
@@ -609,9 +619,16 @@
             } else if (e.keyCode == '37' || e.keyCode == '188') {
                 // left arrow // <
                 $scope.prev();
+                $scope.artwork();
+                $scope.$apply;
+
             } else if (e.keyCode == '39' || e.keyCode == '190') {
                 // right arrow // >
                 $scope.next();
+                $scope.artwork();
+                $scope.$apply;
+
+
 
             }
 
