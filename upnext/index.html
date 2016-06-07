@@ -180,7 +180,8 @@
                     <div ng-hide="firstTime" class="col-xs-6 col-xs-offset-1">
                         <span class="pull-right">
                         <br> 
-                        <span style="color: #33cc33;">•</span> Users in this Playlist: {{userCount}} {{ab.index}} {{queue.length}}
+                        <span style="color: #33cc33;">•</span> Users in this Playlist: {{userCount}}
+                        <!--                        {{ab.index}} {{queue.length}}-->
                         <br>
                         <br>
                         <button type="button" name="help" id="help" class="btn btn-xs btn-default pull-right">
@@ -289,9 +290,34 @@
 
                                 <div class="container-fluid">
                                     <div class="row">
+                                        <div class="row-height">
+
+
+                                            <!--
                                         <div class="col-xs-10">{{track.title}}</div>
-                                        <div class="col-xs-2">
-                                            <a ng-click="remove(track)" class="pull-right close">&times;</a>
+                                        
+-->
+
+                                            <div class="col-xs-3">
+                                                <img ng-src="{{track.artwork}}" alt="" height="500" width="500" class="img-responsive">
+                                            </div>
+
+                                            <div class="col-xs-7 text-left pull-left">
+
+
+                                                <div class="row pull-left">
+
+                                                    <small ng-bind="track.artist"></small>
+                                                    <br> <strong ng-bind="track.title"></strong>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-xs-2 col-height col-middle">
+                                                <a ng-click="remove(track)" class=" close">&times;</a>
+                                            </div>
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -333,9 +359,31 @@
                         <input id="searchInput" ng-model="search" ng-model-options='{ debounce: 400 }' ng-change="searchFunc()" type="text" class="form-control" placeholder="Search">
 
 
-                        <div id="searchResults" class="list-group v-scroll">
+                        <div id="" class="list-group v-scroll">
 
-                            <a id="searchResults" ng-bind="track.display" ng-click="add(track)" class="list-group-item" ng-repeat="track in results track by $index">
+                            <a id="searchResults" ng-click="add(track)" class="list-group-item" ng-repeat="track in results track by $index">
+
+                                <div class="container-fluid">
+                                    <div class="row">
+
+                                        <div class="col-xs-3">
+                                            <img ng-src="{{track.artwork}}" alt="" height="500" width="500" class="img-responsive">
+                                        </div>
+
+                                        <div class="col-xs-9 text-left pull-left">
+
+
+                                            <div class="row pull-left">
+
+                                                <small ng-bind="track.artist"></small>
+                                                <br> <strong ng-bind="track.title"></strong>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
                             </a>
 
                         </div>
