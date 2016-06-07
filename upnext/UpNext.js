@@ -26,8 +26,9 @@
             hotkeys.add({
                 combo: 'space',
                 description: 'Play/Pause',
-                callback: function () {
+                callback: function (event) {
                     if (document.activeElement.id != "searchInput") {
+                        event.preventDefault();
                         $scope.toggle();
                     }
                 }
@@ -519,33 +520,30 @@
                     $scope.myPlayer.on('seeked', function () {
                         console.log("seeked");
 
-
                     });
 
 
-                    setTimeout(function () {
-
-                        //$scope.myPlayer.seek(80000);
-                        console.log("setTimeout");
-
-                        if ($scope.ab.time != 0) {
-                            console.log($scope.ab.time);
-                            $scope.myPlayer.seek($scope.ab.time);
-                        } // CHK4
-
-                        $scope.myPlayer.play();
-
-                        $scope.myPlayer.on('finish', function () {
-                            console.log("finished");
-                            $scope.next();
-                            $scope.$apply();
-                        });
-
-                    }, 600);
-
-
-
                 });
+
+
+                setTimeout(function () {
+                    //$scope.myPlayer.seek(80000);
+                    console.log("setTimeout");
+
+                    if ($scope.ab.time != 0) {
+                        console.log($scope.ab.time);
+                        $scope.myPlayer.seek($scope.ab.time);
+                    } // CHK4
+
+                    $scope.myPlayer.play();
+
+                    $scope.myPlayer.on('finish', function () {
+                        console.log("finished");
+                        $scope.next();
+                        $scope.$apply();
+                    });
+
+                }, 600);
 
 
                 $scope.hasInit = true;
