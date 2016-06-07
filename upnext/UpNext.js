@@ -552,13 +552,13 @@
 
                 setTimeout(function () {
 
-
                     if ($scope.myPlayer != null) {
                         $scope.myPlayer.play();
 
                     }
 
                 }, 600);
+
                 $scope.hasInit = true;
                 $scope.isPlaying = true;
 
