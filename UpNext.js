@@ -561,8 +561,8 @@
                 //
                 //
                 //
-                //                $scope.hasInit = true;
-                //                $scope.isPlaying = true;
+                                $scope.hasInit = true;
+                                $scope.isPlaying = true;
 
 
 
