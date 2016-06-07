@@ -177,9 +177,12 @@
                     if ($scope.isPlaying == true) {} //CHK4
                 }
 
-
-
             }, true);
+
+            SC.stream('/tracks/293').then(function (player) {
+                //                player.play();
+            });
+
 
 
         }
