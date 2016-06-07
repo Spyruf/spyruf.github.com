@@ -10,10 +10,11 @@
     <link rel="shortcut icon" type="image/x-icon" href="favicon.png" />
 
 
-    <!-- Bootstrap CSS-->
+    <!-- CSS-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="center.css">
     <link rel="stylesheet" href="style.css">
+
 
 
     <!-- JQuery    -->
@@ -25,7 +26,6 @@
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         })
-
 
 
         $(document).ready(function () {
@@ -62,6 +62,10 @@
     <script src="https://rubaxa.github.io/Sortable/Sortable.js"></script>
     <script src="https://rubaxa.github.io/Sortable/ng-sortable.js"></script>
 
+    <!-- angular-hotkeys-->
+    <script src="hotkeys.min.js"></script>
+    <link rel="stylesheet" href="hotkeys.min.css">
+
 
     <!-- Soundcloud and Custom Chrome Soundcloud -->
     <script src="https://w.soundcloud.com/player/api.js" type="text/javascript"></script>
@@ -95,6 +99,7 @@
 
                         <h3>Listening with friends? Tracks will be in sync!</h3>
                         <h5>&#9676; Changes in the current track or queue will be synced across users</h5>
+                        <h5>&#9676; Current number of users will be displayed at the top right</h5>
 
                         <h3>Shortcuts</h3>
                         <p>
@@ -117,11 +122,16 @@
                             </div>
                         </p>
 
+                        <p>Press "Shift + ?" for quick view</p>
+
+
+
                         <div align="center" class="embed-responsive embed-responsive-16by9">
                             <video autoplay loop class="embed-responsive-item">
                                 <source src="UpNextPlaylist.mp4" type="video/mp4">
                             </video>
                         </div>
+
 
 
                     </div>
@@ -170,8 +180,7 @@
                     <div ng-hide="firstTime" class="col-xs-6 col-xs-offset-1">
                         <span class="pull-right">
                         <br> 
-                        <span style="color: #33cc33;">•</span> Users in this Playlist: {{userCount}}
-                        <!--                        {{ab.index}} {{queue.length}}-->
+                        <span style="color: #33cc33;">•</span> Users in this Playlist: {{userCount}} {{ab.index}} {{queue.length}}
                         <br>
                         <br>
                         <button type="button" name="help" id="help" class="btn btn-xs btn-default pull-right">
@@ -224,8 +233,6 @@
                     <button id="newPlay" ng-click="newPlay()" class="btn btn-primary btn-md">Create a New Playlist</button>
                 </div>
 
-
-
             </form>
             <br>
             <div class="row-fluid footer">
@@ -235,7 +242,7 @@
 
         </div>
 
-        <div id="main" ng-hide="firstTime" class="container-fluid">
+        <div id="main" ng-hide="firstTime" ng class="container-fluid">
             <div class="row text-center">
                 <div class="row-md-height">
 
@@ -323,12 +330,12 @@
                         <h1></h1>
 
 
-                        <input ng-model="search" ng-model-options='{ debounce: 400 }' ng-change="searchFunc()" type="text" class="form-control" placeholder="Search">
+                        <input id="searchInput" ng-model="search" ng-model-options='{ debounce: 400 }' ng-change="searchFunc()" type="text" class="form-control" placeholder="Search">
 
 
-                        <div id="SearchResults" class="list-group v-scroll">
+                        <div id="searchResults" class="list-group v-scroll">
 
-                            <a ng-bind="track.display" ng-click="add(track)" class="list-group-item" ng-repeat="track in results track by $index">
+                            <a id="searchResults" ng-bind="track.display" ng-click="add(track)" class="list-group-item" ng-repeat="track in results track by $index">
                             </a>
 
                         </div>
