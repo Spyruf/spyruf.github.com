@@ -1,9 +1,12 @@
 (function () {
 
     //var x = 0;
-    var app = angular.module('UpNext', ['ng-sortable', 'firebase', 'ngRoute']);
+    var app = angular.module('UpNext', ['ng-sortable', 'firebase', 'ngRoute', 'cfp.hotkeys']);
 
-    app.controller('UpNextController', ['$scope', '$filter', '$firebaseArray', '$firebaseObject', function ($scope, $filter, $firebaseArray, $firebaseObject) {
+
+
+    app.controller('UpNextController', ['$scope', '$filter', '$firebaseArray', '$firebaseObject', 'hotkeys', function ($scope, $filter, $firebaseArray, $firebaseObject, hotkeys) {
+
 
 
         $scope.ab = {
@@ -20,7 +23,35 @@
 
         $scope.init = function () {
 
-            document.onkeydown = checkKey;
+            hotkeys.add({
+                combo: 'space',
+                description: 'Play/Pause',
+                callback: function () {
+                    if (document.activeElement.id != "searchInput") {
+                        $scope.toggle();
+                    }
+                }
+            });
+
+            hotkeys.add({
+                combo: 'left',
+                description: 'Previous Track (Press twice if a track has already started)',
+                callback: function () {
+                    if (document.activeElement.id != "searchInput") {
+                        $scope.prev();
+                    }
+                }
+            });
+
+            hotkeys.add({
+                combo: 'right',
+                description: 'Next Track',
+                callback: function () {
+                    if (document.activeElement.id != "searchInput") {
+                        $scope.next();
+                    }
+                }
+            });
 
 
             $scope.link = location.href;
@@ -116,6 +147,11 @@
             $scope.$watch('queue', function () {
                 $scope.display = $filter('limitTo')($scope.queue, $scope.queue.length, $scope.ab.index + 1);
                 $scope.artwork();
+
+                if ($scope.ab.index < $scope.queue.length) {
+                    $scope.disabled = false;
+                }
+
             }, true);
 
             //updates display and artwork when index is changed
@@ -306,6 +342,10 @@
 
         $scope.update = function () {
 
+            //console.log($scope.queue[$scope.ab.index]);
+
+
+
 
             //update the stream
             SC.stream('tracks/' + $scope.queue[$scope.ab.index].id).then(function (player) {
@@ -372,21 +412,21 @@
 
             });
 
+
         }
 
         $scope.prev = function () {
 
 
-
-            if ($scope.myPlayer != null && $scope.myPlayer.currentTime() > 1000) {
+            if ($scope.myPlayer != null && $scope.myPlayer.currentTime() > 1000 && $scope.queue.length != 0) {
                 //                $scope.ab.index = $scope.ab.index; // if a song has started, keep the index the same - don't need to do anything
             } else {
-                                var temp = $scope.ab.index;
-                                temp = temp - 1;
-                                $scope.ab.index = temp; // if a song hasn't started then go to the previous song
+                var temp = $scope.ab.index;
+                temp = temp - 1;
+                $scope.ab.index = temp; // if a song hasn't started then go to the previous song
 
-//                $scope.ab.index = $scope.ab.index - 1;
-                console.log("prevving" + $scope.ab.index);
+                //                $scope.ab.index = $scope.ab.index - 1;
+                //console.log("prevving" + $scope.ab.index);
 
 
             }
@@ -395,13 +435,19 @@
                 $scope.ab.index = 0; // can't go earlier than the first song
             }
 
-            $scope.update();
+            if ($scope.queue[$scope.ab.index] != null) {
 
-            $scope.artwork();
-            //updates the displayed queue
-            $scope.display = $filter('limitTo')($scope.queue, $scope.queue.length, $scope.ab.index + 1);
+                $scope.update();
 
-            $scope.disabled = false;
+                $scope.artwork();
+                //updates the displayed queue
+                $scope.display = $filter('limitTo')($scope.queue, $scope.queue.length, $scope.ab.index + 1);
+
+                $scope.disabled = false;
+
+            }
+
+
         }
 
         $scope.next = function () {
@@ -414,9 +460,12 @@
 
                 $scope.ab.index = $scope.queue.length; // can't go farther than the last song
 
-                $scope.myPlayer.pause(); // pauses the previous stream
-                $scope.isPlaying = false;
-                $scope.myPlayer.seek(0);
+                if ($scope.myPlayer != null) {
+                    $scope.myPlayer.pause(); // pauses the previous stream
+                    $scope.isPlaying = false;
+                    $scope.myPlayer.seek(0);
+                }
+
 
                 $scope.disabled = true;
 
@@ -609,30 +658,6 @@
         }
 
 
-        function checkKey(e) {
-
-            e = e || window.event;
-
-            if (e.keyCode == '32') {
-                //spacebar
-                $scope.toggle();
-            } else if (e.keyCode == '37' || e.keyCode == '188') {
-                // left arrow // <
-                $scope.prev();
-                $scope.artwork();
-                $scope.$apply;
-
-            } else if (e.keyCode == '39' || e.keyCode == '190') {
-                // right arrow // >
-                $scope.next();
-                $scope.artwork();
-                $scope.$apply;
-
-
-
-            }
-
-        }
 
 
 
