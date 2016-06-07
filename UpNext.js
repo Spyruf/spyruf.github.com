@@ -525,6 +525,7 @@
 
                 });
 
+                $scope.myPlayer.play();
 
                 setTimeout(function () {
                     //$scope.myPlayer.seek(80000);
@@ -535,7 +536,6 @@
                         $scope.myPlayer.seek($scope.ab.time);
                     } // CHK4
 
-                    $scope.myPlayer.play();
 
                     $scope.myPlayer.on('finish', function () {
                         console.log("finished");
