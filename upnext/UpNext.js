@@ -522,32 +522,47 @@
 
                     });
 
+                    setTimeout(function () {
+                        //$scope.myPlayer.seek(80000);
+                        console.log("setTimeout");
+
+                        if ($scope.ab.time != 0) {
+                            console.log($scope.ab.time);
+                            $scope.myPlayer.seek($scope.ab.time);
+                        } // CHK4
+
+                        $scope.myPlayer.play();
+
+
+                        $scope.myPlayer.on('finish', function () {
+                            console.log("finished");
+                            $scope.next();
+                            $scope.$apply();
+                        });
+
+                    }, 600);
+
+
+                }).then(function () {
 
                 });
 
-                $scope.myPlayer.play();
-
                 setTimeout(function () {
-                    //$scope.myPlayer.seek(80000);
-                    console.log("setTimeout");
 
-                    if ($scope.ab.time != 0) {
-                        console.log($scope.ab.time);
-                        $scope.myPlayer.seek($scope.ab.time);
-                    } // CHK4
+                    if ($scope.myPlayer != null) {
+                        $scope.myPlayer.play();
 
-
-                    $scope.myPlayer.on('finish', function () {
-                        console.log("finished");
-                        $scope.next();
-                        $scope.$apply();
-                    });
+                    }
 
                 }, 600);
 
 
+
                 $scope.hasInit = true;
                 $scope.isPlaying = true;
+
+
+
             } else if ($scope.ab.index != $scope.queue.length != 0) {
                 if ($scope.isPlaying == false) {
                     $scope.play();
