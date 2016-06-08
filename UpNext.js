@@ -425,11 +425,11 @@
             if ($scope.myPlayer != null && $scope.myPlayer.currentTime() > 1000 && $scope.queue.length != 0) {
                 //                $scope.ab.index = $scope.ab.index; // if a song has started, keep the index the same - don't need to do anything
             } else {
-                var temp = $scope.ab.index;
-                temp = temp - 1;
-                $scope.ab.index = temp; // if a song hasn't started then go to the previous song
+                //                var temp = $scope.ab.index;
+                //                temp = temp - 1;
+                //                $scope.ab.index = temp; // if a song hasn't started then go to the previous song
 
-                //                $scope.ab.index = $scope.ab.index - 1;
+                $scope.ab.index = $scope.ab.index - 1;
                 //console.log("prevving" + $scope.ab.index);
 
 
@@ -475,9 +475,11 @@
 
                 $scope.exists = false;
             } else {
-                var temp = $scope.ab.index;
-                temp = temp + 1;
-                $scope.ab.index = temp;
+                //                var temp = $scope.ab.index;
+                //                temp = temp + 1;
+                //                $scope.ab.index = temp;
+                $scope.ab.index = $scope.ab.index + 1;
+
             }
 
 
