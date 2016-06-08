@@ -439,7 +439,7 @@
 
             if ($scope.queue[$scope.ab.index] != null) {
 
-                $scope.update();
+                //$scope.update();
 
                 $scope.artwork();
                 //updates the displayed queue
@@ -486,9 +486,9 @@
             //updates the displayed queue
             $scope.display = $filter('limitTo')($scope.queue, $scope.queue.length, $scope.ab.index + 1);
 
-            if ($scope.exists == true) {
-                $scope.update();
-            }
+            //            if ($scope.exists == true) {
+            //                $scope.update();
+            //            }
 
             $scope.artwork();
 
