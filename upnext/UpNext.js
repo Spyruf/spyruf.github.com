@@ -169,12 +169,11 @@
                         $scope.pause();
                     }
                 } else {
-                    console.log('false');
+                    console.log('false and changing');
                     $scope.disabled = false;
                     //this makes sure the song changes across devices
                     $scope.update();
-
-                    if ($scope.isPlaying == true) {} //CHK4
+                    $scope.$apply();
                 }
 
             }, true);
@@ -431,7 +430,6 @@
 
                 $scope.ab.index = $scope.ab.index - 1;
                 //console.log("prevving" + $scope.ab.index);
-                $scope.$apply();
 
 
             }
@@ -480,7 +478,6 @@
                 //                temp = temp + 1;
                 //                $scope.ab.index = temp;
                 $scope.ab.index = $scope.ab.index + 1;
-                $scope.$apply();
 
 
             }
