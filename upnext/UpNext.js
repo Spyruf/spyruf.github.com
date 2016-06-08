@@ -431,6 +431,7 @@
 
                 $scope.ab.index = $scope.ab.index - 1;
                 //console.log("prevving" + $scope.ab.index);
+                $scope.$apply();
 
 
             }
@@ -479,6 +480,8 @@
                 //                temp = temp + 1;
                 //                $scope.ab.index = temp;
                 $scope.ab.index = $scope.ab.index + 1;
+                $scope.$apply();
+
 
             }
 
