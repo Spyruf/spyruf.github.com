@@ -173,7 +173,6 @@
                     $scope.disabled = false;
                     //this makes sure the song changes across devices
                     $scope.update();
-                    $scope.$apply();
                 }
 
             }, true);
