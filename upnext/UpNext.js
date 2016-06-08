@@ -422,7 +422,6 @@
 
             if ($scope.myPlayer != null && $scope.myPlayer.currentTime() > 1000 && $scope.queue.length != 0) {
                 //                $scope.ab.index = $scope.ab.index; // if a song has started, keep the index the same - don't need to do anything
-                $scope.update(); // 6-7
 
             } else {
                 //                var temp = $scope.ab.index;
@@ -441,7 +440,7 @@
 
             if ($scope.queue[$scope.ab.index] != null) {
 
-                //$scope.update();// 6-7
+                $scope.update(); // 6-7
 
                 $scope.artwork();
                 //updates the displayed queue
@@ -488,10 +487,10 @@
             //updates the displayed queue
             $scope.display = $filter('limitTo')($scope.queue, $scope.queue.length, $scope.ab.index + 1);
 
-            //            if ($scope.exists == true) {
-            //                $scope.update();
-            //            } 
-            //6-7
+            if ($scope.exists == true) {
+                $scope.update();
+            }
+            //            6-7
 
             $scope.artwork();
 
