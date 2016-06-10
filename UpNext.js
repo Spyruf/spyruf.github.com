@@ -12,8 +12,16 @@
         $scope.ab = {
             index: 0,
             //isPlaying: false,
+            //time: 0,
+        };
+
+        $scope.cd = {
+            //index: 0,
+            //isPlaying: false,
             time: 0,
         };
+
+
 
         $scope.userCount = 0;
 
@@ -36,7 +44,7 @@
 
             hotkeys.add({
                 combo: 'left',
-                description: 'Previous Track (Press twice if a track has already started)',
+                description: 'Previous Track',
                 callback: function () {
                     if (document.activeElement.id != "searchInput") {
                         $scope.prev();
@@ -84,11 +92,23 @@
                     $scope.ab = {
                         index: 0,
                         //isPlaying: false,
-                        time: 0,
+                        //time: 0,
                     }
                 }
             });
 
+            var refTime = new Firebase('https://amber-heat-3079.firebaseio.com/' + $scope.uID.toString() + '/cd'); //uID/ab
+            $scope.c = $firebaseObject(refTime); //$scope.a is NOT used, instead $scope.ab is used
+
+            $scope.c.$bindTo($scope, 'cd').then(function () {
+                if ($scope.cd.time == null) {
+                    $scope.cd = {
+                        //index: 0,
+                        //isPlaying: false,
+                        time: 0,
+                    };
+                }
+            });
 
             //--------
 
@@ -372,7 +392,7 @@
                     $scope.onIDS.push($scope.queue[$scope.ab.index].id);
 
                     $scope.myPlayer.on('time', function () {
-                        $scope.ab.time = $scope.myPlayer.currentTime();
+                        $scope.cd.time = $scope.myPlayer.currentTime();
                         $scope.$apply();
                     });
 
@@ -400,12 +420,12 @@
                 //only play the song if music was already playing
                 if ($scope.isPlaying == true) {
 
-                    if ($scope.ab.time != 0) {
-                        $scope.myPlayer.seek($scope.ab.time); //4-16
+                    if ($scope.cd.time != 0) {
+                        $scope.myPlayer.seek($scope.cd.time); //4-16
                         $scope.$apply;
                     }
 
-                    //console.log("in the update funct" + $scope.ab.time)
+                    //console.log("in the update funct" + $scope.cd.time)
 
                     $scope.myPlayer.play();
                     //console.log("plays the new song");
@@ -420,23 +440,27 @@
         $scope.prev = function () {
 
 
-            if ($scope.myPlayer != null && $scope.myPlayer.currentTime() > 1000 && $scope.queue.length != 0) {
-                //                $scope.ab.index = $scope.ab.index; // if a song has started, keep the index the same - don't need to do anything
+            //
+            //            if ($scope.myPlayer != null && $scope.myPlayer.currentTime() > 2000 && $scope.queue.length != 0) {
+            //                console.log('test');
+            //                //                $scope.ab.index = $scope.ab.index; // if a song has started, keep the index the same - don't need to do anything
+            //
+            //            } else {
+            //                var temp = $scope.ab.index;
+            //                temp = temp - 1;
+            //                $scope.ab.index = temp; // if a song hasn't started then go to the previous song
 
-            } else {
-                //                var temp = $scope.ab.index;
-                //                temp = temp - 1;
-                //                $scope.ab.index = temp; // if a song hasn't started then go to the previous song
-
-                $scope.ab.index = $scope.ab.index - 1;
-                //console.log("prevving" + $scope.ab.index);
+            $scope.ab.index = $scope.ab.index - 1;
+            //console.log("prevving" + $scope.ab.index);
 
 
-            }
+            //            }
 
             if ($scope.ab.index < 0) {
                 $scope.ab.index = 0; // can't go earlier than the first song
             }
+
+
 
             if ($scope.queue[$scope.ab.index] != null) {
 
@@ -449,6 +473,9 @@
                 $scope.disabled = false;
 
             }
+
+
+
 
 
         }
@@ -483,7 +510,6 @@
             }
 
 
-
             //updates the displayed queue
             $scope.display = $filter('limitTo')($scope.queue, $scope.queue.length, $scope.ab.index + 1);
 
@@ -493,6 +519,10 @@
             //            6-7
 
             $scope.artwork();
+
+
+
+
 
         }
 
@@ -518,7 +548,7 @@
                     //conditionals 
 
                     $scope.myPlayer.on('time', function () {
-                        $scope.ab.time = $scope.myPlayer.currentTime();
+                        $scope.cd.time = $scope.myPlayer.currentTime();
                         $scope.$apply();
                     });
 
@@ -532,9 +562,9 @@
                         //$scope.myPlayer.seek(80000);
                         console.log("setTimeout");
 
-                        if ($scope.ab.time != 0) {
-                            console.log($scope.ab.time);
-                            $scope.myPlayer.seek($scope.ab.time);
+                        if ($scope.cd.time != 0) {
+                            console.log($scope.cd.time);
+                            $scope.myPlayer.seek($scope.cd.time);
                         } // CHK4
 
                         $scope.myPlayer.play();
@@ -592,9 +622,9 @@
             }
 
 
-            if ($scope.ab.time != 0) {
-                console.log($scope.ab.time);
-                $scope.myPlayer.seek($scope.ab.time);
+            if ($scope.cd.time != 0) {
+                console.log($scope.cd.time);
+                $scope.myPlayer.seek($scope.cd.time);
             } // CHK4
 
             $scope.myPlayer.play();
