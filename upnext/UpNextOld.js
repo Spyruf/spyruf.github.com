@@ -1,22 +1,59 @@
 (function () {
 
-    var x = 0;
-    var app = angular.module('UpNext', ['ng-sortable', 'firebase', 'ngRoute']);
+    //var x = 0;
+    var app = angular.module('UpNext', ['ng-sortable', 'firebase', 'ngRoute', 'cfp.hotkeys']);
 
-    app.controller('UpNextController', ['$scope', '$filter', '$firebaseArray', '$firebaseObject', function ($scope, $filter, $firebaseArray, $firebaseObject) {
+
+
+    app.controller('UpNextController', ['$scope', '$filter', '$firebaseArray', '$firebaseObject', 'hotkeys', function ($scope, $filter, $firebaseArray, $firebaseObject, hotkeys) {
+
+
 
         $scope.ab = {
             index: 0,
             //isPlaying: false,
-            time: 0
+            time: 0,
         };
 
+        $scope.userCount = 0;
+
         $scope.isPlaying = false;
-
         $scope.myText = "";
+        $scope.myPlayer;
 
-        //alert('success'); //properly hooked in angular
         $scope.init = function () {
+
+            hotkeys.add({
+                combo: 'space',
+                description: 'Play/Pause',
+                callback: function (event) {
+                    if (document.activeElement.id != "searchInput") {
+                        event.preventDefault();
+                        $scope.toggle();
+                    }
+                }
+            });
+
+            hotkeys.add({
+                combo: 'left',
+                description: 'Previous Track (Press twice if a track has already started)',
+                callback: function () {
+                    if (document.activeElement.id != "searchInput") {
+                        $scope.prev();
+                    }
+                }
+            });
+
+            hotkeys.add({
+                combo: 'right',
+                description: 'Next Track',
+                callback: function () {
+                    if (document.activeElement.id != "searchInput") {
+                        $scope.next();
+                    }
+                }
+            });
+
 
             $scope.link = location.href;
 
@@ -27,46 +64,74 @@
 
 
             SC.initialize({
-                client_id: '038edf3f06592aa73098f5fb96b6961c'
+                client_id: 'f3dac0fe0e7d9f71fe2f79ca32f2782e'
             });
 
             $scope.search = "";
             $scope.results = [];
 
 
-            var refQ = new Firebase("https://amber-heat-3079.firebaseio.com/" + $scope.uID.toString() + "/array"); //uID/array
-            $scope.queue = $firebaseArray(refQ); // firebaseCH
+
+            var refQ = new Firebase('https://amber-heat-3079.firebaseio.com/' + $scope.uID.toString() + '/array'); //uID/array
+            $scope.queue = $firebaseArray(refQ);
 
 
-            var refI = new Firebase("https://amber-heat-3079.firebaseio.com/" + $scope.uID.toString() + "/ab"); //uID/ab
+            var refI = new Firebase('https://amber-heat-3079.firebaseio.com/' + $scope.uID.toString() + '/ab'); //uID/ab
             $scope.a = $firebaseObject(refI); //$scope.a is NOT used, instead $scope.ab is used
-
 
             $scope.a.$bindTo($scope, 'ab').then(function () {
                 if ($scope.ab.index == null) {
                     $scope.ab = {
                         index: 0,
                         //isPlaying: false,
-                        time: 0
+                        time: 0,
                     }
                 }
             });
 
 
-            //var refD = new Firebase("https://amber-heat-3079.firebaseio.com/testing/display") //uID/display
-            //$scope.display = $firebaseObject(refD);
-            //if you bind the display to firebase, use $bindTo because ng-sortable assumes a normal array
-            //$bindTo does weird things when updating, view Important Note in docs/api
+            //--------
+
+            var listRef = new Firebase("https://amber-heat-3079.firebaseio.com/" + $scope.uID.toString() + "/presence/");
+            var userRef = listRef.push();
+
+            // Add ourselves to presence list when online.
+            var presenceRef = new Firebase("https://amber-heat-3079.firebaseio.com/.info/connected");
+            presenceRef.on("value", function (snap) {
+                if (snap.val()) {
+                    // Remove ourselves when we disconnect.
+                    userRef.onDisconnect().remove();
+
+                    userRef.set(true);
+                }
+            });
+
+            // Number of online users is the number of objects in the presence list.
+            listRef.on("value", function (snap) {
+                console.log("# of online users = " + snap.numChildren());
+                $scope.userCount = snap.numChildren();
+                $scope.$apply();
+            });
+            //--------
+
+
+
 
             $scope.display = [];
             $scope.display = $filter('limitTo')($scope.queue, $scope.queue.length, $scope.ab.index + 1);
-
 
             //when the queue has loaded from firebase, update the display
             $scope.queue.$loaded().then(function () {
                     $scope.display = $filter('limitTo')($scope.queue, $scope.queue.length, $scope.ab.index + 1);
                     $scope.artwork();
-                    //$scope.$apply(); //redundent, causes scope digest error 
+
+                    if ($scope.queue.length == 0 || ($scope.ab.index) >= $scope.queue.length) {
+                        console.log('disablin');
+                        $scope.disabled = true;
+                    } else {
+                        $scope.disabled = false;
+                    }
+
                 })
                 .catch(function (err) {
                     console.error(err);
@@ -74,22 +139,20 @@
 
 
 
-            if ($scope.queue == []) {
-                $scope.disabled = true;
-            } else {
-                $scope.disabled = false;
-            }
-
-
             $scope.hasInit = false;
-            $scope.isPlaying = false;
             $scope.myPlayer;
+
             $scope.art = "Template.png"
 
             //--updates display when the queue is changed
             $scope.$watch('queue', function () {
                 $scope.display = $filter('limitTo')($scope.queue, $scope.queue.length, $scope.ab.index + 1);
                 $scope.artwork();
+
+                if ($scope.ab.index < $scope.queue.length) {
+                    $scope.disabled = false;
+                }
+
             }, true);
 
             //updates display and artwork when index is changed
@@ -97,50 +160,30 @@
                 $scope.display = $filter('limitTo')($scope.queue, $scope.queue.length, $scope.ab.index + 1);
                 $scope.artwork();
 
-                //this makes sure the song changes across devices
-                if ($scope.isPlaying == true) {
+
+
+                if (($scope.ab.index) >= $scope.queue.length) {
+                    console.log('true');
+                    $scope.disabled = true;
+                    if ($scope.myPlayer != null) {
+                        $scope.pause();
+                    }
+                } else {
+                    console.log('false and changing');
+                    $scope.disabled = false;
+                    //this makes sure the song changes across devices
                     $scope.update();
                 }
 
             }, true);
 
-            //updates the  toggle state if isPlaying is changed
-            //            $scope.$watch('ab.isPlaying', function () {
-            //
-            //                if ($scope.hasInit == false) {
-            //                    $scope.toggle();
-            //                } else if ($scope.myPlayer != null) {
-            //
-            //                    if ($scope.isPlaying == false) {
-            //                        $scope.pause();
-            //                    }
-            //                    if ($scope.isPlaying == true) {
-            //                        $scope.update();
-            //                        //$scope.myPlayer.seek($scope.ab.time); //4-16
-            //                        //$scope.myPlayer.play();
-            //                    }
-            //
-            //                }
-            //
-            //            }, true);
+            SC.stream('/tracks/293').then(function (player) {
+                //                player.play();
+            });
 
-            //            //4-13
-            //            $scope.$watch('ab.time', function () {
-            //
-            //                $scope.fsync = false;
-            //
-            //                if ($scope.hasInit == true && $scope.myPlayer != null && $scope.ab.time != $scope.myPlayer.currentTime() && $scope.fsync == false) {
-            //                    $scope.myPlayer.seek($scope.ab.time + 100); //4-13
-            //                    $scope.$apply();
-            //                    console.log("syncing");
-            //                    $scope.fsync == true;
-            //                }
-            //
-            //            }, true);
-            //
+
 
         }
-
 
         $scope.firstTime = true;
         $scope.hash = location.hash;
@@ -149,6 +192,10 @@
             $scope.firstTime = false;
             $scope.uID = $scope.hash.toString().substr(-8);
             $scope.init();
+        } else {
+            $(document).ready(function () {
+                $("#myModal2").modal('show');
+            });
         }
 
         $scope.newPlay = function () {
@@ -173,8 +220,6 @@
                 $scope.uID = $scope.playUID;
                 $scope.uID += "UID"
 
-
-
                 $scope.refT = new Firebase("https://amber-heat-3079.firebaseio.com/" + $scope.uID.toString());
 
                 $scope.refT.once("value", function (snapshot) {
@@ -198,6 +243,8 @@
             $scope.resultsString = "";
             $scope.results = [];
 
+
+
             if (!$scope.search == "") {
                 SC.get('/tracks', {
                     q: $scope.search,
@@ -210,7 +257,7 @@
                     //loop through search results
                     for (var x = 0; x < tracks.length; x++) {
 
-                        //console.log(tracks[x].title + ": " + tracks[x].id + " - " + tracks[x].artwork_url);
+                        //                        console.log(tracks[x].title + ": " + tracks[x].label_id + tracks[x].streamable);
 
                         var track = {}
                         track.title = tracks[x].title;
@@ -218,8 +265,18 @@
                         track.id = tracks[x].id;
                         track.artwork = tracks[x].artwork_url;
 
+                        track.display = track.title + " - " + track.artist;
+
+
+                        track.streamable = tracks[x].streamable;
+                        track.stream_url = tracks[x].stream_url
+                        track.embeddable_by = tracks[x].embeddable_by;
+                        track.label_id = tracks[x].label_id;
+
+                        //console.log(track.title + ": " + track.streamable + "--" + track.embeddable_by + "--" + track.stream_url);
+
                         //make sure that only songs with valid track ids are being added to results
-                        if (track.id != null) {
+                        if (track.streamable == true && track.id != null && track.stream_url != null) {
                             $scope.results.push(track);
 
                         }
@@ -231,29 +288,21 @@
                 });
 
             }
+
+
         }
 
         $scope.buttonState = function () {
-            // add something here cuz is playing doesnt exist 
 
             if ($scope.isPlaying == false)
                 return "glyphicon glyphicon-play";
             else return "glyphicon glyphicon-pause";
         }
 
-        //called when someone changes the display 
         $scope.queueUpdate = function () {
-
-            //            console.log("queueUpdate function, should only be once");
-
             //updates the queue to include changes made in display
 
-            //slice ends at but does not inlcude, the end argument -- in other words it adds the current song 
-            //$scope.queue = $scope.queue.slice(0, $scope.ab.index + 1).concat($scope.display); // fix this, look below
-
-
             //combine the queue upto and including index, with the display
-            //firebaseCH
 
             //removing
             for (var x = $scope.ab.index + 1; x < $scope.queue.length; x++) {
@@ -268,50 +317,18 @@
                 });
             }
 
-            //            for (var i = 0; i < $scope.display.length; i++) {
-            //                $scope.queue.push().set({
-            //                    artwork: $scope.display[i].artwork,
-            //                    id: $scope.display[i].id,
-            //                    title: $scope.display[i].title
-            //                }).then(function () {
-            //                    $scope.display = $filter('limitTo')($scope.queue, $scope.queue.length, $scope.ab.index + 1);
-            //                });
-            //            }
-
-
 
         }
 
         $scope.add = function (track) {
 
-            //console.log("you are adding: " + track.title);
-
-            //            var qTrack = {}
-            //            qTrack.title = track.title;
-            //            qTrack.id = track.id;
-
-
-            //$scope.queue.push(track);
-            //FirebaseCH
             $scope.queue.$add(track).then(function () {
                 //updates the displayed queue
                 $scope.display = $filter('limitTo')($scope.queue, $scope.queue.length, $scope.ab.index + 1);
             });
 
-            //
-            //            $scope.queue.push().set({
-            //                artwork: $scope.display[i].artwork,
-            //                id: $scope.display[i].id,
-            //                title: $scope.display[i].title
-            //            }).then(function () {
-            //                //updates the displayed queue
-            //                $scope.display = $filter('limitTo')($scope.queue, $scope.queue.length, $scope.ab.index + 1);
-            //            });
-
-
             $scope.artwork();
             $scope.disabled = false;
-
         }
 
         $scope.remove = function (track) {
@@ -323,7 +340,14 @@
             $scope.queueUpdate();
         }
 
+        $scope.varInit = true;
+
         $scope.update = function () {
+
+            //console.log($scope.queue[$scope.ab.index]);
+
+
+
 
             //update the stream
             SC.stream('tracks/' + $scope.queue[$scope.ab.index].id).then(function (player) {
@@ -342,6 +366,36 @@
                 $scope.myPlayer = player; // updates the player
                 //console.log("sets the new player");
 
+                //5-30
+                if ($scope.ab.index != null && $scope.onIDS != null && $scope.onIDS.indexOf($scope.queue[$scope.ab.index].id) == -1) {
+
+                    $scope.onIDS.push($scope.queue[$scope.ab.index].id);
+
+                    $scope.myPlayer.on('time', function () {
+                        $scope.ab.time = $scope.myPlayer.currentTime();
+                        $scope.$apply();
+                    });
+
+
+                    $scope.myPlayer.on('finish', function () {
+                        console.log("finished");
+                        $scope.next();
+                        $scope.$apply();
+                    });
+
+                }
+                //
+
+
+                //                if ($scope.varInit == true) {
+                //                    $scope.myPlayer.on('finish', function () {
+                //                        console.log("finished");
+                //                        $scope.next();
+                //                        $scope.$apply();
+                //                    });
+                //                    //$scope.varInit = false;
+                //                }
+
 
                 //only play the song if music was already playing
                 if ($scope.isPlaying == true) {
@@ -356,76 +410,90 @@
                     $scope.myPlayer.play();
                     //console.log("plays the new song");
 
-
-                    $scope.myPlayer.on('finish', function () {
-                        $scope.next();
-                        //console.log("Going to next song");
-                        $scope.$apply();
-                    });
-
-                    //                     $scope.myPlayer.on('time', function () {
-                    //                        $scope.ab.time = $scope.myPlayer.currentTime(); //4-13
-                    //                        $scope.$apply();
-                    //                        //console.log($scope.myPlayer.currentTime() + " update"); //4-14
-                    //                    });
-
                 }
 
             });
+
 
         }
 
         $scope.prev = function () {
 
-            if ($scope.myPlayer != null && $scope.myPlayer.currentTime() > 1000) {
-                $scope.ab.index = $scope.ab.index; // if a song has started, keep the index the same
+
+            if ($scope.myPlayer != null && $scope.myPlayer.currentTime() > 1000 && $scope.queue.length != 0) {
+                //                $scope.ab.index = $scope.ab.index; // if a song has started, keep the index the same - don't need to do anything
+
             } else {
-                $scope.ab.index = $scope.ab.index - 1; // if a song hasn't started then go to the previous song
+                //                var temp = $scope.ab.index;
+                //                temp = temp - 1;
+                //                $scope.ab.index = temp; // if a song hasn't started then go to the previous song
+
+                $scope.ab.index = $scope.ab.index - 1;
+                //console.log("prevving" + $scope.ab.index);
+
+
             }
 
             if ($scope.ab.index < 0) {
                 $scope.ab.index = 0; // can't go earlier than the first song
             }
 
-            $scope.update();
+            if ($scope.queue[$scope.ab.index] != null) {
 
-            $scope.artwork();
-            //updates the displayed queue
-            $scope.display = $filter('limitTo')($scope.queue, $scope.queue.length, $scope.ab.index + 1);
+                $scope.update(); // 6-7
 
-            $scope.disabled = false;
+                $scope.artwork();
+                //updates the displayed queue
+                $scope.display = $filter('limitTo')($scope.queue, $scope.queue.length, $scope.ab.index + 1);
+
+                $scope.disabled = false;
+
+            }
+
+
         }
 
         $scope.next = function () {
 
 
             //$scope.ab.index = $scope.ab.index + 1; // next will always go to the next song
-            var exists = true;
+            $scope.exists = true;
 
             if (($scope.ab.index + 1) >= $scope.queue.length) {
 
                 $scope.ab.index = $scope.queue.length; // can't go farther than the last song
 
-                $scope.myPlayer.pause(); // pauses the previous stream
-                $scope.isPlaying = false;
-                $scope.myPlayer.seek(0);
+                if ($scope.myPlayer != null) {
+                    $scope.myPlayer.pause(); // pauses the previous stream
+                    $scope.isPlaying = false;
+                    $scope.myPlayer.seek(0);
+                }
+
 
                 $scope.disabled = true;
 
-                exists = false;
+                $scope.exists = false;
             } else {
+                //                var temp = $scope.ab.index;
+                //                temp = temp + 1;
+                //                $scope.ab.index = temp;
                 $scope.ab.index = $scope.ab.index + 1;
+
+
             }
 
 
-            if (exists == true) {
-                $scope.update();
-            }
 
-
-            $scope.artwork();
             //updates the displayed queue
             $scope.display = $filter('limitTo')($scope.queue, $scope.queue.length, $scope.ab.index + 1);
+
+            if ($scope.exists == true) {
+                $scope.update();
+            }
+            //            6-7
+
+            $scope.artwork();
+
         }
 
         $scope.toggle = function () {
@@ -433,33 +501,71 @@
             if ($scope.hasInit == false && ($scope.ab.index < $scope.queue.length)) {
 
                 SC.stream('tracks/' + $scope.queue[$scope.ab.index].id).then(function (player) {
+
+
+                    $scope.onIDS = [];
+                    $scope.onIDS.push($scope.queue[$scope.ab.index].id);
+
+
                     $scope.myPlayer = player;
                     $scope.$apply();
 
-                    $scope.myPlayer.seek($scope.ab.time); //4-13
-                    $scope.$apply;
-
                     $scope.myPlayer.play();
-                    //console.log("in the toggle" + $scope.ab.time);
+                    $scope.$apply();
+                    $scope.myPlayer.pause();
 
 
-                    $scope.myPlayer.on('finish', function () {
-                        $scope.next();
-                        //                        console.log("Going to next song");
+                    //conditionals 
+
+                    $scope.myPlayer.on('time', function () {
+                        $scope.ab.time = $scope.myPlayer.currentTime();
                         $scope.$apply();
                     });
 
-                    //                    $scope.myPlayer.on('time', function () {
-                    //                        $scope.ab.time = $scope.myPlayer.currentTime(); //4-13
-                    //                        $scope.$apply();
-                    //                        console.log($scope.myPlayer.currentTime() + " toggle"); //4-14
-                    //
-                    //                    });
+
+                    $scope.myPlayer.on('seeked', function () {
+                        console.log("seeked");
+
+                    });
+
+                    setTimeout(function () {
+                        //$scope.myPlayer.seek(80000);
+                        console.log("setTimeout");
+
+                        if ($scope.ab.time != 0) {
+                            console.log($scope.ab.time);
+                            $scope.myPlayer.seek($scope.ab.time);
+                        } // CHK4
+
+                        $scope.myPlayer.play();
+
+
+                        $scope.myPlayer.on('finish', function () {
+                            console.log("finished");
+                            $scope.next();
+                            $scope.$apply();
+                        });
+
+                    }, 600);
+
+
+                }).then(function () {
 
                 });
 
+                setTimeout(function () {
+
+                    if ($scope.myPlayer != null) {
+                        $scope.myPlayer.play();
+
+                    }
+
+                }, 600);
+
                 $scope.hasInit = true;
                 $scope.isPlaying = true;
+
+
 
             } else if ($scope.ab.index != $scope.queue.length != 0) {
                 if ($scope.isPlaying == false) {
@@ -471,51 +577,54 @@
 
             $scope.artwork();
 
+
         }
 
         $scope.play = function () {
 
-            if ($scope.ab.time != 0) {
-                $scope.myPlayer.seek($scope.ab.time); //4-16
+
+            if ($scope.ab.index + 1 == $scope.queue.length && $scope.exists == false) {
+
+                console.log("cmon");
+
+                $scope.update();
+                $scope.exists = true;
             }
 
+
+            if ($scope.ab.time != 0) {
+                console.log($scope.ab.time);
+                $scope.myPlayer.seek($scope.ab.time);
+            } // CHK4
+
             $scope.myPlayer.play();
-            //console.log("in the play" + $scope.ab.time);
 
-            $scope.myPlayer.on('finish', function () {
-                $scope.next();
-                //                console.log("Going to next song");
-                $scope.$apply();
-            });
-
-            //            $scope.myPlayer.on('time', function () {
-            //                $scope.ab.time = $scope.myPlayer.currentTime(); //4-13
-            //                $scope.$apply();
-            //                console.log($scope.myPlayer.currentTime() + " play"); //4-14
-            //
-            //            });
 
             $scope.isPlaying = true;
+
+
+
         }
 
         $scope.pause = function () {
             $scope.myPlayer.pause()
-                //$scope.ab.time = $scope.myPlayer.currentTime(); //4-13
-            $scope.$apply;
             $scope.isPlaying = false;
         }
 
         $scope.artwork = function () {
-
-            // FirebaseCH
+            //artwork
             if ($scope.ab.index < $scope.queue.length && $scope.queue[$scope.ab.index].artwork != null) {
                 $scope.art = $scope.queue[$scope.ab.index].artwork.replace("large", "t500x500");
-                //console.log("Artwork Update");
 
             } else {
                 $scope.art = "Template.png"
-                    //console.log("Artwork Template");
+            }
+            //title
+            if ($scope.ab.index < $scope.queue.length && $scope.queue[$scope.ab.index].title != null) {
+                document.title = "UpNext - " + $scope.queue[$scope.ab.index].title;
 
+            } else {
+                document.title = "UpNext";
             }
         }
 
@@ -569,7 +678,6 @@
 
 
 
-}]);
-
+    }]);
 
 })();   
