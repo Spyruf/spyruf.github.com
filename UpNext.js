@@ -33,8 +33,6 @@
 
             //gmusic
 
-            //window.gmusic = new window.GMusic(window); // Our Google Music API
-            //window.gmusic.volume.getVolume(); // 50 (ranges from 0 to 100)
 
             //hotkeys  
             hotkeys.add({
