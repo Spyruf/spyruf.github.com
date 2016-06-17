@@ -33,7 +33,7 @@
 
             //gmusic
 
-            window.gmusic = new window.GMusic(window); // Our Google Music API
+            //window.gmusic = new window.GMusic(window); // Our Google Music API
             //window.gmusic.volume.getVolume(); // 50 (ranges from 0 to 100)
 
             //hotkeys  
@@ -707,6 +707,11 @@
             // Remove it from the body
             document.body.removeChild(aux);
 
+
+        }
+
+        $scope.gmusic = function () {
+            window.gmusic = new window.GMusic(window); // Our Google Music API
 
         }
 
