@@ -711,7 +711,7 @@
         }
 
         $scope.gmusic = function () {
-            window.gmusic = new window.GMusic(window); // Our Google Music API
+            //window.gmusic = new window.GMusic(window); // Our Google Music API
 
         }
 
