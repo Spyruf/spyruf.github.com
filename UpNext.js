@@ -32,13 +32,13 @@
         $scope.init = function () {
 
             //gmusic
-            obsessed(8, function () {
+            obsessed(100, function () {
                 window.gmusic = new window.GMusic(window); // Our Google Music API
 
                 //console.log(window.gmusic.volume.getVolume());
-                if (failed) {
-                    throw new Error('oops');
-                }
+                //                if (failed) {
+                //                    throw new Error('oops');
+                //                }
             });
 
 
