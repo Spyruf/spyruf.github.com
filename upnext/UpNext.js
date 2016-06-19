@@ -34,7 +34,7 @@
             //gmusic
             obsessed(100, function () {
                 window.gmusic = new window.GMusic(window); // Our Google Music API
-
+                //check
                 //console.log(window.gmusic.volume.getVolume());
                 //                if (failed) {
                 //                    throw new Error('oops');
