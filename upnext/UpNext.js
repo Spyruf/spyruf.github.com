@@ -34,7 +34,7 @@
             //gmusic
             obsessed(8, function () {
                 window.gmusic = new window.GMusic(window); // Our Google Music API
-
+                console.log(window.gmusic.volume.getVolume());
                 if (failed) {
                     throw new Error('oops');
                 }
