@@ -32,15 +32,15 @@
         $scope.init = function () {
 
             //gmusic
-            obsessed(100, function () {
-                // do something risky
-                window.gmusic = new window.GMusic(window); // Our Google Music API
-
-
-                if (failed) {
-                    throw new Error('oops');
-                }
-            });
+//            obsessed(100, function () {
+                //                // do something risky
+                //                window.gmusic = new window.GMusic(window); // Our Google Music API
+                //
+                //
+                //                if (failed) {
+                //                    throw new Error('oops');
+                //                }
+                //            });
 
 
             //hotkeys  
