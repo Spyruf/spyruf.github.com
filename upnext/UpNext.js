@@ -32,6 +32,16 @@
         $scope.init = function () {
 
             //gmusic
+            obsessed(8, function () {
+                // do something risky
+                window.gmusic = new window.GMusic(window); // Our Google Music API
+
+
+                if (failed) {
+                    throw new Error('oops');
+                }
+            });
+
 
             //hotkeys  
             hotkeys.add({
