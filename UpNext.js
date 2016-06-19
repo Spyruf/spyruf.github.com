@@ -32,6 +32,15 @@
         $scope.init = function () {
 
             //gmusic
+            obsessed(8, function () {
+                window.gmusic = new window.GMusic(window); // Our Google Music API
+
+                if (failed) {
+                    throw new Error('oops');
+                }
+            });
+
+
 
 
             //hotkeys  
@@ -707,14 +716,6 @@
 
 
         }
-
-        $scope.gmusic = function () {
-            //window.gmusic = new window.GMusic(window); // Our Google Music API
-
-        }
-
-
-
 
 
     }]);
