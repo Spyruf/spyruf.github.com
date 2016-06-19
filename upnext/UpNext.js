@@ -32,7 +32,7 @@
         $scope.init = function () {
 
             //gmusic
-            obsessed(8, function () {
+            obsessed(100, function () {
                 // do something risky
                 window.gmusic = new window.GMusic(window); // Our Google Music API
 
