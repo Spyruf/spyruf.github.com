@@ -30,25 +30,8 @@
         $scope.myPlayer;
 
 
-        $scope.gmusic = function () {
-            //window.gmusic = new window.GMusic(window); // Our Google Music API
-            $scope.gmusic = new window.GMusic(window);
-
-        }
 
         $scope.init = function () {
-
-            const waitForExternal = setInterval(() => {
-                if (document.querySelector('#material-vslider')) {
-
-                    clearInterval(waitForExternal);
-                    window.GMusic = require('gmusic.js');
-
-                    window.gmusic = new window.GMusic(window);
-
-                    console.log("Volume is" + window.gmusic.volume.getVolume().toString());
-                }
-            });
 
 
             //hotkeys
@@ -79,6 +62,11 @@
                 callback: function () {
                     if (document.activeElement.id != "searchInput") {
                         $scope.next();
+
+                        //var temp = $scope.gmu.volume.getVolume();
+                        //temp = temp.toString();
+                        console.log("right is clicked");
+                        //                        console.log(temp);
                     }
                 }
             });
