@@ -45,7 +45,8 @@
                     window.GMusic = require('gmusic.js');
 
                     window.gmusic = new window.GMusic(window);
-                    console.log("Volume is" + window.gmusic.volume.getVolume());
+
+                    console.log("Volume is" + window.gmusic.volume.getVolume().toString());
                 }
             });
 
