@@ -38,6 +38,17 @@
 
         $scope.init = function () {
 
+            const waitForExternal = setInterval(() => {
+                if (document.querySelector('#material-vslider')) {
+
+                    clearInterval(waitForExternal);
+                    window.GMusic = require('gmusic.js');
+
+                    window.gmusic = new window.GMusic(window);
+                    console.log("Volume is" + window.gmusic.volume.getVolume());
+                }
+            });
+
 
             //hotkeys
             hotkeys.add({
