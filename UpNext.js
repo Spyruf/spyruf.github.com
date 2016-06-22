@@ -29,21 +29,17 @@
         $scope.myText = "";
         $scope.myPlayer;
 
+
+        $scope.gmusic = function () {
+            //window.gmusic = new window.GMusic(window); // Our Google Music API
+            $scope.gmusic = new window.GMusic(window);
+
+        }
+
         $scope.init = function () {
 
-            //gmusic
-//            obsessed(100, function () {
-                //                // do something risky
-                //                window.gmusic = new window.GMusic(window); // Our Google Music API
-                //
-                //
-                //                if (failed) {
-                //                    throw new Error('oops');
-                //                }
-                //            });
 
-
-            //hotkeys  
+            //hotkeys
             hotkeys.add({
                 combo: 'space',
                 description: 'Play/Pause',
@@ -78,7 +74,7 @@
 
             $scope.link = location.href;
 
-            //shows model or something like that 
+            //shows model or something like that
             $(document).ready(function () {
                 $("#myModal").modal('show');
             });
@@ -558,7 +554,7 @@
                     $scope.myPlayer.pause();
 
 
-                    //conditionals 
+                    //conditionals
 
                     $scope.myPlayer.on('time', function () {
                         $scope.cd.time = $scope.myPlayer.currentTime();
