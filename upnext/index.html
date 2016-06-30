@@ -23,22 +23,6 @@
 
     <!-- Tooltip JQuery -->
     <script>
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
-
-
-        $(document).ready(function () {
-            $("#help").click(function () {
-                $("#myModal").modal();
-            });
-        });
-
-        $(document).ready(function () {
-            $("#helpHome").click(function () {
-                $("#myModal2").modal();
-            });
-        });
     </script>
 
 
@@ -145,6 +129,27 @@
         </div>
 
         <div ng-show="firstTime" id="myModal2" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h2 class="modal-title">Welcome to UpNext!</h2>
+                    </div>
+                    <div class="modal-body">
+                        <h3>First Time?</h3>
+                        <h5>Create a playlist and invite your friends to listen with you </h5>
+                        <h3>Been here before?</h3>
+                        <h5>Join an existing playlist and listen with your friends</h5>
+                        <h3>Why use UpNext?</h3>
+                        <h5>Queue songs for a party and allow everyone to edit what's up next</h5>
+                        <h5>Listen and discover music with your friends</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="copyModal" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -339,7 +344,7 @@
                         <br>
 
                         <span class="pull-left">
-                        <a ng-click="copyLink()" data-toggle="tooltip" data-placement="top" title="Click to copy this playlist's link" href="">Share Link</a>
+                        <a id="link" ng-click="copyLink()" data-toggle="tooltip" data-placement="top" title="Click to copy this playlist's link" href="">Share Link</a>
                     </span>
 
                         <span class="pull-right">
