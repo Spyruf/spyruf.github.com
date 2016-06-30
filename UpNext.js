@@ -738,7 +738,10 @@
 
                 // Highlight its content
                 aux.focus();
-                aux.setSelectionRange(0, 9999);
+                setTimeout(function () {
+                    aux.setSelectionRange(0, 9999);
+                }, 1);
+                aux.focus();
                 aux.select();
 
             } else {
@@ -778,7 +781,10 @@
 
                 // Highlight its content
                 aux.focus();
-                aux.setSelectionRange(0, 9999);
+                setTimeout(function () {
+                    aux.setSelectionRange(0, 9999);
+                }, 1);
+                aux.focus();
                 aux.select();
 
 
