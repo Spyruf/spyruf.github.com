@@ -737,7 +737,9 @@
                 aux.setAttribute("value", document.getElementById("uID").innerHTML); // main line
 
                 // Highlight its content
+                aux.focus();
                 aux.select();
+
             } else {
                 // Create a "hidden" input
                 var aux = document.createElement("input");
@@ -774,6 +776,7 @@
                 aux.setAttribute("value", $scope.link); // main line
 
                 // Highlight its content
+                aux.focus();
                 aux.select();
 
 
