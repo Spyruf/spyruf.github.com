@@ -128,6 +128,7 @@
             </div>
         </div>
 
+
         <div ng-show="firstTime" id="myModal2" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -149,27 +150,20 @@
         </div>
 
 
-        <!--
         <div id="copyModal" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h2 class="modal-title">Welcome to UpNext!</h2>
+                        <h2 id="copyTitle" class="modal-title">Click and Copy!</h2>
                     </div>
                     <div class="modal-body">
-                        <h3>First Time?</h3>
-                        <h5>Create a playlist and invite your friends to listen with you </h5>
-                        <h3>Been here before?</h3>
-                        <h5>Join an existing playlist and listen with your friends</h5>
-                        <h3>Why use UpNext?</h3>
-                        <h5>Queue songs for a party and allow everyone to edit what's up next</h5>
-                        <h5>Listen and discover music with your friends</h5>
+                        <input id="copyInput" type="text" class="form-control" onClick="this.select();">
                     </div>
                 </div>
             </div>
         </div>
--->
+
 
         <div class="page-header">
             <div class="containe-fluid">
