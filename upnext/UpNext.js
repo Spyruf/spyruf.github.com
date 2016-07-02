@@ -728,8 +728,6 @@
             if ((navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1) || jQuery.browser == false) {
                 //alert("It's Safari");
 
-                $("#copyModal").modal();
-
                 // get the input
                 var aux = document.getElementById("copyInput");
 
@@ -745,6 +743,9 @@
                 }, 1);
                 aux.focus();
                 aux.select();
+
+                $("#copyModal").modal();
+
 
             } else {
                 // Create a "hidden" input
@@ -773,8 +774,6 @@
             if ((navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1) || jQuery.browser == false) {
                 //alert("It's Safari");
 
-                $("#copyModal").modal();
-
                 // get the input
                 var aux = document.getElementById("copyInput");
 
@@ -789,6 +788,9 @@
                 }, 1);
                 aux.focus();
                 aux.select();
+
+                $("#copyModal").modal();
+
 
 
             } else {
