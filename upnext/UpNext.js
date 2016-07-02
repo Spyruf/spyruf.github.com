@@ -735,6 +735,8 @@
 
                 // Assign it the value of the specified element
                 aux.setAttribute("value", document.getElementById("uID").innerHTML); // main line
+                aux.value = document.getElementById("uID").innerHTML;
+
 
                 // Highlight its content
                 aux.focus();
@@ -778,6 +780,7 @@
 
                 // Assign it the value of the specified element
                 aux.setAttribute("value", $scope.link); // main line
+                aux.value = $scope.link;
 
                 // Highlight its content
                 aux.focus();
