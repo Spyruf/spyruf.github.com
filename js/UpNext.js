@@ -7,6 +7,7 @@
 
     app.controller('UpNextController', ['$scope', '$filter', '$firebaseArray', '$firebaseObject', 'hotkeys', function ($scope, $filter, $firebaseArray, $firebaseObject, hotkeys) {
 
+
         $scope.ab = {
             index: 0,
             //isPlaying: false,
