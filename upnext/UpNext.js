@@ -737,12 +737,12 @@
 
 
                 // Highlight its content
-                aux.focus();
-                setTimeout(function () {
-                    aux.setSelectionRange(0, 9999);
-                }, 1);
-                aux.focus();
-                aux.select();
+//                aux.focus();
+         //                setTimeout(function () {
+         //                    aux.setSelectionRange(0, 9999);
+         //                }, 1);
+         //                aux.focus();
+         //                aux.select();
 
                 $("#copyModal").modal();
 
@@ -782,12 +782,12 @@
                 aux.value = $scope.link;
 
                 // Highlight its content
-                aux.focus();
-                setTimeout(function () {
-                    aux.setSelectionRange(0, 9999);
-                }, 1);
-                aux.focus();
-                aux.select();
+//                aux.focus();
+//                setTimeout(function () {
+//                    aux.setSelectionRange(0, 9999);
+//                }, 1);
+//                aux.focus();
+//                aux.select();
 
                 $("#copyModal").modal();
 
