@@ -238,7 +238,7 @@ nav ul a {
     */
 }
 
-a:hover {
+a.hover:hover {
     color: #2196F3;
     text-decoration: underline;
 }
@@ -260,7 +260,7 @@ a.cw {
     display: none;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 720px) {
     .text_h {
         font-size: 4.5em;
     }
