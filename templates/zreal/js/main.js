@@ -25,7 +25,7 @@
                 // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
                 $('html, body').animate({
                     scrollTop: $(hash).offset().top
-                }, 600, function () {
+                }, 400, function () {
 
                     // Add hash (#) to URL when done scrolling (default click behavior)
                     window.location.hash = hash;
@@ -37,7 +37,7 @@
         var options = [
             {
                 selector: '.cw',
-                offset: 50,
+                offset: -50,
                 callback: function () {
                     Materialize.fadeInImage("#coursework");
                 }
