@@ -30,7 +30,18 @@
         });
 
 
-        //
+        var options = [
+            {
+                selector: '.cw',
+                offset: 50,
+                callback: function () {
+                    Materialize.fadeInImage("#coursework");
+                }
+            }
+                ];
+        Materialize.scrollFire(options);
+
+
 
 
         /*** Animate word ***/
@@ -87,15 +98,17 @@
                         newWidth = spanWrapper.width() + 10
                     spanWrapper.css('width', newWidth);
                 } else if (!headline.hasClass('type')) {
-                    //assign to .cd-words-wrapper the width of its longest word
-                    var words = headline.find('.cd-words-wrapper b'),
-                        width = 0;
-                    words.each(function () {
-                        var wordWidth = $(this).width();
-                        if (wordWidth > width) width = wordWidth;
-                    });
-                    headline.find('.cd-words-wrapper').css('width', width);
+
                 };
+
+                //assign to .cd-words-wrapper the width of its longest word
+                var words = headline.find('.cd-words-wrapper b'),
+                    width = 0;
+                words.each(function () {
+                    var wordWidth = $(this).width();
+                    if (wordWidth > width) width = wordWidth;
+                });
+                headline.find('.cd-words-wrapper').css('width', width);
 
                 //trigger animation
                 setTimeout(function () {

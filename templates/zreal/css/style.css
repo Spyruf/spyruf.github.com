@@ -81,7 +81,7 @@ nav ul a {
 }
 
 #index-banner {
-    min-height: 532px;
+    min-height: 432px;
     /* was 632*/
     max-height: 864px;
     position: relative;
@@ -250,4 +250,21 @@ a.cw:hover {
 
 a.cw {
     color: black
+}
+
+.scrollfire {
+    opacity: 0;
+}
+
+.vis {
+    display: none;
+}
+
+@media screen and (max-width: 700px) {
+    .text_h {
+        font-size: 5.0em;
+    }
+    .vis {
+        display: inherit;
+    }
 }
