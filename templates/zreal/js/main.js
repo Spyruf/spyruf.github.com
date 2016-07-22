@@ -41,15 +41,8 @@
                 callback: function () {
                     Materialize.fadeInImage("#coursework");
                 }
-            },
-            {
-                selector: '.experience',
-                offset: 0,
-                callback: function () {
-                    Materialize.fadeInImage("#experience");
-                }
             }
-                ];
+        ];
         Materialize.scrollFire(options);
 
 
