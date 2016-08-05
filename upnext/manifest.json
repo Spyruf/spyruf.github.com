@@ -1,0 +1,12 @@
+{
+	"name": "Rahul Batra",
+	"icons": [
+		{
+			"src": "\/android-chrome-192x192.png?v=m2ddJeW6ew",
+			"sizes": "192x192",
+			"type": "image\/png"
+		}
+	],
+	"theme_color": "#ffffff",
+	"display": "standalone"
+}
