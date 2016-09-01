@@ -22,6 +22,7 @@
 
     <!-- CSS-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="css/bootstrap-tour.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/center.css">
     <link rel="stylesheet" href="css/style.css">
 
@@ -38,6 +39,10 @@
 
     <!-- BootstrapJS -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap-tourJS -->
+    <script src="js/bootstrap-tour.min.js"></script>
+
 
     <!-- AngularJS-->
     <!--    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.2/angular.min.js"></script>-->
@@ -69,9 +74,6 @@
 
     <!-- UpNext.js-->
     <script src="js/UpNext.js"></script>
-
-
-
 
 
 </head>
@@ -146,12 +148,12 @@
                     </div>
                     <div class="modal-body">
                         <h3>First Time?</h3>
-                        <h5>Create a playlist and invite your friends to listen with you </h5>
+                        <h5>Create a playlist and invite your friends to listen with you</h5>
                         <h3>Been here before?</h3>
                         <h5>Join an existing playlist and listen with your friends</h5>
                         <h3>Why use UpNext?</h3>
                         <h5>Queue songs for a party and allow everyone to edit what's up next</h5>
-                        <h5>Listen and discover music with your friends</h5>
+                        <h5>Listen to and discover music with your friends</h5>
                     </div>
                 </div>
             </div>
@@ -198,14 +200,27 @@
                             <span class="glyphicon glyphicon-question-sign"></span> Help
                         </button>
 
+                        <button type="button" name="tour" id="tour" class="btn btn-xs btn-default pull-right">
+                            <span class="glyphicon glyphicon-play"></span> Tour
+                        </button>
+
                     </div>
 
                     <div ng-show="firstTime" class="col-xs-6 col-xs-offset-1">
                         <br>
                         <span class="pull-right">
-                             <button type="button" name="helpHome" id="helpHome" class="btn btn-xs btn-default pull-right">
+                        <button type="button" name="helpHome" id="helpHome" class="btn btn-xs btn-default pull-right">
                             <span class="glyphicon glyphicon-question-sign"></span> Help
                         </button>
+
+
+                        <button type="button" name="tourHome" id="tourHome" class="btn btn-xs btn-default pull-right">
+                            <span class="glyphicon glyphicon-play"></span> Tour
+                        </button>
+
+
+                        </span>
+
 
                     </div>
 
@@ -221,24 +236,28 @@
 
             <form>
 
+                <div id="create">
 
-                <div class="form-group ">
-                    <label class="">Join an existing playlist to listen with your friends</label>
-                </div>
-
-                <div class="form-group form-inline">
-
-                    <div class="form-group">
-                        <label for="playUID">Playlist ID</label>
-                        <input ng-model="playUID" id="playUID" type="text" class="form-control" placeholder="12345" style="font-size: 16px;">
+                    <div class="form-group ">
+                        <label class="">Join an existing playlist to listen with your friends</label>
                     </div>
-                    <button id="joinPlay" ng-click="joinPlay()" class="btn btn-success btn-md" style="font-size: 16px;">Join</button>
+
+                    <div class="form-group form-inline">
+
+                        <div class="form-group">
+                            <label for="playUID">Playlist ID</label>
+                            <input id="playUID" ng-model="playUID" type="text" class="form-control" placeholder="12345" style="font-size: 16px;">
+                        </div>
+                        <button id="joinPlay" ng-click="joinPlay()" class="btn btn-success btn-md" style="font-size: 16px;">Join</button>
+
+                    </div>
+
+                    <div class="form-group ">
+                        <label class="" for="or">or</label>
+                    </div>
 
                 </div>
 
-                <div class="form-group ">
-                    <label class="" for="or">or</label>
-                </div>
 
                 <div class="form-group">
                     <button id="newPlay" ng-click="newPlay()" class="btn btn-primary btn-md" style="font-size: 16px;">Create a New Playlist</button>
