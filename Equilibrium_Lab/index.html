@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Equilibrium Lab</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <style href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></style>
+
+    <!-- AngularJS-->
+    <!--    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.2/angular.min.js"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular-route.min.js"></script>
+
+    <script src="main.js"></script>
+</head>
+<body ng-app="main" ng-controller="mainController">
+
+<div class="container">
+    <div class="page-header">
+        <h1>Equilibrium Lab</h1>
+    </div>
+    <p>By Rahul Batra and Roma Chitko</p>
+
+    <form>
+        <div class="form-group">
+            <label for="h1">Cylinder 1 Height</label>
+            <input type="number" step=any class="form-control" id="h1" placeholder="" ng-model="h1">
+        </div>
+        <div class="form-group">
+            <label for="h2">Cylinder 2 Height</label>
+            <input type="number" step=any class="form-control" id="h2" placeholder="" ng-model="h2">
+        </div>
+        <div class="form-group">
+            <label for="s1">Straw 1 Diameter</label>
+            <input type="number" step=any class="form-control" id="s1" placeholder="" ng-model="s1">
+        </div>
+        <div class="form-group">
+            <label for="s2">Straw 2 Diameter</label>
+            <input type="number" step=any class="form-control" id="s2" placeholder="" ng-model="s2">
+        </div>
+
+
+
+        <button type="" class="btn btn-default" ng-click="cycle()">Submit</button>
+    </form>
+
+    <div id="output">
+        Ouput:
+
+    </div>
+
+
+</div>
+
+
+</body>
+</html>
