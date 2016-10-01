@@ -13,13 +13,15 @@ app.controller('mainController', function ($scope) {
     $scope.s2 = .593;  //diameter straw 2 - smaller straw (cm)
 
     $scope.trials = 3; // number of times it has to be right
-    $scope.sigFigs = 3; // number of sigFigs the values have to be equal to
     $scope.similar = 0; // number of similar data points so far
+
+    $scope.uncertainty = 0.001; // how close the data points can be
 
 
     $scope.h1Array = [];
     $scope.h2Array = [];
-
+    $scope.s1Array = [];
+    $scope.s2Array = [];
 
 
     $scope.cycle = function () {
@@ -38,19 +40,22 @@ app.controller('mainController', function ($scope) {
             $scope.h1 = $scope.h1 - $scope.v1 + $scope.v2;
             $scope.h2 = $scope.h2 - $scope.v2 + $scope.v1;
 
-            console.log("Level 1: " + $scope.h1 + " Level 2: " + $scope.h2 + " Volume taken from Straw 1: " + $scope.v1 + " Volume taken from Straw 2: " + $scope.v2);
+            // console.log("Level 1: " + $scope.h1 + " Level 2: " + $scope.h2 + " Volume taken from Straw 1: " + $scope.v1 + " Volume taken from Straw 2: " + $scope.v2);
 
-            document.getElementById('output').innerHTML += '<br>' + "Level 1: " + $scope.h1 + " Level 2: " + $scope.h2 + " Volume taken from Straw 1: " + $scope.v1 + " Volume taken from Straw 2: " + $scope.v2;
+            // document.getElementById('output').innerHTML += '<br>' + "Level 1: " + $scope.h1 + " Level 2: " + $scope.h2 + " Volume taken from Straw 1: " + $scope.v1 + " Volume taken from Straw 2: " + $scope.v2;
 
 
-            if (($scope.h1Array[$scope.h1Array.length - 1] - $scope.h1) < 0.001 && ($scope.h2Array[$scope.h2Array.length - 1] - $scope.h2) < 0.001)
+            if (($scope.h1Array[$scope.h1Array.length - 1] - $scope.h1) < $scope.uncertainty && ($scope.h2Array[$scope.h2Array.length - 1] - $scope.h2) < $scope.uncertainty)
                 $scope.similar++;
 
             $scope.h1Array.push($scope.h1);
             $scope.h2Array.push($scope.h2);
+            $scope.s1Array.push($scope.v1);
+            $scope.s2Array.push($scope.v2);
+
 
             x++;
-            if(x == 500)
+            if (x == 500)
                 document.getElementById('output').innerHTML = "Exceed 500 iterations, check the input values"
 
         }
@@ -66,34 +71,44 @@ app.controller('mainController', function ($scope) {
                 datasets: [{
                     label: "Cylinder 1",
                     fill: false,
-                    lineTension: 0.1,
-                    backgroundColor: "rgba(75,192,192,0.4)",
+                    lineTension: 0,
                     borderColor: "rgba(75,192,192,1)",
-                    borderCapStyle: 'butt',
-                    borderDash: [],
                     data: $scope.h1Array,
                 }, {
                     label: "Cylinder 2",
-                    ID: "asdfa",
                     fill: false,
-                    lineTension: 0.1,
-                    backgroundColor: "rgba(75,192,192,0.4)",
-                    borderColor: "rgba(75,192,192,1)",
-                    borderCapStyle: 'butt',
-                    borderDash: [],
+                    lineTension: 0,
+                    borderColor: "coral",
                     data: $scope.h2Array,
                 }]
             },
             options: {
-                responsive: false,
+                responsive: true,
                 title: {
                     display: true,
                     text: 'Cylinder Volume by Iteration'
+                },
+                scales: {
+
+                    xAxes: [{
+                        scaleLabel: {
+
+                            display: true,
+                            labelString: 'Iteration',
+                        }
+                    }],
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Volume (mL)',
+                        }
+                    }]
                 }
+
             }
         });
 
-        document.getElementById('output').innerHTML = "Trials needed to reach equilibrium: " + ($scope.h1Array.length - 1) + document.getElementById('output').innerHTML;
+        document.getElementById('output').innerHTML = "Iterations needed to reach equilibrium: " + ($scope.h1Array.length - 1);
 
     }
 

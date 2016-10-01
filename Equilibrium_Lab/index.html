@@ -19,7 +19,21 @@
 
 
     <script src="main.js"></script>
+
+    <style>
+        .chart {
+            min-height: 0em;
+            max-height: 80em;
+        }
+
+        canvas {
+            height: 0em;
+        }
+
+    </style>
 </head>
+
+
 <body ng-app="main" ng-controller="mainController">
 
 <div class="container">
@@ -35,7 +49,8 @@
         <br>
         The calculator will simulate the experiment and print out the data after each iteration.
         <br>
-        Once the volumes of the cylinder stabilize, that is the last x amount of volumes are within 0.001 mL, the script
+        Once the volumes of the cylinder stabilize, that is, a certain amount of the last measured volumes are within a
+        certain range, the script
         will terminate.
         <br>
         <br>
@@ -43,37 +58,102 @@
     </p>
 
 
-    <form>
-        <div class="form-group">
-            <label for="h1">Cylinder 1 Water Height (cm)</label>
-            <input type="number" step=any class="form-control" id="h1" placeholder="" ng-model="h1">
-        </div>
-        <div class="form-group">
-            <label for="h2">Cylinder 2 Water Height (cm)</label>
-            <input type="number" step=any class="form-control" id="h2" placeholder="" ng-model="h2">
-        </div>
-        <div class="form-group">
-            <label for="s1">Straw 1 Diameter (cm)</label>
-            <input type="number" step=any class="form-control" id="s1" placeholder="" ng-model="s1">
-        </div>
-        <div class="form-group">
-            <label for="s2">Straw 2 Diameter (cm)</label>
-            <input type="number" step=any class="form-control" id="s2" placeholder="" ng-model="s2">
-        </div>
-        <div class="form-group">
-            <label for="s2">Number of similar data points needed</label>
-            <input type="number" step=any class="form-control" id="trails" placeholder="" ng-model="trials">
+    <div class="row">
+
+        <form>
+            <div class="col-xs-6">
+
+                <div class="form-group">
+                    <label for="h1">Cylinder 1 Water Level (mL)</label>
+                    <input type="number" step=any class="form-control" id="h1" placeholder="" ng-model="h1">
+                </div>
+                <div class="form-group">
+                    <label for="s1">Straw 1 Diameter (cm)</label>
+                    <input type="number" step=any class="form-control" id="s1" placeholder="" ng-model="s1">
+                </div>
+
+
+            </div>
+
+            <div class="col-xs-6">
+
+                <div class="form-group">
+                    <label for="h2">Cylinder 2 Water Level (mL)</label>
+                    <input type="number" step=any class="form-control" id="h2" placeholder="" ng-model="h2">
+                </div>
+                <div class="form-group">
+                    <label for="s2">Straw 2 Diameter (cm)</label>
+                    <input type="number" step=any class="form-control" id="s2" placeholder="" ng-model="s2">
+                </div>
+
+            </div>
+
+            <div class="col-xs-12">
+
+                <div class="form-group">
+                    <label for="cRadius">Radius of both cylinders (cm)</label>
+                    <input type="number" step=any class="form-control" id="cRadius" placeholder="" ng-model="cRadius">
+                </div>
+
+
+                <div class="form-group">
+                    <label for="uncertainty">Uncertainty allowed to reach EQ</label>
+                    <input type="number" step=any class="form-control" id="uncertainty" placeholder=""
+                           ng-model="uncertainty">
+                </div>
+
+                <div class="form-group">
+                    <label for="trials">Number of similar data points required to reach EQ</label>
+                    <input type="number" step=any class="form-control" id="trials" placeholder="" ng-model="trials">
+                </div>
+
+
+                <button type="" class="btn btn-primary" ng-click="cycle()">Calculate</button>
+                <button type="" class="btn btn-danger" onclick="location.reload();">Reset</button>
+
+            </div>
+
+        </form>
+
+        <div class="col-xs-12">
+            <br>
+            <div id="output">
+            </div>
+            <canvas class="chart" id="myChart"></canvas>
         </div>
 
-        <button type="" class="btn btn-primary" ng-click="cycle()">Calculate</button>
-    </form>
-    <br>
-    <canvas id="myChart" width="400" height="400"></canvas>
 
-    <div id="output">
+        <div class="col-xs-12">
+
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Cylinder 1 (mL)</th>
+                    <th>Cylinder 2 (mL)</th>
+                    <th>Straw 1 (mL)</th>
+                    <th>Straw 2 (mL)</th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                <tr ng-repeat="x in labels">
+                    <td><b>{{x}}</b></td>
+                    <td ng-bind="h1Array[x]"></td>
+                    <td ng-bind="h2Array[x]"></td>
+                    <td ng-bind="s1Array[x]"></td>
+                    <td ng-bind="s2Array[x]"></td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+
     </div>
 
-    <p class="text-center">By Rahul Batra and Roma Chitko</p>
+
+    <p class="text-center">By Rahul Batra</p>
 
 </div>
 
