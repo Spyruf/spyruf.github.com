@@ -9,10 +9,14 @@
 
     <style href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></style>
 
+    <!-- Chart.JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.min.js"></script>
+
     <!-- AngularJS-->
     <!--    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.2/angular.min.js"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular-route.min.js"></script>
+
 
     <script src="main.js"></script>
 </head>
@@ -41,15 +45,15 @@
 
     <form>
         <div class="form-group">
-            <label for="h1">Cylinder 1 Height (cm)</label>
+            <label for="h1">Cylinder 1 Water Height (cm)</label>
             <input type="number" step=any class="form-control" id="h1" placeholder="" ng-model="h1">
         </div>
         <div class="form-group">
-            <label for="h2">Cylinder 2 Height (cm)</label>
+            <label for="h2">Cylinder 2 Water Height (cm)</label>
             <input type="number" step=any class="form-control" id="h2" placeholder="" ng-model="h2">
         </div>
         <div class="form-group">
-            <label for="s1">Straw 1 Diamete (cm)</label>
+            <label for="s1">Straw 1 Diameter (cm)</label>
             <input type="number" step=any class="form-control" id="s1" placeholder="" ng-model="s1">
         </div>
         <div class="form-group">
@@ -64,6 +68,8 @@
         <button type="" class="btn btn-primary" ng-click="cycle()">Calculate</button>
     </form>
     <br>
+    <canvas id="myChart" width="400" height="400"></canvas>
+
     <div id="output">
     </div>
 
