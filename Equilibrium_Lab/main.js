@@ -34,8 +34,8 @@ app.controller('mainController', function ($scope) {
             //height of water does not equal water level or volume
 
 
-            $scope.v1 = Math.PI * Math.pow(($scope.s1 / 2), 2) * ($scope.h1 / Math.PI ); // volume transferred from straw 1 // pi  * r^2 * h (ml  or cm^3)
-            $scope.v2 = Math.PI * Math.pow(($scope.s2 / 2), 2) * ($scope.h2 / Math.PI); // volume transferred from straw 2 // pi  * r^2 * h (ml  or cm^3)
+            $scope.v1 = Math.PI * Math.pow(($scope.s1 / 2), 2) * ($scope.h1 / (Math.PI * Math.pow($scope.cRadius,2)) ); // volume transferred from straw 1 // pi  * r^2 * h (ml  or cm^3)
+            $scope.v2 = Math.PI * Math.pow(($scope.s2 / 2), 2) * ($scope.h2 / (Math.PI * Math.pow($scope.cRadius,2))); // volume transferred from straw 2 // pi  * r^2 * h (ml  or cm^3)
 
             $scope.h1 = $scope.h1 - $scope.v1 + $scope.v2;
             $scope.h2 = $scope.h2 - $scope.v2 + $scope.v1;
