@@ -24,6 +24,11 @@ app.controller('mainController', function ($scope) {
     $scope.s2Array = [];
 
 
+    // $scope.h1Array.push($scope.h1);
+    // $scope.h2Array.push($scope.h2);
+    // $scope.s1Array.push(0);
+    // $scope.s2Array.push(0);
+
     $scope.cycle = function () {
         document.getElementById('output').innerHTML = "";
 
@@ -37,6 +42,11 @@ app.controller('mainController', function ($scope) {
             $scope.v1 = Math.PI * Math.pow(($scope.s1 / 2), 2) * ($scope.h1 / (Math.PI * Math.pow($scope.cRadius,2)) ); // volume transferred from straw 1 // pi  * r^2 * h (ml  or cm^3)
             $scope.v2 = Math.PI * Math.pow(($scope.s2 / 2), 2) * ($scope.h2 / (Math.PI * Math.pow($scope.cRadius,2))); // volume transferred from straw 2 // pi  * r^2 * h (ml  or cm^3)
 
+            $scope.h1Array.push($scope.h1);
+            $scope.h2Array.push($scope.h2);
+            $scope.s1Array.push($scope.v1);
+            $scope.s2Array.push($scope.v2);
+
             $scope.h1 = $scope.h1 - $scope.v1 + $scope.v2;
             $scope.h2 = $scope.h2 - $scope.v2 + $scope.v1;
 
@@ -48,10 +58,7 @@ app.controller('mainController', function ($scope) {
             if (($scope.h1Array[$scope.h1Array.length - 1] - $scope.h1) < $scope.uncertainty && ($scope.h2Array[$scope.h2Array.length - 1] - $scope.h2) < $scope.uncertainty)
                 $scope.similar++;
 
-            $scope.h1Array.push($scope.h1);
-            $scope.h2Array.push($scope.h2);
-            $scope.s1Array.push($scope.v1);
-            $scope.s2Array.push($scope.v2);
+
 
 
             x++;
