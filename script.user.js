@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         WebAssign Searcher
 // @namespace    http://tampermonkey.net/
-// @version      1.1
-// @description  Automaticqsy googles qs the questions on a WebAssign assingment for you
+// @version      2.0
+// @description  Automatically Googles the questions on a WebAssign assingment for you
 // @author       Rahul Batra, Harun Feraidon
 // @include      http://www.webassign.net/web/Student/Assignment-Responses/*
 // @grant        none
