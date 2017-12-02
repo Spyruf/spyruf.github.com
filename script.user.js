@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         WebAssign Searcher
 // @namespace    http://tampermonkey.net/
-// @version      3.0
+// @version      4.0
 // @description  Automatically Googles the questions on a WebAssign assingment for you
 // @author       Rahul Batra
 // @include      http://www.webassign.net/web/Student/Assignment-Responses/*
@@ -14,6 +14,31 @@
 
 (function() {
   'use strict';
+
+  // Sites to search
+
+  var dialog = $('<p>WebAssign Searcher:\nWhat sites do you want to search</p>').dialog({
+    buttons: {
+      "Yahoo Answers": function() {
+        console.log('Searching Yahoo Answers');
+      },
+      "Chegg": function() {
+        console.log('Searching Chegg');
+        dialog.dialog('close');
+      },
+      "Google": function() {
+        console.log('Searching Both');
+        dialog.dialog('close');
+      },
+      "Don't search": function() {
+        console.log('Not searching for answers');
+        dialog.dialog('close');
+      }
+    }
+  });
+
+
+
 
   console.log("window.location.href is: " + window.location.href);
   console.log("WebAssign Searcher it running!!!");
