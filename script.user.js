@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         WebAssign Searcher
 // @namespace    http://tampermonkey.net/
-// @version      1.0
+// @version      1.1
 // @description  Automaticqsy googles qs the questions on a WebAssign assingment for you
 // @author       Rahul Batra, Harun Feraidon
 // @include      http://www.webassign.net/web/Student/Assignment-Responses/*
@@ -10,7 +10,7 @@
 
 // ==/UserScript==
 
-
+// Testing update
 
 (function() {
   'use strict';

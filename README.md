@@ -7,4 +7,7 @@ A simple JS userscript to automatically google WebAssign questions.
 
 # Installation
 1. To install this script get Tampermonkey (chrome/firefox) or another UserScript extension for your broswer
-2. Install script from Greasyfork.org so that you always have the latest version -
+2. Install script from Greasyfork.org so that you always have the latest version
+  - https://greasyfork.org/en/scripts/35930-webassign-searcher
+
+For more information regarding UserScripts check out https://greasyfork.org
