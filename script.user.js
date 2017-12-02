@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         WebAssign Searcher
 // @namespace    http://tampermonkey.net/
-// @version      9.0
+// @version      10.0
 // @description  Automatically Googles the questions on a WebAssign assingment for you
 // @author       Rahul Batra
 // @include      http://www.webassign.net/web/Student/Assignment-Responses/*
@@ -59,7 +59,7 @@
     var google = "https://www.google.com/search?q=";
 
     for (x = 0; x < qs.length; x++) {
-      var tab = window.open(google + qs[x] + sites, '_blank');
+      var tab = window.open(google + qs[x].split(" ").splice(0,32).join(" ") + sites, '_blank');
     }
   }
 
