@@ -1,12 +1,13 @@
 // ==UserScript==
 // @name         WebAssign Searcher
 // @namespace    http://tampermonkey.net/
-// @version      5.0
+// @version      5.1
 // @description  Automatically Googles the questions on a WebAssign assingment for you
 // @author       Rahul Batra
 // @include      http://www.webassign.net/web/Student/Assignment-Responses/*
 // @grant        none
-// @require http://code.jquery.com/jquery-latest.js
+// @require http://code.jquery.com/jquery-latest.js http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/themes/base/jquery-ui.css
+// @require
 
 // ==/UserScript==
 
