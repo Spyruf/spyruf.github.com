@@ -12,6 +12,6 @@ A simple JS userscript to automatically google WebAssign questions.
 
 For more information regarding UserScripts check out https://greasyfork.org
 
-#Demo
+# Demo
 
 ![Alt Text](/demo.gif)
