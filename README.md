@@ -11,3 +11,7 @@ A simple JS userscript to automatically google WebAssign questions.
   - https://greasyfork.org/en/scripts/35930-webassign-searcher
 
 For more information regarding UserScripts check out https://greasyfork.org
+
+#Demo
+
+![Alt Text](/demo.gif)
