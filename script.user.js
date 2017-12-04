@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         WebAssign Searcher
 // @namespace    http://tampermonkey.net/
-// @version      10.2
+// @version      10.3
 // @description  Automatically Googles the questions on a WebAssign assingment for you
 // @author       Rahul Batra
 // @include      http://www.webassign.net/web/Student/Assignment-Responses/*
@@ -51,8 +51,9 @@
     for (var x = 0; x < q.length; x++) {
       qs[x] = q[x].innerHTML;
       qs[x] = qs[x].replace(/<(?:.|\n)*?>/gm, '');
+      qs[x] = qs[x].replace('&nbsp;','')
       qs[x] = qs[x].trim();
-      qs[x] = qs[x].replace(/(^[ \t]*\n)/gm, "");
+      qs[x] = qs[x].replace(/(^[ \t]*\n)/gm, '');
 
     }
 
@@ -66,6 +67,7 @@
     for (x = 0; x < qs.length; x++) {
 
       var url = google + qs[x].split(" ").splice(0,32).join(" ") + sites;
+      console.log(url);
 
       // Chrome
       var tab = window.open(url, '_blank');
