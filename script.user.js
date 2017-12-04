@@ -29,7 +29,7 @@
   sites = prompt("What sites would you like to search for answers? \n 0 = Don't Search \n 1 = Google \n 2 = Only Yahoo Answers \n 3 = Only Chegg");
 
   console.log(sites);
-  if (sites == "0" || sites != "1" && sites != "2" && sites != "3")
+  if (sites == null || sites == "0" || sites != "1" && sites != "2" && sites != "3")
     console.log("exiting");
   else {
     if (sites == "1") {
