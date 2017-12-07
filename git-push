@@ -1,6 +1,13 @@
 #!/bin/bash
 git subtree push --prefix=upnext upnext-subtree master
+git subtree push --prefix=Webassign-Searcher webassign-subtree master
 git push
+
 cd ..
 cd upnext
 git pull
+
+cd ..
+cd Webassign-Searcher
+git pull
+
