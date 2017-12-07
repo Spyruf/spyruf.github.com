@@ -1,0 +1,6 @@
+#!/bin/bash
+git subtree push --prefix=upnext upnext-subtree master
+git push
+cd ..
+cd upnext
+git pull
