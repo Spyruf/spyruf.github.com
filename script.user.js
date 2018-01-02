@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         WebAssign Searcher
 // @namespace    http://tampermonkey.net/
-// @version      10.7
+// @version      11.0
 // @description  Automatically Googles the questions on a WebAssign assingment for you
 // @author       Rahul Batra
 // @include      http://www.webassign.net/web/Student/Assignment-Responses/*
@@ -48,7 +48,7 @@
         console.log("starting");
         console.log(localStorage.getItem('pav'));
 
-        var trials = '20'; // has to be a string
+        var trials = '50'; // has to be a string
 
         var q = document.getElementsByClassName("studentQuestionContent");
         var qs = [];
