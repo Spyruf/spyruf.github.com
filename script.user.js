@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         WebAssign Searcher
 // @namespace    http://tampermonkey.net/
-// @version      11.0
+// @version      11.1
 // @description  Automatically Googles the questions on a WebAssign assingment for you
 // @author       Rahul Batra
 // @include      http://www.webassign.net/web/Student/Assignment-Responses/*
@@ -91,6 +91,8 @@
             // check if PAV question is the in localstorage string of all questions
             if (localStorage.getItem("qs").indexOf(qs[0]) !== -1) {
                 alert("found answers");
+		localStorage.setItem('pav', '0');
+		return;
             }
             else {
                 console.log("Trying again");
