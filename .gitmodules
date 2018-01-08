@@ -1,0 +1,3 @@
+[submodule "grailed-push-notifications"]
+	path = grailed-push-notifications
+	url = https://github.com/Spyruf/grailed-push-notifications
