@@ -1,3 +1,0 @@
-#!/bin/bash
-git subtree pull --prefix=upnext upnext-subtree master
-git subtree pull --prefix=Webassign-Searcher webassign-subtree master
