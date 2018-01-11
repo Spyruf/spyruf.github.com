@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/Spyruf/spyruf.github.io
+	branch = master
+	commit = 837463f1d4fb91d0905bc5a083b8e015ce360f74
+	parent = 837463f1d4fb91d0905bc5a083b8e015ce360f74
+	cmdver = 0.3.1
