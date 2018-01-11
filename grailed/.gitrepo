@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/Spyruf/grailed-push-notifications
+	branch = master
+	commit = 3bbfae12b0104f85a885b20a8bf2aa5f20b5c82e
+	parent = 3986a42d44a5a765301388a56ca4620aa94c49b1
+	cmdver = 0.3.1
