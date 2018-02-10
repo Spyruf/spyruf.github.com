@@ -6,8 +6,10 @@ from colorama import Fore, Back, Style
 import os
 import sys
 import json
+import traceback
 
 from selenium import webdriver
+import selenium.common.exceptions
 from bs4 import BeautifulSoup as bs
 import redis
 
@@ -43,55 +45,79 @@ class Checker:
         self.options.binary_location = "/app/.apt/usr/bin/google-chrome-stable"
         self.driver = None
 
-    def get_listings(self):
-        log(Fore.YELLOW + "Started Checking" + Style.RESET_ALL)
+    def start_selenium(self):
         while True:
             try:
                 self.driver = webdriver.Chrome(executable_path='chromedriver', chrome_options=self.options)
                 break
-            except:
-                log("Couldn't start selenium, trying again after 10 seconds")
+            except Exception:
+                log(Fore.RED + "Couldn't start selenium, trying again after 10 seconds")
+                log(print(traceback.format_exc()))
                 time.sleep(10)
 
-        self.driver.get(self.url)  # open link in selenium
-        log(Fore.YELLOW + "Page Loaded" + Style.RESET_ALL)
-
-        html = self.driver.page_source  # get raw html
-        soup = bs(html, "html.parser")  # convert to soup
-        listings = soup.find_all("div", class_="feed-item")  # get listings from the soup
-
-        # Retry once if the page loads without any listings
-        if len(listings) == 0:
+    def load_url(self):
+        try:
             self.driver.get(self.url)  # open link in selenium
-            log(Fore.YELLOW + "Page Loaded Second Time, now waiting 10 seconds" + Style.RESET_ALL)
-            time.sleep(10)
+            log(Fore.YELLOW + "Page Loaded: " + self.name + Style.RESET_ALL)
+        except selenium.common.exceptions.TimeoutException as ex:
+            log(Fore.RED + "load_url Selenium Exception: " + ex.msg)
+            log(Fore.RED + "ID: " + str(self.sender_id))
+            log(Fore.RED + "URL: " + self.url)
+            self.driver.quit()
+
+    def get_listings(self):
+        # log(Fore.YELLOW + "Started Checking" + Style.RESET_ALL)
+        try:
+            self.start_selenium()
+
+            self.load_url()
 
             html = self.driver.page_source  # get raw html
             soup = bs(html, "html.parser")  # convert to soup
             listings = soup.find_all("div", class_="feed-item")  # get listings from the soup
 
-        # Fill current items
-        current_items = set()
-        for item in listings:
-            if item.a is not None:
-                current_items.add(item.a.get("href"))
+            # Retry once if the page loads without any listings
+            if len(listings) == 0:
+                self.load_url()
+                log(Fore.YELLOW + "Page Loaded Second Time, now waiting 10 seconds" + Style.RESET_ALL)
+                time.sleep(10)
 
-        diff = current_items.difference(self.old_items)
-        if diff and self.first_time is not True:
-            self.send_links(diff)
-        else:
-            self.first_time = False
+                html = self.driver.page_source  # get raw html
+                soup = bs(html, "html.parser")  # convert to soup
+                listings = soup.find_all("div", class_="feed-item")  # get listings from the soup
 
-        self.old_items = current_items
+            # Fill current items
+            current_items = set()
+            for item in listings:
+                if item.a is not None:
+                    current_items.add(item.a.get("href"))
 
-        self.driver.quit()
-        log(Fore.YELLOW + "Stopped Checking" + Style.RESET_ALL)
+            diff = current_items.difference(self.old_items)
+            if diff and self.first_time is not True:
+                self.send_links(diff)
+            else:
+                self.first_time = False
+
+            self.old_items = current_items
+
+            self.driver.quit()
+            # log(Fore.YELLOW + "Stopped Checking" + Style.RESET_ALL)
+        except selenium.common.exceptions.TimeoutException as ex:
+            log(Fore.RED + "Selenium Exception: " + ex.msg)
+            log(Fore.RED + "ID: " + str(self.sender_id))
+            log(Fore.RED + "URL: " + self.url)
+            self.driver.quit()
+        except Exception as ex:
+            log(Fore.RED + "Other exception in get_listings(): " + ex.msg)
+            log(Fore.RED + "ID: " + str(self.sender_id))
+            log(Fore.RED + "URL: " + self.url)
+            self.driver.quit()
 
     def send_links(self, diff):
-        send_message(self.sender_id, "New Items!") if self.running else exit()
+        send_message(self.sender_id, "New Items!")  # if self.running else exit()
         for item in diff:
             item_link = "https://www.grailed.com" + item
-            send_message(self.sender_id, self.get_item_info(item_link)) if self.running else exit()
+            send_message(self.sender_id, self.get_item_info(item_link))  # if self.running else exit()
 
     def get_item_info(self, item_link):
 
@@ -105,6 +131,7 @@ class Checker:
         price = soup.find(class_="price").text.replace('\n', '')
 
         message = brand + '\n' + name + '\n' + size + '\n' + price + '\n' + item_link
+        log(Fore.YELLOW + "New Item: " + message)
         return message
 
 
@@ -117,18 +144,22 @@ def run_queue():
         if len(tasks) is 0:  # if no tasks exist
             pass
         elif len(queue) is 0:  # if no remaining tasks exist
-            log(Fore.GREEN + "Resetting the tasks")
+            log(Fore.GREEN + "Resetting the tasks queue")
             # print(Fore.RED, queue, done)
             for task in done:
                 queue.add(task)
             done.clear()
             # print(Fore.RED, queue, done)
         else:
-            log(Fore.GREEN + "Queueing a task")
+            # log(Fore.GREEN + "Queueing a task")
             # print(Fore.RED, queue, done)
             qtask = queue.pop()
             if qtask in tasks:
-                qtask.get_listings()
+                try:
+                    qtask.get_listings()
+                except Exception:
+                    log("There was some error, will skip for now: " + qtask.name)
+                    log(traceback.format_exc())
                 done.add(qtask)
             else:
                 pass
@@ -136,7 +167,7 @@ def run_queue():
 
 
 def add_to_queue(id, url):
-    log(Fore.MAGENTA + "Adding new checker to queue" + Style.RESET_ALL)
+    log(Fore.LIGHTCYAN_EX + "Adding new checker to queue" + Style.RESET_ALL)
 
     # add to redis
     r.sadd('tasks', str(id) + "|" + url)  # values in tasks are the Checker object names
@@ -158,10 +189,11 @@ def check_link(url):
 
 def status(sender_id):
     send_message(sender_id, "Currently Monitoring:")
+    log(Fore.MAGENTA + "All Tasks are:")
     ming = False
     for t in tasks:
         if t.name is not None:
-            # log("tasks name is", str(t.name))
+            log(Fore.MAGENTA + "task name is: " + str(t.name))
             if sender_id in str(t.name):
                 ming = True
                 # Removes sender ID and '|' and sends Link
@@ -172,6 +204,7 @@ def status(sender_id):
 
 
 def reset(sender_id):
+    log(Fore.YELLOW + "Resetting tasks for sender_id: " + str(sender_id))
     send_message(sender_id, "OK, stopping all monitors. Please wait 30 seconds for status to update")
     removing = set()
     for task in tasks:
@@ -181,7 +214,7 @@ def reset(sender_id):
             r.sadd("removing", str(task.name))
 
     # Removes tasks in redis by getting the difference of a main and temp set and then setting that to the main set
-    r.sdiffstore('tasks', 'removing', 'tasks')
+    r.sdiffstore('tasks', 'tasks', 'removing')
 
     for task in removing:
         tasks.remove(task)
@@ -221,8 +254,10 @@ def startup():
 
     # Add redis tasks to queue
     task_names = r.smembers('tasks')
-    log(Fore.MAGENTA + "Redis tasks are:" + ''.join(task_names))
+    log(Fore.MAGENTA + "Redis tasks are:")
     for name in task_names:
+        log(Fore.MAGENTA + name)
+
         id = name.split('|')[0]
         url = name.split('|')[1]
         add_to_queue(id, url)
@@ -299,8 +334,7 @@ def webhook():
 
 
 def send_message(recipient_id, message_text):
-    log("sending message to {recipient}: {text}".format(
-        recipient=recipient_id, text=message_text))
+    # log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
 
     params = {"access_token": os.environ["PAGE_ACCESS_TOKEN"]}
     headers = {"Content-Type": "application/json"}
