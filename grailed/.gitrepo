@@ -7,5 +7,5 @@
 	remote = https://github.com/Spyruf/grailed-push-notifications
 	branch = master
 	commit = aa7e47ad468178e815ada0b0f961900e7a80ef70
-	parent = 25b92838b4ed641beca777a4bf4e541e2cbaee76
+	parent = 2afbdf78ea7e70e55b5a979e52ebffd56fbdf826
 	cmdver = 0.3.1
