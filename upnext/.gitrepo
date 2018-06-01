@@ -6,6 +6,6 @@
 [subrepo]
 	remote = https://github.com/Spyruf/UpNext
 	branch = master
-	commit = 8520ac46ec757d169382d020ba0dea7641b48fe9
-	parent = 2d033f8d9477ed99cacce72c721803d8331a38e5
+	commit = d9945fbb9180b03d080ff3065729eb32afc26bec
+	parent = 133e87ea21a09000a2133ecaf142b898888d273b
 	cmdver = 0.3.1
