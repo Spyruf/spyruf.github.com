@@ -7,5 +7,5 @@
 	remote = https://github.com/Spyruf/WebAssign-Searcher
 	branch = master
 	commit = d428c9cf1f32fd1b97b518eae7cccaf3bb16ce84
-	parent = 82b544facf8143140133a79d70a3765b79677710
+	parent = c15fe04c90b1ab47e99eaf1a1a283b24966fd04f
 	cmdver = 0.3.1
