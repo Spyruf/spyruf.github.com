@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/Spyruf/WebAssign-Searcher.git
+	branch = master
+	commit = d428c9cf1f32fd1b97b518eae7cccaf3bb16ce84
+	parent = 3b713f6dd01334d72eb5063e3afd74d0fd6a9240
+	cmdver = 0.3.1
