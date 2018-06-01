@@ -7,5 +7,5 @@
 	remote = https://github.com/Spyruf/UpNext.git
 	branch = master
 	commit = d9945fbb9180b03d080ff3065729eb32afc26bec
-	parent = 7403e97c8cbb542ec995cdf7088a17c0acacf8e2
+	parent = 37591a5299230fb86fc3baf65f4216e105a97a11
 	cmdver = 0.3.1
