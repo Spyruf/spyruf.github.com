@@ -1,7 +1,7 @@
 # @Author: rahulbatra
 # @Date:   2018-05-30T02:09:47-04:00
 # @Last modified by:   rahulbatra
-# @Last modified time: 2018-05-30T13:51:28-04:00
+# @Last modified time: 2018-11-23T01:49:52-05:00
 
 
 import time, datetime
@@ -30,6 +30,7 @@ datetime.datetime.now(eastern)
 load_dotenv()
 redis_db = redis.from_url(os.environ.get("REDIS_URL"), decode_responses=True)
 local = os.environ.get("LOCAL")
+dev_id = os.environ.get("DEV_ID")
 
 tasks = set()
 queue = set()
@@ -64,8 +65,8 @@ class CheckerGrailed:
 
         self.options = webdriver.ChromeOptions()
         self.options.add_argument('headless')
-        if local == "0":
-            self.options.binary_location = "/app/.apt/usr/bin/google-chrome-stable"
+        # if local == "0": # TODO: fix this
+        #     self.options.binary_location = "/app/.apt/usr/bin/google-chrome-stable"
         self.driver = None
 
     def start_selenium(self):
@@ -86,6 +87,7 @@ class CheckerGrailed:
     def load_url(self):
         try:
             self.driver.get(self.url)  # open link in selenium
+            time.sleep(5)
             log(Fore.YELLOW + "Page Loaded: " + self.name + Style.RESET_ALL)
         except selenium.common.exceptions.TimeoutException as ex:
             # func = inspect.currentframe().f_back.f_code
@@ -162,7 +164,8 @@ class CheckerGrailed:
                     log(Fore.MAGENTA + "Number of new items: " + str(len(diff)) + Style.RESET_ALL)
 
                 if diff and self.run_before is True:
-                    self.send_links(diff)
+                    if len(diff) < 40:
+                        self.send_links(diff)
                 elif self.run_before is False:
                     log(Fore.MAGENTA + "First Time being run so ignoring sending items" + Style.RESET_ALL)
                     redis_db.set(self.url, 1)
@@ -211,7 +214,7 @@ class CheckerGrailed:
         brand = soup.find(class_="designer").text.replace('\n', '')
         name = soup.find(class_="listing-title").text.replace('\n', '')
         size = soup.find(class_="listing-size").text.replace('\n', '')
-        price = soup.find(class_="price").text.replace('\n', '')
+        price = soup.find(class_="-price").text.replace('\n', '')
 
         message = brand + '\n' + name + '\n' + size + '\n' + price + '\n' + item_link
         log(Fore.BLUE + "ID: " + self.sender_id + " New Item: " + name + " " + item_link + Style.RESET_ALL)
@@ -222,7 +225,7 @@ class CheckerGrailed:
         html = self.driver.page_source
         soup = bs(html, "html.parser")
 
-        image_link = soup.find(class_="selected")['src']
+        image_link = soup.find(class_="_selected")['src']
 
         # log(Fore.BLUE + "ID: " + self.sender_id + " Image Link: " + image_link + Style.RESET_ALL)
         return image_link
@@ -535,7 +538,7 @@ def help_message(sender_id):
 
 
 def send_image(recipient_id, image_link):
-    if local == "1":
+    if recipient_id != dev_id and local == "1":
         log("Pretending to send image to {recipient}".format(recipient=recipient_id))
         # log("Pretending to send message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
         return
@@ -569,7 +572,7 @@ def send_image(recipient_id, image_link):
 
 
 def send_message(recipient_id, message_text):
-    if local == "1":
+    if recipient_id != dev_id and local == "1":
         log("Pretending to send message to {recipient}".format(recipient=recipient_id))
         # log("Pretending to send message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
         return
@@ -664,8 +667,18 @@ def webhook():
                         message_text = messaging_event["message"]["text"]
                         url = check_link(message_text)
 
+                        if sender_id == dev_id and message_text.upper() == "DEV MODE":
+                            global local
+                            if local == "1":
+                                local = "0"
+                                send_message(dev_id, "Disabled Dev Mode")
+                            elif local == "0":
+                                local = "1"
+                                send_message(dev_id, "Enabled Dev Mode")
+                            os.environ["LOCAL"] = local
+
                         # Get Status
-                        if message_text.upper() == "STATUS":
+                        elif message_text.upper() == "STATUS":
                             status(sender_id)
 
                         # Stop all monitors

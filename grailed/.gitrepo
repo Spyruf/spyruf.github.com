@@ -6,6 +6,7 @@
 [subrepo]
 	remote = https://github.com/Spyruf/Grailed-Facebook-Chatbot.git
 	branch = master
-	commit = aa7e47ad468178e815ada0b0f961900e7a80ef70
-	parent = 671d249b3d28f9e52d90deff84ee29ec8eb486cc
-	cmdver = 0.3.1
+	commit = cfc2732181e738314ae3f59f0cc9c3a5fae57aa4
+	parent = 36ac63da451b7d4fda72d0a47ea74201b3108f12
+	cmdver = 0.4.1
+	method = merge
