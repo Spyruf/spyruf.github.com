@@ -6,7 +6,7 @@
 [subrepo]
 	remote = https://github.com/Spyruf/WebAssign-Searcher.git
 	branch = master
-	commit = e0e26288f17439e29eacf6fb851c62f42f0bd175
-	parent = 4e320ea7db1896da83daf8b1572c6395b4ff1bf0
+	commit = 0197e75ff369158fc9a13763926b4659b2faf3a1
+	parent = 4e031ee40a53b3fa21c8365648e38fbc743e8b6d
 	cmdver = 0.4.1
 	method = merge
