@@ -26,6 +26,23 @@ load_dotenv()
 import requests
 from flask import Flask, request
 
+
+def log(msg, *args, **kwargs):  # simple wrapper for logging to stdout on heroku
+    try:
+        if type(msg) is dict:
+            msg = json.dumps(msg)
+        else:
+            msg = str(msg).format(*args, **kwargs)
+            # msg = "test"
+        print(u"{}: {}".format(datetime.datetime.now(), msg))
+    except UnicodeEncodeError:
+        pass  # squash logging errors in case of non-ascii text
+    sys.stdout.flush()
+
+
+log(Fore.CYAN + "REDIS_URL IS: " + str(os.environ.get("REDIS_URL")) + Fore.RESET)
+log(Fore.CYAN + "Make sure this is up to date!"+ Fore.RESET)
+
 redis_db = redis.from_url(os.environ.get("REDIS_URL"), decode_responses=True)
 local = os.environ.get("LOCAL")
 
@@ -92,19 +109,6 @@ def send_message(recipient_id, message_text):
         print(Fore.RED + response.text + Fore.RESET)
 
 
-def log(msg, *args, **kwargs):  # simple wrapper for logging to stdout on heroku
-    try:
-        if type(msg) is dict:
-            msg = json.dumps(msg)
-        else:
-            msg = str(msg).format(*args, **kwargs)
-            # msg = "test"
-        print(u"{}: {}".format(datetime.datetime.now(), msg))
-    except UnicodeEncodeError:
-        pass  # squash logging errors in case of non-ascii text
-    sys.stdout.flush()
-
-
 def get_IDs():
     task_names = redis_db.smembers('tasks')
     log(Fore.MAGENTA + "IDs are:" + Fore.RESET)
@@ -133,16 +137,19 @@ if __name__ == '__main__':
     if input(Fore.YELLOW + "Custom Message? Y/N: " + Style.RESET_ALL) == "Y":
         messages.append(
             input(Fore.YELLOW + "What message would you like to send?\n" + Style.RESET_ALL))
+    elif input(Fore.YELLOW + "We are back message? Y/N: " + Style.RESET_ALL) == "Y":
+        messages.append("Grailed-Feed-Notifications is back!")    
+        messages.append(
+            "There were some changes from Grailed and Facebook that we were finally able to respond to. Just in time for you to find your grails for 2020.")
+        messages.append("Now is also a good time to run 'STATUS' and make sure your filters are up to date.")    
+        messages.append("As always, thank you for your patience and support!")    
     elif input(Fore.YELLOW + "Everything is normal message? Y/N: " + Style.RESET_ALL) == "Y":
         messages.append(
-            "Grailed-Feed-Notifications is back to running normally! Version 2.0 was released yesterday which features a more accurate way of determining new items and other general optimizations!")
+            "Grailed-Feed-Notifications is back to running normally! ")
         messages.append("As always, thank you for your patience and support!")
     else:
-        messages.append(
-            "Due to a recent bug with incorrect/repeat items being sent, a max of 5 new item will be sent on each feed check. Sorry for this inconvenience, these issues will be resolved shortly.")
-        messages.append(
-            "If you have a specific issue and would like to leave detailed feedback, please do so here: https://goo.gl/forms/jcWFG9l0Gs7B3o402")
-        messages.append("Thank you for your patience and support!")
+        log(Fore.YELLOW + "Exiting!" + Style.RESET_ALL)
+        exit()
 
     log(Fore.YELLOW + "The message is: " + Style.RESET_ALL)
     for item in messages:
